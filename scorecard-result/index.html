@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Scorecard Result | Join The Bots</title>
+    <meta name="description" content="Your personalised automation scorecard result from Join The Bots. See where your business stands and what to do next.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon-robot.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --teal:        #005B5C;
+            --teal-hover:  #004445;
+            --charcoal:    #22252A;
+            --off-white:   #F5F5F7;
+            --orange:      #F28C35;
+            --orange-hover:#D97A2A;
+            --green:       #3BAF7A;
+            --mid-gray:    #6C727F;
+            --light-gray:  #E1E4EA;
+            --teal-tint:   #E6F3F3;
+            --white:       #FFFFFF;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--white);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Sora', sans-serif; line-height: 1.2; }
+        h1, h2 { font-weight: 600; }
+        h3, h4  { font-weight: 500; }
+
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Header ── */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo { height: 40px; width: auto; }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .main-nav a { color: var(--charcoal); transition: color 0.15s; }
+        .main-nav a:hover { color: var(--teal); text-decoration: none; }
+
+        .btn-nav {
+            background: var(--teal);
+            color: var(--white);
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-nav:hover { background: var(--teal-hover); }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: background 0.15s, color 0.15s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-primary { background: var(--orange); color: var(--white); }
+        .btn-primary:hover { background: var(--orange-hover); text-decoration: none; color: var(--white); }
+
+        /* ── Result content ── */
+        .result-content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 48px 24px 72px;
+        }
+
+        .band-name {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.5rem, 3.5vw, 2rem);
+            font-weight: 600;
+            color: var(--mid-gray);
+            margin-bottom: 28px;
+        }
+
+        .score-headline {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.3rem, 3vw, 1.75rem);
+            font-weight: 700;
+            color: var(--charcoal);
+            margin-bottom: 24px;
+        }
+
+        .score-headline .score-value {
+            color: var(--orange);
+        }
+
+        .result-intro {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 36px;
+        }
+
+        .result-content h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 16px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid var(--charcoal);
+            display: inline-block;
+        }
+
+        .content-section {
+            margin-bottom: 36px;
+        }
+
+        .content-section p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .content-section ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        .content-section ol li {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 4px;
+        }
+
+        .content-section ul {
+            list-style: disc;
+            padding-left: 28px;
+            margin-bottom: 12px;
+        }
+
+        .content-section ul li {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: var(--charcoal);
+            margin-bottom: 2px;
+        }
+
+        .cta-block {
+            margin-top: 8px;
+        }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 28px 0;
+            font-size: 0.85rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 680px) {
+            .main-nav a { display: none; }
+            .result-content { padding: 32px 20px 56px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Header ── -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html">
+                    <img src="../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo">
+                </a>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../services/index.html">Services</a>
+                    <a href="../articles/">Articles</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#contact">Contact</a>
+                    <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Result content ── -->
+    <div class="result-content">
+        <div class="band-name" id="band-name"></div>
+        <div class="score-headline" id="score-headline"></div>
+        <div class="result-intro" id="result-intro"></div>
+        <div id="band-content"></div>
+        <div class="cta-block">
+            <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+        </div>
+    </div>
+
+    <!-- ── Footer ── -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+        </div>
+    </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+
+    <script>
+    (function () {
+
+        var bands = {
+            'Big Leaks': {
+                num: 1,
+                intro: 'Right now, a lot of potential revenue is slipping through the gaps. Not because you\u2019re doing anything wrong, but because the systems aren\u2019t there yet to catch it. The good news is that even small changes at this stage can make a significant difference quickly.',
+                content: '<div class="content-section"><h3>Two things you can do this week:</h3><ol><li>Make sure every lead ends up in one place. One list, one CRM, one source of truth.</li><li>Set up a simple 3-email welcome sequence.<br>Use it to tell your new customers:<ul><li>Who you are.</li><li>What you offer.</li><li>How they can work with you.</li></ul></li></ol></div><div class="content-section"><h3>What we can build for you:</h3><p>We can design a minimal viable funnel in n8n that captures every lead from your website, forms, and calendar into one system. It automatically triggers nurture emails and follow-up tasks so nothing gets missed.</p></div><div class="content-section"><h3>Where Next?</h3><p>Your scorecard results are the starting point. Book a free 30 minute mapping session and we\u2019ll turn them into a written Automation Opportunity Map and a clear recommendation on where to start.</p></div>'
+            },
+            'Plugging the Gaps': {
+                num: 2,
+                intro: 'You\u2019ve made a solid start. Some pieces are in place and you\u2019re clearly thinking about this the right way. But there are still enough gaps that leads and revenue are likely slipping through more than you realise.',
+                content: '<div class="content-section"><h3>Two things you can do this week:</h3><ol><li>Standardise your follow-up cadence. Three touchpoints over ten days for any unclosed enquiry.</li><li>Write down your onboarding steps so they\u2019re ready to automate when the time comes.</li></ol></div><div class="content-section"><h3>What we can build for you:</h3><p>We can connect your existing tools into a single joined-up workflow. We\u2019ll connect your website, CRM, email, calendar, invoicing. You\u2019ll no longer have to paste data and every follow-up happens automatically.</p></div><div class="content-section"><h3>Where Next?</h3><p>Your scorecard results are the starting point. Book a free 30 minute mapping session and we\u2019ll turn them into a written Automation Opportunity Map and a clear recommendation on where to start.</p></div>'
+            },
+            'Flowing Smoothly': {
+                num: 3,
+                intro: 'You\u2019re in good shape. The foundations are solid and automation is clearly part of how you work. The opportunity now is to move from "it mostly works" to "it works intelligently" so your best leads get priority attention and your funnel improves itself over time.',
+                content: '<div class="content-section"><h3>Two things you can do this week:</h3><ol><li>Introduce basic lead scoring based on opens, clicks, or page visits. Prioritise outreach to your hottest prospects</li><li>Set a monthly 30-minute funnel review to decide what to optimise next.</li></ol></div><div class="content-section"><h3>What we can build for you:</h3><p>We can layer in advanced n8n workflows for lead scoring, behaviour-based messaging, and a live dashboard so you always know where to focus and your funnel keeps getting sharper.</p></div><div class="content-section"><h3>Where Next?</h3><p>Your scorecard results are the starting point. Book a free 30 minute mapping session and we\u2019ll turn them into a written Automation Opportunity Map and a clear recommendation on where to start.</p></div>'
+            },
+            'Automated Growth': {
+                num: 4,
+                intro: 'This is a strong result. You\u2019ve built something most businesses never get close to, a funnel that largely runs itself. The focus now is keeping it clean, resilient, and ahead of where your business is heading next.',
+                content: '<div class="content-section"><h3>Two things you can do this week:</h3><ol><li>Run an A/B test. A subject line test, a tweaked sequence step, one changed CTA.</li><li>Schedule a quarterly automation review to cut complexity and clear any technical debt.</li></ol></div><div class="content-section"><h3>What we can build for you:</h3><p>We can help you refactor and future-proof your automation stack by reducing points of failure, exploring multi-channel triggers, and introducing AI-assisted routing to add real value.</p></div><div class="content-section"><h3>Where Next?</h3><p>Your scorecard results are the starting point. Book a free 30 minute mapping session and we\u2019ll turn them into a written Automation Opportunity Map and a clear recommendation on where to start.</p></div>'
+            }
+        };
+
+        // ── Read URL params ──
+        var params     = new URLSearchParams(window.location.search);
+        var score      = parseInt(params.get('score'), 10);
+        var resultBand = params.get('result_band');
+
+        // Fallback: derive band from score if result_band missing
+        if (!resultBand && !isNaN(score)) {
+            if (score <= 12)      resultBand = 'Big Leaks';
+            else if (score <= 22) resultBand = 'Plugging the Gaps';
+            else if (score <= 32) resultBand = 'Flowing Smoothly';
+            else                  resultBand = 'Automated Growth';
+        }
+
+        var cfg = bands[resultBand];
+
+        if (!cfg) {
+            // No valid params — redirect to homepage
+            window.location.href = '../index.html';
+            return;
+        }
+
+        // Default score to midpoint of band if missing
+        if (isNaN(score)) {
+            var midpoints = { 1: 6, 2: 17, 3: 27, 4: 36 };
+            score = midpoints[cfg.num];
+        }
+
+        // Clamp score
+        score = Math.max(0, Math.min(40, score));
+
+        // ── Populate page ──
+        document.getElementById('band-name').textContent = resultBand;
+        document.getElementById('score-headline').innerHTML = 'You Scored <span class="score-value">' + score + '</span> out of 40';
+        document.getElementById('result-intro').textContent = cfg.intro;
+        document.getElementById('band-content').innerHTML = cfg.content;
+
+        // ── Update page title ──
+        document.title = resultBand + ' | Your Scorecard Result | Join The Bots';
+
+    })();
+    </script>
+
+</body>
+</html>

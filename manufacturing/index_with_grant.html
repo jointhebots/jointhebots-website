@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Business Automation for Manufacturers | Join The Bots</title>
+    <meta name="description" content="Join The Bots helps manufacturing businesses automate the admin that's slowing them down — quotes, orders, invoicing, and customer comms. Fixed price, no jargon.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="icon" type="image/png" href="../images/favicon-robot.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <style>
+        /* ── Grant callout banner ── */
+        .grant-banner {
+            background: #005B5C;
+            color: #ffffff;
+            padding: 18px 20px;
+            text-align: center;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        .grant-banner strong {
+            font-weight: 700;
+        }
+        .grant-banner a {
+            color: #F28C35;
+            font-weight: 600;
+            text-decoration: underline;
+        }
+        .grant-banner a:hover {
+            color: #ffffff;
+        }
+
+        /* ── Use cases section ── */
+        .use-cases {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+
+        .use-cases h2 {
+            font-size: 2.5rem;
+            color: #22252A;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .use-cases h2::before {
+            content: '';
+            display: block;
+            width: 48px;
+            height: 4px;
+            background-color: #F28C35;
+            border-radius: 2px;
+            margin: 0 auto 20px;
+        }
+
+        .use-cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 50px;
+        }
+
+        .use-case-card {
+            background-color: #F5F5F7;
+            border-radius: 12px;
+            padding: 36px 32px;
+            border-top: 4px solid #E1E4EA;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .use-case-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 28px rgba(0,91,92,0.10);
+        }
+
+        .use-case-card:nth-child(1) { border-top-color: #005B5C; }
+        .use-case-card:nth-child(2) { border-top-color: #3BAF7A; }
+        .use-case-card:nth-child(3) { border-top-color: #F28C35; }
+        .use-case-card:nth-child(4) { border-top-color: #005B5C; }
+
+        .use-case-icon {
+            font-size: 2rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+
+        .use-case-card h3 {
+            font-size: 1.2rem;
+            color: #22252A;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .use-case-card p {
+            font-size: 0.95rem;
+            color: #6C727F;
+            line-height: 1.65;
+            margin-bottom: 18px;
+        }
+
+        .use-case-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .use-case-card li {
+            font-size: 0.9rem;
+            color: #6C727F;
+            padding: 7px 0 7px 24px;
+            position: relative;
+            line-height: 1.55;
+            border-bottom: 1px solid #E1E4EA;
+        }
+
+        .use-case-card li:last-child {
+            border-bottom: none;
+        }
+
+        .use-case-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #3BAF7A;
+            font-weight: bold;
+        }
+
+        /* ── Grant section ── */
+        .grant-section {
+            background-color: #E6F3F3;
+            padding: 64px 0;
+            border-top: 1px solid #C8DEDE;
+        }
+
+        .grant-inner {
+            max-width: 760px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .grant-badge {
+            display: inline-block;
+            padding: 5px 16px;
+            background-color: #005B5C;
+            color: #ffffff;
+            border-radius: 20px;
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 20px;
+        }
+
+        .grant-section h2 {
+            font-size: 1.8rem;
+            color: #22252A;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .grant-section p {
+            font-size: 1.05rem;
+            color: #6C727F;
+            line-height: 1.75;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .use-cases-grid {
+                grid-template-columns: 1fr;
+            }
+            .use-cases h2,
+            .grant-section h2 {
+                font-size: 1.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Grant Banner ── -->
+    <div class="grant-banner">
+        <strong>Funding may be available for your business.</strong> Government-backed grants can cover a significant portion of digital adoption projects like this. <a href="#grant">Find out more ↓</a>
+    </div>
+
+    <!-- ── Header ── -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html">
+                    <img src="../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo">
+                </a>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../services/index.html">Services</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="#contact">Contact</a>
+                    <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Hero ── -->
+    <section class="hero">
+        <div class="hero-inner">
+            <div class="hero-text">
+                <h1>The factory runs on precision. The business around it should too.</h1>
+                <p class="hero-subtitle">Manufacturing businesses lose hours every week to admin that software should be handling. We build the automations that keep your quotes, orders, invoicing, and customer comms moving — without anyone having to push them.</p>
+                <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn btn-hero">
+                    Take the 3-minute scorecard
+                </button>
+            </div>
+            <div class="hero-image">
+                <img src="../images/process-bro.svg" alt="Business process automation illustration">
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Pain points / Stages ── -->
+    <section id="stages" class="how-it-works">
+        <div class="container">
+            <h2>The right fix depends on where you are</h2>
+            <ul class="intro-bullets">
+                <li>Some businesses are losing orders because nothing is joined up.</li>
+                <li>Others are spending hours on admin that should run itself.</li>
+                <li>A few have bits in place, but one person leaving would break everything.</li>
+            </ul>
+
+            <h3 class="stages-question">Which of these sounds like your business right now?</h3>
+
+            <div class="stages">
+                <div class="stage">
+                    <div class="stage-number">1</div>
+                    <h4>Disconnected</h4>
+                    <p>Your systems don't talk to each other. Quotes, job sheets, and invoices are all handled separately and someone has to manually move information between them.</p>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage">
+                    <div class="stage-number">2</div>
+                    <h4>Manual</h4>
+                    <p>You have a process, but it relies on people. Chasing purchase orders, sending customer updates, raising invoices — all done by hand, every time.</p>
+                </div>
+                <div class="stage-arrow">→</div>
+                <div class="stage">
+                    <div class="stage-number">3</div>
+                    <h4>Fragile</h4>
+                    <p>Some things are automated, but only one person understands them. When they're off, things slip. It works until it doesn't.</p>
+                </div>
+            </div>
+
+            <div class="bridge-cta">
+                <p>Answer 10 quick questions to get your <strong>Automation Score</strong> and a personalised roadmap. Takes 3 minutes.</p>
+                <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn btn-primary">
+                    Take the 3-minute scorecard
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Use cases ── -->
+    <section class="use-cases">
+        <div class="container">
+            <h2>Where we make the difference</h2>
+            <p class="section-intro">We don't touch your production systems. We work on the business support side — the parts that keep customers informed, invoices paid, and your team out of their inbox.</p>
+
+            <div class="use-cases-grid">
+
+                <div class="use-case-card">
+                    <span class="use-case-icon">📋</span>
+                    <h3>Quotes &amp; orders</h3>
+                    <p>From the moment an enquiry lands, your team should be selling — not entering data.</p>
+                    <ul>
+                        <li>New enquiry received → contact created, quote triggered, follow-up reminder set</li>
+                        <li>Quote accepted → job created in your system, customer sent an order acknowledgement</li>
+                        <li>Unanswered quote → automatic chase sent before the lead goes cold</li>
+                        <li>Order details updated → relevant team members notified immediately</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-icon">💬</span>
+                    <h3>Customer communications</h3>
+                    <p>Customers want to know what's happening. Keeping them updated shouldn't depend on someone remembering to send an email.</p>
+                    <ul>
+                        <li>Order confirmed → customer receives an automatic acknowledgement</li>
+                        <li>Job reaches a key milestone → update sent to the customer without anyone lifting a finger</li>
+                        <li>Job complete → confirmation sent, satisfaction follow-up scheduled</li>
+                        <li>Query received → acknowledgement sent instantly, routed to the right person</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-icon">🧾</span>
+                    <h3>Invoicing &amp; accounts</h3>
+                    <p>Completed jobs should trigger invoices automatically. Payment chasing shouldn't fall to whoever remembers.</p>
+                    <ul>
+                        <li>Job marked complete → invoice raised and sent to the customer automatically</li>
+                        <li>Invoice unpaid after your chosen timeframe → polite payment reminder sent</li>
+                        <li>Payment received → accounts record updated, team notified in one step</li>
+                        <li>Month end → revenue summary sent directly to your inbox</li>
+                    </ul>
+                </div>
+
+                <div class="use-case-card">
+                    <span class="use-case-icon">🔗</span>
+                    <h3>Supplier &amp; purchasing admin</h3>
+                    <p>Supplier comms and purchase orders generate a lot of back-and-forth. Most of it can be handled automatically.</p>
+                    <ul>
+                        <li>PO raised → supplier notified automatically with the right details</li>
+                        <li>Expected delivery date → reminder logged, team alerted if it's approaching</li>
+                        <li>New supplier onboarded → details synced across your systems in one step</li>
+                        <li>Price or lead time change → flagged to the relevant person straight away</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Services ── -->
+    <section class="services">
+        <div class="container">
+            <h2>What we build</h2>
+            <p class="section-intro">Both start with a free mapping session. We find your highest-impact automation opportunities before we recommend or build anything.</p>
+
+            <div class="service-cards">
+                <div class="service-card">
+                    <div class="service-tag">Starter Build</div>
+                    <h3>One automation, built and running</h3>
+                    <p>We start with a free mapping session to find your highest-impact automation opportunity. Then we build it, test it, and keep it running.</p>
+                    <ul>
+                        <li>One automation built and deployed into your existing tools</li>
+                        <li>Managed by us so you don't have to think about it</li>
+                        <li>Delivered within 1 week</li>
+                    </ul>
+                    <div class="service-price">£500 · fixed scope</div>
+                    <a href="../services/index.html" class="btn btn-secondary">See full details</a>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-tag">Automation Jumpstart</div>
+                    <h3>Your top automations, all at once</h3>
+                    <p>We tackle your top 5–10 automation opportunities in one engagement. You get the bots built and running, plus a full Automation Blueprint covering what to focus on next.</p>
+                    <ul>
+                        <li>5–10 bots built, deployed, and managed by us</li>
+                        <li>Full Automation Blueprint included</li>
+                        <li>Delivered within 1 month</li>
+                    </ul>
+                    <div class="service-price">£3,000 · fixed scope</div>
+                    <a href="../services/index.html" class="btn btn-secondary">See full details</a>
+                </div>
+            </div>
+
+            <p style="text-align:center; font-size:0.95rem; color:#6C727F; margin-top: -20px;">We build on whatever tools you're already using. If it has an API, we can connect it.</p>
+        </div>
+    </section>
+
+    <!-- ── Grant funding ── -->
+    <section class="grant-section" id="grant">
+        <div class="grant-inner">
+            <div class="grant-badge">Funding</div>
+            <h2>Your project may qualify for grant funding</h2>
+            <p>Many manufacturing businesses are eligible for government-backed funding to support the adoption of digital technology. Depending on your region and the programme, this can cover a significant portion of a project like this.</p>
+            <p>We're not funding advisors, but if you're an SME manufacturer we're happy to point you in the right direction on your free mapping session.</p>
+            <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-secondary" style="margin-top: 24px; display: inline-block;">Book a free mapping session</a>
+        </div>
+    </section>
+
+    <!-- ── Social proof ── -->
+    <section class="social-proof">
+        <div class="container">
+            <h2>What Clients Say</h2>
+            <div class="testimonials">
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"John was great from start to finish, going above and beyond with documentation and videos so I could manage the system myself. Even after the job was completed he helped me with an issue without requesting any payment. Great communicator and kept a tight schedule."</blockquote>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-name">Brok Nielsen</span>
+                        <span class="testimonial-project"><a href="https://www.togetheragency.com.au/" target="_blank">Together Agency</a> · Hired multiple times</span>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="stars">★★★★★</div>
+                    <blockquote>"I enjoyed working with John as a second set of eyes on my CRM automations. John quickly got to grips with my setup and tech stack and was flexible in meeting my requirements. His communication was top-notch and he was always available for a call or leaving a written status update when required."</blockquote>
+                    <div class="testimonial-meta">
+                        <span class="testimonial-name">Nick Sutton</span>
+                        <span class="testimonial-project"><a href="https://www.emergencylocate.co.uk/" target="_blank">EmergencyLocate</a> · CRM Process Optimisation</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── Contact ── -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Let's talk</h2>
+            <div class="contact-options">
+                <div class="contact-option">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#005B5C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="2" y="4" width="20" height="16" rx="2"/>
+                            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+                        </svg>
+                    </div>
+                    <h4>Send us a message</h4>
+                    <p>Drop us a note and we'll come back to you within one working day.</p>
+                    <button data-tally-open="KY62lV" data-tally-layout="modal" data-tally-width="500" class="btn btn-primary" style="margin-top: 15px;">
+                        Send a message
+                    </button>
+                </div>
+                <div class="contact-option">
+                    <div class="contact-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#005B5C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <rect x="3" y="4" width="18" height="18" rx="2"/>
+                            <line x1="16" y1="2" x2="16" y2="6"/>
+                            <line x1="8" y1="2" x2="8" y2="6"/>
+                            <line x1="3" y1="10" x2="21" y2="10"/>
+                        </svg>
+                    </div>
+                    <h4>Book a free mapping session</h4>
+                    <p>Pick a time and we'll map out your biggest automation wins.</p>
+                    <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary" style="margin-top: 15px; display: inline-block;">
+                        Book a free mapping session
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-cta">The businesses getting ahead aren't the ones with the biggest teams. They're the ones where people, systems, and automation work in perfect harmony.</p>
+            <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+            <p class="attribution">Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
+        </div>
+    </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ARTICLE_TITLE}} - Join The Bots</title>
+    <meta name="description" content="{{ARTICLE_EXCERPT}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../articles/articles.css">
+    <link rel="icon" type="image/png" href="../images/favicon-robot.png">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html"><img src="../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="../services/index.html">Services</a>
+                    <a href="../articles/">Articles</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#contact">Contact</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <article class="article-page">
+        <div class="article-hero">
+            <div class="container">
+                <div class="article-meta">
+                    <time datetime="{{ARTICLE_DATE_ISO}}">{{ARTICLE_DATE_DISPLAY}}</time>
+                    <span class="article-author">by {{ARTICLE_AUTHOR}}</span>
+                </div>
+                <h1>{{ARTICLE_TITLE}}</h1>
+                <div class="article-tags">
+                    {{ARTICLE_TAGS}}
+                </div>
+            </div>
+        </div>
+
+        <div class="article-hero-image">
+            <div class="container">
+                <img src="../images/articles/{{ARTICLE_SLUG}}.jpg" alt="{{ARTICLE_TITLE}}">
+            </div>
+        </div>
+
+        <div class="article-body">
+            <div class="container">
+                <div class="article-content">
+                    {{ARTICLE_BODY}}
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <section class="article-cta">
+        <div class="container">
+            <div class="bridge-cta">
+                <p>Want to see how automation could work for your business? Take our free scorecard.</p>
+                <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn btn-primary">
+                    Take the 3-minute scorecard
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p class="footer-cta">The businesses getting ahead aren't the ones with the biggest teams. They're the ones where people, systems, and automation work in perfect harmony.</p>
+            <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+            <p class="attribution">Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
+        </div>
+    </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+</body>
+</html>

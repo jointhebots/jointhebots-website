@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Automation Services | Join The Bots</title>
+    <meta name="description" content="Fixed-price automation services from Join The Bots. Book a free 45-min automation mapping call and find out exactly where to start.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="../images/favicon-robot.png">
+    <style>
+        /* ── Reset & Base ── */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --teal:        #005B5C;
+            --teal-hover:  #004445;
+            --charcoal:    #22252A;
+            --off-white:   #F5F5F7;
+            --orange:      #F28C35;
+            --orange-hover:#D97A2A;
+            --green:       #3BAF7A;
+            --mid-gray:    #6C727F;
+            --light-gray:  #E1E4EA;
+            --teal-tint:   #E6F3F3;
+            --white:       #FFFFFF;
+        }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--charcoal);
+            background: var(--off-white);
+        }
+
+        h1, h2, h3, h4 { font-family: 'Sora', sans-serif; line-height: 1.2; }
+        h1, h2 { font-weight: 600; }
+        h3, h4  { font-weight: 500; }
+
+        a { color: var(--teal); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+        /* ── Header ── */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 0;
+        }
+
+        .logo { height: 40px; width: auto; }
+
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .main-nav a { color: var(--charcoal); transition: color 0.15s; }
+        .main-nav a:hover { color: var(--teal); text-decoration: none; }
+
+        .btn-nav {
+            background: var(--teal);
+            color: var(--white);
+            border: none;
+            padding: 9px 18px;
+            border-radius: 6px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        .btn-nav:hover { background: var(--teal-hover); }
+
+        /* ── Buttons ── */
+        .btn {
+            display: inline-block;
+            padding: 13px 28px;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: background 0.15s, color 0.15s;
+            text-align: center;
+            text-decoration: none;
+        }
+
+        .btn-primary { background: var(--orange); color: var(--white); }
+        .btn-primary:hover { background: var(--orange-hover); text-decoration: none; color: var(--white); }
+
+        .btn-secondary { background: transparent; color: var(--teal); border: 2px solid var(--teal); }
+        .btn-secondary:hover { background: var(--teal); color: var(--white); text-decoration: none; }
+
+        /* ── Quiz result banner ── */
+        .quiz-banner {
+            background: var(--teal);
+            color: var(--white);
+            text-align: center;
+            padding: 13px 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+            display: none;
+        }
+        .quiz-banner .sub { font-weight: 400; opacity: 0.85; }
+
+        /* ── Sales hero (browse mode only) ── */
+        .sales-hero {
+            background: var(--teal-tint);
+            padding: 72px 0 60px;
+            text-align: center;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .sales-hero h1 {
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
+            color: var(--charcoal);
+            margin-bottom: 16px;
+        }
+
+        .sales-hero p {
+            max-width: 560px;
+            margin: 0 auto;
+            color: var(--mid-gray);
+            font-size: 1.05rem;
+        }
+
+        /* ── Band header (quiz mode only) ── */
+        .band-header {
+            padding: 52px 0 0;
+            text-align: center;
+            display: none;
+        }
+
+        .band-badge {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+            background: var(--teal-tint);
+            color: var(--teal);
+            border: 1.5px solid var(--teal);
+        }
+
+        .band-header h1 {
+            font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+            color: var(--charcoal);
+            margin-bottom: 12px;
+        }
+
+        .band-header p {
+            max-width: 560px;
+            margin: 0 auto;
+            color: var(--mid-gray);
+            font-size: 1rem;
+        }
+
+        /* ── Services section ── */
+        .services-section {
+            padding: 64px 0;
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        /* ── Product cards ── */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 12px;
+            border: 1px solid var(--light-gray);
+            border-top: 4px solid var(--light-gray);
+            padding: 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: box-shadow 0.2s;
+        }
+
+        .product-card:hover { box-shadow: 0 8px 32px rgba(0,91,92,0.10); }
+        .product-card.featured { border-top-color: var(--teal); }
+
+        .recommended-tag {
+            position: absolute;
+            top: -1px;
+            right: 24px;
+            background: var(--teal);
+            color: var(--white);
+            font-size: 0.72rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 4px 12px;
+            border-radius: 0 0 6px 6px;
+            display: none;
+        }
+
+        .product-card h3 {
+            font-size: 1.6rem;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 600;
+            font-family: 'Sora', sans-serif;
+            color: var(--teal);
+            margin: 8px 0 2px;
+        }
+
+        .product-price span {
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+            font-weight: 400;
+        }
+
+        .product-scope {
+            font-size: 0.8rem;
+            color: var(--mid-gray);
+            font-style: italic;
+            margin-bottom: 4px;
+        }
+
+        .product-card .desc {
+            color: var(--mid-gray);
+            font-size: 0.95rem;
+            margin: 12px 0 20px;
+            flex-grow: 1;
+        }
+
+        .product-card ul { list-style: none; padding: 0; margin: 0; }
+
+        .product-card li {
+            font-size: 0.9rem;
+            padding: 5px 0 5px 26px;
+            position: relative;
+            color: var(--charcoal);
+        }
+
+        .product-card li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--green);
+            font-weight: 700;
+        }
+
+        /* ── Card CTA block ── */
+        .card-cta-block {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 36px;
+            border-top: 1px solid var(--light-gray);
+        }
+
+        .card-cta-block .cta-intro {
+            max-width: 580px;
+            margin: 0 auto 24px;
+            font-size: 0.975rem;
+            color: var(--charcoal);
+            line-height: 1.65;
+        }
+
+        .card-cta-block .cta-intro strong { color: var(--teal); }
+
+        .no-obligation {
+            margin-top: 10px;
+            font-size: 0.85rem;
+            color: var(--mid-gray);
+            font-style: italic;
+        }
+
+        /* ── How the mapping call works ── */
+        .how-it-works {
+            background: var(--charcoal);
+            padding: 64px 0;
+            color: var(--white);
+        }
+
+        .how-it-works h2 {
+            color: var(--white);
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            margin-bottom: 8px;
+        }
+
+        .how-it-works .intro {
+            color: rgba(255,255,255,0.65);
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 32px;
+            margin-top: 40px;
+            margin-bottom: 48px;
+        }
+
+        .step { position: relative; padding-left: 52px; }
+
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--teal);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .step h4 { color: var(--white); font-size: 1rem; margin-bottom: 6px; }
+        .step p  { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.55; }
+
+        .how-it-works-cta {
+            text-align: center;
+            border-top: 1px solid rgba(255,255,255,0.12);
+            padding-top: 40px;
+        }
+
+        .how-it-works-cta .no-obligation { color: rgba(255,255,255,0.45); }
+
+        /* ── YouTube video embed ── */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 48px;
+        }
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ── Contact ── */
+        .contact { padding: 72px 0; background: var(--white); }
+
+        .contact h2 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .contact-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 32px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .contact-option { text-align: center; }
+        .contact-icon { width: 48px; height: 48px; margin: 0 auto 16px; }
+        .contact-icon svg { width: 100%; height: 100%; }
+        .contact-option h4 { font-size: 1.1rem; margin-bottom: 8px; }
+        .contact-option p { color: var(--mid-gray); font-size: 0.9rem; margin-bottom: 4px; }
+
+        .contact-phone {
+            text-align: center;
+            margin-top: 32px;
+            color: var(--mid-gray);
+            font-size: 0.9rem;
+        }
+        .contact-phone a { color: var(--teal); font-weight: 500; }
+
+        /* ── Footer ── */
+        footer {
+            background: var(--charcoal);
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 28px 0;
+            font-size: 0.85rem;
+        }
+
+        /* ── Responsive ── */
+        @media (max-width: 680px) {
+            .main-nav a { display: none; }
+            .product-grid { grid-template-columns: 1fr; }
+            .steps { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ── Header ── -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="../index.html">
+                    <img src="../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo">
+                </a>
+                <nav class="main-nav">
+                    <a href="../index.html">Home</a>
+                    <a href="index.html">Services</a>
+                    <a href="../articles/">Articles</a>
+                    <a href="../index.html#about">About</a>
+                    <a href="../index.html#contact">Contact</a>
+                    <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- ── Quiz result banner (quiz mode only) ── -->
+    <div id="quiz-banner" class="quiz-banner">
+        Based on your scorecard results
+    </div>
+
+    <!-- ── Sales hero (browse mode only) ── -->
+    <section id="sales-hero" class="sales-hero">
+        <div class="container">
+            <h1>Two ways to work with us</h1>
+            <p>Whether you need one automation or a full overhaul, everything starts with a free mapping session so we know exactly where to focus.</p>
+        </div>
+    </section>
+
+    <!-- ── Band header (quiz mode only) ── -->
+    <div id="band-header" class="band-header">
+        <div class="container">
+            <div class="band-badge" id="band-badge-text">Your result</div>
+            <h1 id="band-headline"></h1>
+            <p id="band-subline"></p>
+        </div>
+    </div>
+
+    <!-- ══════════════════════════════════════════
+         PRODUCT CARDS
+    ══════════════════════════════════════════ -->
+    <section class="services-section">
+        <div class="container">
+
+            <div class="product-grid">
+
+                <!-- Starter Build -->
+                <div class="product-card" id="card-starter">
+                    <div class="recommended-tag" id="tag-starter">Recommended for you</div>
+                    <h3>Starter Build</h3>
+                    <div class="product-price">£500</div>
+                    <p class="product-scope">Fixed scope. No hourly rates. Delivered within 1 week.</p>
+                    <p class="desc">We start with a free mapping session to find your highest-impact automation opportunity. Then we build it, test it, and keep it running. You get the results, we handle the rest.</p>
+                    <ul>
+                        <li>One automation built and deployed into your existing tools</li>
+                        <li>Managed by us so you don't have to think about it</li>
+                        <li>Loom walkthrough of every bot so you can see exactly what's running and why</li>
+                        <li>Full documentation included, everything you need if you ever want to take it in-house</li>
+                    </ul>
+                </div>
+
+                <!-- Automation Jumpstart -->
+                <div class="product-card" id="card-jumpstart">
+                    <div class="recommended-tag" id="tag-jumpstart">Recommended for you</div>
+                    <h3>Automation Jumpstart</h3>
+                    <div class="product-price">£3,000</div>
+                    <p class="product-scope">Fixed scope. No hourly rates. Delivered within 1 month.</p>
+                    <p class="desc">The Jumpstart tackles your top 5–10 automation opportunities in one engagement. Within three weeks, your biggest bottlenecks are automated and taken care of. You also get a full Automation Blueprint covering your Opportunity Map, App Audit, and Playbook, so you always know what's running, why it exists, and where to focus next.</p>
+                    <ul>
+                        <li>5–10 bots built, deployed, and managed by us across your existing tools</li>
+                        <li>Full Automation Blueprint: Opportunity Map, App Audit, and Playbook</li>
+                        <li>Loom walkthrough of every bot so you can see exactly what's running and why</li>
+                        <li>Full documentation included, everything you need if you ever want to take it in-house</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- CTA block below cards -->
+            <div class="card-cta-block">
+                <p class="cta-intro" id="cta-intro-text"></p>
+                <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+                <p class="no-obligation">We take on a small number of new clients each month. Free, no obligation.</p>
+                <p class="no-obligation">Typically 30–45 minutes.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         WHAT HAPPENS ON THE MAPPING CALL
+    ══════════════════════════════════════════ -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>What happens on the mapping session</h2>
+            <p class="intro">It's not a sales pitch. It's a working session. Here's what we cover.</p>
+
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Map your current tools</h4>
+                    <p>We get a clear picture of what you're using, how data moves between them, and where things are falling through the cracks or being done manually.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Find the biggest opportunity</h4>
+                    <p>We work through a structured gap analysis together to identify where automation would have the highest impact for your business right now.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Give you something useful</h4>
+                    <p>You get a written Automation Opportunity Map showing a clear picture of where your business is today, your desired state, and a clear path between the two.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Agree next steps</h4>
+                    <p>If there's a fit, we'll scope the work and propose either the Starter Build or Jumpstart. Fixed scope, no hourly rates, no surprises.</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 20px;">See what's inside your Automation Opportunity Map</p>
+
+            <div class="video-wrapper">
+                <iframe src="https://www.youtube.com/embed/2dAdxefRTic" title="Join The Bots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+
+            <div class="how-it-works-cta">
+                <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+                <p class="no-obligation">We take on a small number of new clients each month. Free, no obligation.</p>
+                <p class="no-obligation">Typically 30–45 minutes.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+        </div>
+    </footer>
+
+    <script async src="https://tally.so/widgets/embed.js"></script>
+
+    <script>
+    (function () {
+
+        var bands = {
+            '1': {
+                badge:       'Big Leaks · Band 1',
+                headline:    'Leads are slipping through the cracks.',
+                subline:     'The right move is to fix one critical gap properly before adding anything more complex.',
+                recommended: 'starter',
+                ctaIntro:    'Based on your scorecard result, the <strong>Starter Build</strong> looks like the right starting point. But before anyone commits to anything, let\'s have a free mapping session. We\'ll turn your scorecard results into a written Automation Opportunity Map, giving you total clarity on your next move.'
+            },
+            '2': {
+                badge:       'Plugging the Gaps · Band 2',
+                headline:    'You\'ve made a solid start. There are still gaps worth fixing.',
+                subline:     'Some pieces are in place, but follow-up and handoffs are still falling through.',
+                recommended: 'starter',
+                ctaIntro:    'Based on your scorecard result, the <strong>Starter Build</strong> looks like the right starting point. But before anyone commits to anything, let\'s have a free mapping session. We\'ll turn your scorecard results into a written Automation Opportunity Map, giving you total clarity on your next move.'
+            },
+            '3': {
+                badge:       'Flowing Smoothly · Band 3',
+                headline:    'The foundations are solid. Time to connect everything properly.',
+                subline:     'You\'re already automating. The opportunity now is to make your stack robust, intelligent, and properly joined up.',
+                recommended: 'jumpstart',
+                ctaIntro:    'Based on your scorecard result, the <strong>Automation Jumpstart</strong> looks like the right fit. But before anyone commits to anything, let\'s have a free mapping session. We\'ll turn your scorecard results into a written Automation Opportunity Map, giving you total clarity on your next move.'
+            },
+            '4': {
+                badge:       'Automated Growth · Band 4',
+                headline:    'You\'ve built something most businesses never get close to.',
+                subline:     'The focus now is keeping it clean, resilient, and ahead of where your business is heading next.',
+                recommended: 'jumpstart',
+                ctaIntro:    'Based on your scorecard result, the <strong>Automation Jumpstart</strong> looks like the right fit. But before anyone commits to anything, let\'s have a free mapping session. We\'ll turn your scorecard results into a written Automation Opportunity Map, giving you total clarity on your next move.'
+            }
+        };
+
+        var params = new URLSearchParams(window.location.search);
+        var band   = params.get('band');
+
+        if (band && bands[band]) {
+
+            // ── Quiz mode ──
+            var cfg = bands[band];
+
+            // Show quiz banner, hide sales hero
+            document.getElementById('quiz-banner').style.display = 'block';
+            document.getElementById('sales-hero').style.display  = 'none';
+
+            // Show and populate band header
+            var bh = document.getElementById('band-header');
+            bh.style.display = 'block';
+            document.getElementById('band-badge-text').textContent = cfg.badge;
+            document.getElementById('band-headline').textContent   = cfg.headline;
+            document.getElementById('band-subline').textContent    = cfg.subline;
+
+            // Show recommended tag and highlight the right card
+            var tagId  = cfg.recommended === 'starter' ? 'tag-starter'  : 'tag-jumpstart';
+            var cardId = cfg.recommended === 'starter' ? 'card-starter' : 'card-jumpstart';
+            document.getElementById(tagId).style.display = 'block';
+            document.getElementById(cardId).classList.add('featured');
+
+            // Personalised CTA intro
+            document.getElementById('cta-intro-text').innerHTML = cfg.ctaIntro;
+
+            // Update page title and meta
+            document.title = 'Your Automation Roadmap | Join The Bots';
+            var desc = document.querySelector('meta[name="description"]');
+            if (desc) desc.setAttribute('content', 'Your personalised automation roadmap from Join The Bots. See exactly where your business should start.');
+
+        } else {
+
+            // ── Browse/sales mode ──
+            // No cards highlighted, no recommended tags, generic CTA intro
+            document.getElementById('cta-intro-text').innerHTML =
+                'Book a free mapping session. We\'ll find your highest-impact automation opportunity and give you a written Automation Opportunity Map and total clarity on where to focus next.';
+        }
+
+    })();
+    </script>
+
+</body>
+</html>
