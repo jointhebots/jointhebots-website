@@ -1,3 +1,16 @@
 {
-  "articles": []
+  "articles": [
+    {
+      "title": "How to Find Your First Automation Quick Win",
+      "slug": "how-to-find-your-first-automation-quick-win",
+      "date": "2026-03-19",
+      "author": "Tom Hussey",
+      "excerpt": "If you have ever thought, ‘There has to be a better way than this,’ but have no idea where to start with automation, you are not alone.​ Most managers are...",
+      "tags": [
+        "automation",
+        "workflow",
+        "process-improvement"
+      ]
+    }
+  ]
 }
