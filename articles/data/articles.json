@@ -1,15 +1,15 @@
 {
   "articles": [
     {
-      "title": "How to Find Your First Automation Quick Win",
-      "slug": "how-to-find-your-first-automation-quick-win",
+      "title": "Automation Isn't About Doing It All at Once",
+      "slug": "automation-isnt-about-doing-it-all-at-once",
       "date": "2026-03-19",
       "author": "Tom Hussey",
-      "excerpt": "If you have ever thought, ‘There has to be a better way than this,’ but have no idea where to start with automation, you are not alone.​ Most managers are...",
+      "excerpt": "Most businesses think automation means a big, expensive project that takes months to finish. When you try to automate everything at once, you usually end up...",
       "tags": [
         "automation",
-        "workflow",
-        "process-improvement"
+        "process-improvement",
+        "strategy"
       ]
     }
   ]
