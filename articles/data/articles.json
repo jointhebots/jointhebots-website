@@ -1,15 +1,17 @@
 {
   "articles": [
     {
-      "title": "Automation Isn't About Doing It All at Once",
-      "slug": "automation-isnt-about-doing-it-all-at-once",
-      "date": "2026-03-19",
+      "title": "Why Speed Beats Quality in Sales Lead Conversion",
+      "slug": "why-speed-beats-quality-in-sales-lead-conversion",
+      "date": "2026-03-22",
       "author": "Tom Hussey",
-      "excerpt": "Most businesses think automation means a big, expensive project that takes months to finish. When you try to automate everything at once, you usually end up...",
+      "excerpt": "Mark Cuban famously said, \"Sales cure all.\" He is right, and when sales slow down or stop altogether, everything else in the business starts to crack. The...",
       "tags": [
+        "sales",
         "automation",
-        "process-improvement",
-        "strategy"
+        "crm",
+        "ai",
+        "process-improvement"
       ]
     }
   ]
