@@ -1,15 +1,14 @@
 {
   "articles": [
     {
-      "title": "DIY AI: Why It's Not Always Worth It",
-      "slug": "diy-ai-why-its-not-always-worth-it",
-      "date": "2026-03-24",
+      "title": "AI Won't Replace Your Team: Here's Why",
+      "slug": "ai-wont-replace-your-team-heres-why",
+      "date": "2026-03-25",
       "author": "Tom Hussey",
-      "excerpt": "Everyone is talking about Claude, AI agents, and OpenClaw. Many small business owners are spinning up bots, internal tools, and “quick” automations in the...",
+      "excerpt": "You are not imagining it. Every week there is a new AI model, a new “agent”, a new tool that supposedly replaces half your team. It is noisy, confusing, and...",
       "tags": [
         "automation",
         "ai",
-        "workflow",
         "process-improvement"
       ]
     }
