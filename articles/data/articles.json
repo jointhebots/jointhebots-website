@@ -1,15 +1,17 @@
 {
   "articles": [
     {
-      "title": "AI Won't Replace Your Team: Here's Why",
-      "slug": "ai-wont-replace-your-team-heres-why",
-      "date": "2026-03-25",
+      "title": "Copy of Is SaaS Really Dead",
+      "slug": "copy-of-is-saas-really-dead",
+      "date": "2026-03-27",
       "author": "Tom Hussey",
-      "excerpt": "You are not imagining it. Every week there is a new AI model, a new “agent”, a new tool that supposedly replaces half your team. It is noisy, confusing, and...",
+      "excerpt": "You have probably watched a demo where someone builds an app with AI in five minutes and thought: “Why am I still paying for Pipedrive, Xero or Slack?” So...",
       "tags": [
         "automation",
+        "crm",
         "ai",
-        "process-improvement"
+        "integration",
+        "strategy"
       ]
     }
   ]
