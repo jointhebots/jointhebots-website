@@ -402,6 +402,61 @@
         }
         .contact-phone a { color: var(--teal); font-weight: 500; }
 
+        /* ── Industry Solutions ── */
+        .industry-section {
+            padding: 64px 0;
+            background: var(--white);
+            border-bottom: 1px solid var(--light-gray);
+        }
+
+        .industry-section h2 {
+            font-size: clamp(1.4rem, 3vw, 2rem);
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+        .industry-section .intro {
+            text-align: center;
+            color: var(--mid-gray);
+            font-size: 1rem;
+            margin-bottom: 40px;
+        }
+
+        .industry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .industry-card {
+            background: var(--off-white);
+            border-radius: 12px;
+            border: 1px solid var(--light-gray);
+            padding: 32px;
+            text-decoration: none;
+            color: var(--charcoal);
+            transition: box-shadow 0.2s, border-color 0.2s;
+            display: block;
+        }
+
+        .industry-card:hover {
+            box-shadow: 0 8px 32px rgba(0,91,92,0.10);
+            border-color: var(--teal);
+            text-decoration: none;
+        }
+
+        .industry-card h3 {
+            font-size: 1.2rem;
+            color: var(--teal);
+            margin-bottom: 8px;
+        }
+
+        .industry-card p {
+            font-size: 0.9rem;
+            color: var(--mid-gray);
+            line-height: 1.55;
+        }
+
         /* ── Footer ── */
         footer {
             background: var(--charcoal);
@@ -411,11 +466,26 @@
             font-size: 0.85rem;
         }
 
+        .footer-sectors {
+            margin-bottom: 12px;
+        }
+
+        .footer-sectors a {
+            color: rgba(255,255,255,0.6);
+            margin: 0 12px;
+            font-size: 0.8rem;
+        }
+
+        .footer-sectors a:hover {
+            color: var(--white);
+        }
+
         /* ── Responsive ── */
         @media (max-width: 680px) {
             .main-nav a { display: none; }
             .product-grid { grid-template-columns: 1fr; }
             .steps { grid-template-columns: 1fr; }
+            .industry-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -514,6 +584,27 @@
     </section>
 
     <!-- ══════════════════════════════════════════
+         INDUSTRY SOLUTIONS
+    ══════════════════════════════════════════ -->
+    <section class="industry-section">
+        <div class="container">
+            <h2>Industry solutions</h2>
+            <p class="intro">We work across sectors. Here are some of the industries where we've helped businesses automate.</p>
+
+            <div class="industry-grid">
+                <a href="../travel-agents/" class="industry-card">
+                    <h3>Travel Agents</h3>
+                    <p>Stop losing holiday enquiries to slow follow-up. Automate lead response, booking reminders, and post-trip reviews.</p>
+                </a>
+                <a href="../manufacturing/" class="industry-card">
+                    <h3>Manufacturing</h3>
+                    <p>Connect your shop floor to your back office. Automate quoting, order tracking, and supplier communications.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
          WHAT HAPPENS ON THE MAPPING CALL
     ══════════════════════════════════════════ -->
     <section class="how-it-works" id="how-it-works">
@@ -560,6 +651,10 @@
 
     <footer>
         <div class="container">
+            <div class="footer-sectors">
+                <a href="../travel-agents/">Travel Agents</a>
+                <a href="../manufacturing/">Manufacturing</a>
+            </div>
             <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
         </div>
     </footer>
