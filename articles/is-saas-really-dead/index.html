@@ -103,11 +103,11 @@
 <li>The board in Pipedrive is the only place management looks for pipeline and revenue forecasts.</li>
 </ul>
 <p>Once Pipedrive is the exoskeleton for sales, you can start to automate around it:</p>
-<ul>
+<ol>
 <li>When a deal moves to “Proposal Sent”, trigger n8n to generate a proposal document and send it via email or WhatsApp.</li>
 <li>When a deal is marked “Won”, send the data to Xero to draft an invoice and to Slack to create a new project channel.</li>
 <li>When a deal sits too long in one stage, ping the owner in a private Slack message with a reminder and suggested next step.</li>
-</ul>
+</ol>
 <p>Key principle: Pipedrive holds the truth; n8n reacts to changes in Pipedrive and coordinates other tools.</p>
 <h2>Xero as your finance system of record</h2>
 <p>Use Xero as the only place where money is ‘real’. Nothing is truly sold until it exists as an invoice and payment in Xero. In practice, that looks like:</p>
@@ -117,11 +117,11 @@
 <li>Revenue reports, aged debtors and VAT are all pulled from Xero.</li>
 </ul>
 <p>Once Xero is the exoskeleton for finance, you automate:</p>
-<ul>
+<ol>
 <li>When a deal is marked “Won” in Pipedrive, n8n creates a draft invoice in Xero with the correct contact, line items and tax treatment.</li>
 <li>When an invoice is approved in Xero, n8n posts a confirmation message in the client’s dedicated Slack channel.</li>
 <li>When an invoice is overdue by 7, 14, and 21 days, n8n sends polite reminders from a shared credit control inbox and tags the account manager in Slack.</li>
-</ul>
+</ol>
 <p>Key principle: Xero tells you what money has changed hands and what is still owed; automations make sure nothing falls through the cracks.</p>
 <h2>Slack as your project system of record</h2>
 <p>Use Slack as the place where work and communication live. If a decision or task is not in Slack, it is not real work. In a service business, that often means:</p>
@@ -132,45 +132,63 @@
 <li>Conversations and approvals happen in threads to keep the main channel clear and preserve context.</li>
 </ul>
 <p>When Slack is the exoskeleton for operations, you can automate around it:</p>
-<ul>
+<ol>
 <li>When a deal is “Won” in Pipedrive, n8n creates a new Slack channel, invites the project manager, and pins the signed proposal.</li>
 <li>When a milestone task in a Slack List is marked complete, n8n triggers an update to the client via email and logs the progress in Pipedrive.</li>
 <li>When tasks approach their due date, n8n sends an automated reminder to the task owner in the channel.</li>
-</ul>
+</ol>
 <p>Key principle: Slack shows what work is happening; automations keep the work moving and the team aligned.</p>
 <h2>How AI fits in: agents on top of the exoskeleton</h2>
 <p>If you try to skip the systems of record and jump straight to custom AI apps, you lose data quality, auditability, and clear handovers for your staff.</p>
 <p>AI agents are great at orchestrating across systems, not replacing them. The more consistent your systems of record, the more useful any AI layer becomes. For example, an AI project coordinator can only read Slack channels and draft a weekly status summary because Slack holds the full context of team decisions.</p>
 <h2>A simple implementation sequence</h2>
 <p>If you want a concrete starting point, here is a step-by-step sequence that we use with business owners and operations managers.</p>
+<ol>
+<li><strong>Pick your three systems of record.</strong>
 <ul>
-<li>Pick your three systems of record.</li>
 <li>Sales: Pipedrive.</li>
 <li>Finance: Xero.</li>
 <li>Projects and Communication: Slack.</li>
-<li>Write one page per system describing “what lives where”.</li>
+</ul>
+</li>
+<li><strong>Write one page per system describing “what lives where”.</strong> This does not need to be complicated. A single page per system is enough to make sure everyone on the team knows where data belongs.
+<ul>
 <li>Pipedrive: leads, deals, activities, forecasts.</li>
 <li>Xero: invoices, payments, bank reconciliation, VAT.</li>
 <li>Slack: project channels, task lists, internal discussions, pinned files.</li>
-<li>Enforce usage for 4 weeks.</li>
+</ul>
+</li>
+<li><strong>Enforce usage for 4 weeks.</strong> This is the hardest part. Old habits die slowly, but consistency here is what makes everything else work.
+<ul>
 <li>Every new deal must be in Pipedrive.</li>
 <li>Every invoice must be in Xero.</li>
 <li>Every project update and task must be in Slack.</li>
 <li>No parallel spreadsheets or hidden email threads.</li>
-<li>Map your top 5 manual handoffs.</li>
+</ul>
+</li>
+<li><strong>Map your top 5 manual handoffs.</strong> These are the moments where data moves between people or systems and things get dropped. Common examples:
+<ol>
 <li>Deal won → invoice raised.</li>
 <li>Deal won → Slack project channel created.</li>
 <li>Task completed → client updated.</li>
 <li>Invoice overdue → reminder sent.</li>
 <li>Project completed → channel archived and testimonial requested.</li>
-<li>Build your first 2–3 n8n workflows.</li>
+</ol>
+</li>
+<li><strong>Build your first 2–3 n8n workflows.</strong> Start small and prove the value before scaling up.
+<ol>
 <li>Start with “deal won → Xero draft invoice + Slack channel”.</li>
 <li>Then “invoice overdue → Slack alert + reminder email”.</li>
 <li>Then “Slack List task completed → client update message”.</li>
-<li>Only then, consider AI agents.</li>
+</ol>
+</li>
+<li><strong>Only then, consider AI agents.</strong> By this point your data is clean and your processes are consistent, which is exactly what AI needs to be useful.
+<ul>
 <li>Use AI to summarise Slack threads, produce reports, and draft messages.</li>
 <li>Keep the source of truth in Pipedrive, Xero and Slack.</li>
 </ul>
+</li>
+</ol>
 <h2>SaaS is not dead</h2>
 <p>The lesson from the “SaaS is dead” noise is not that you should cancel all your tools. It is that random apps without a clear role will die; systems of record will not.</p>
 <p>When Satya Nadella said “SaaS is dead”, he was really pointing to this shift: people will pay for outcomes, not logins. Outcomes come from a clear backbone of data and process, with automation and AI wrapped around it.</p>
