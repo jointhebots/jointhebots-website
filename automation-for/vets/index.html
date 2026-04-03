@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fast Response Automation for Vets | Join The Bots</title>
+<meta name="description" content="Stop losing patients to competitors with our 5-Minute Rule automation for vets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../../images/favicon-robot.png">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-K60YLD9QRL");</script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--teal:#005B5C;--teal-hover:#004445;--charcoal:#22252A;--off-white:#F5F5F7;--orange:#F28C35;--orange-hover:#D97A2A;--green:#3BAF7A;--mid-gray:#6C727F;--light-gray:#E1E4EA;--teal-tint:#E6F3F3;--white:#FFFFFF}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;font-size:16px;line-height:1.6;color:var(--charcoal);background:var(--off-white)}
+h1,h2,h3,h4{font-family:'Sora',sans-serif;line-height:1.2}h1,h2{font-weight:600}h3,h4{font-weight:500}
+a{color:var(--teal);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+.container-narrow{max-width:760px;margin:0 auto;padding:0 24px}
+header{background:var(--white);border-bottom:1px solid var(--light-gray);position:sticky;top:0;z-index:100}
+.header-content{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{height:40px;width:auto}
+.main-nav{display:flex;align-items:center;gap:28px;font-size:0.9rem;font-weight:500}
+.main-nav a{color:var(--charcoal);transition:color 0.15s}.main-nav a:hover{color:var(--teal);text-decoration:none}
+.btn{display:inline-block;padding:14px 32px;border-radius:8px;font-family:'Inter',sans-serif;font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:background 0.15s,transform 0.1s;text-align:center;text-decoration:none}
+.btn:hover{transform:translateY(-1px);text-decoration:none}
+.btn-primary{background:var(--orange);color:var(--white)}.btn-primary:hover{background:var(--orange-hover);color:var(--white)}
+.btn-white{background:var(--white);color:var(--teal)}.btn-white:hover{background:var(--teal-tint);color:var(--teal)}
+.btn-lg{padding:17px 40px;font-size:1.05rem}
+.btn-nav{background:#F28C35;color:#fff;border:none;padding:10px 20px;border-radius:6px;font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:600;cursor:pointer}
+.niche-bar{background:var(--teal);color:var(--white);text-align:center;padding:11px 20px;font-size:0.82rem;font-weight:600;letter-spacing:0.04em;text-transform:uppercase}
+.hero{background:var(--teal-tint);border-bottom:1px solid var(--light-gray);padding:80px 0 72px}
+.hero-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.hero-eyebrow{display:inline-block;background:rgba(0,91,92,0.1);color:var(--teal);border:1px solid rgba(0,91,92,0.25);padding:5px 14px;border-radius:50px;font-size:0.78rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;margin-bottom:20px}
+.hero h1{font-size:clamp(1.9rem,4vw,2.8rem);color:var(--charcoal);margin-bottom:20px;line-height:1.15}
+.hero h1 em{font-style:normal;color:var(--teal)}
+.hero-subtitle{color:var(--mid-gray);font-size:1.05rem;margin-bottom:32px;line-height:1.65}
+.hero-stat{display:flex;align-items:flex-start;gap:14px;background:var(--white);border:1px solid var(--light-gray);border-radius:10px;padding:16px 20px;margin-top:28px}
+.hero-stat-number{font-family:'Sora',sans-serif;font-size:2rem;font-weight:700;color:var(--teal);line-height:1;white-space:nowrap}
+.hero-stat-label{font-size:0.85rem;color:var(--mid-gray);line-height:1.5}
+.problem{background:var(--white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
+.problem h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:20px}
+.problem-story{background:var(--teal-tint);border-left:4px solid var(--teal);border-radius:0 10px 10px 0;padding:24px 28px;margin:32px 0;font-size:0.975rem;line-height:1.75}
+.problem-story p{margin-bottom:12px}.problem-story p:last-child{margin-bottom:0}
+.stat-callout{background:var(--charcoal);color:var(--white);border-radius:12px;padding:32px;margin:36px 0;text-align:center}
+.stat-callout .big-number{font-family:'Sora',sans-serif;font-size:clamp(3rem,7vw,4.5rem);font-weight:700;color:var(--green);line-height:1;display:block;margin-bottom:12px}
+.stat-callout p{font-size:1rem;color:rgba(255,255,255,0.7);max-width:480px;margin:0 auto}
+.stat-callout .source{font-size:0.8rem;color:rgba(255,255,255,0.4);margin-top:10px;font-style:italic}
+.solution-intro{background:var(--off-white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
+.solution-intro h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:16px}
+.product-name{display:inline-block;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:var(--teal);border:2px solid var(--teal);border-radius:6px;padding:3px 12px;margin-bottom:24px}
+.solution-content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:24px}
+.solution-content img{width:100%;border-radius:12px;margin-top:8px}
+.how-it-works{background:var(--white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
+.how-it-works h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
+.section-intro{color:var(--mid-gray);font-size:1rem;margin-bottom:48px}
+.flow-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;position:relative;margin-bottom:16px}
+.flow-steps::before{content:'';position:absolute;top:28px;left:calc(12.5% + 20px);right:calc(12.5% + 20px);height:2px;background:var(--light-gray);z-index:0}
+.flow-step{text-align:center;padding:0 16px;position:relative;z-index:1}
+.flow-step-circle{width:56px;height:56px;background:var(--teal);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:var(--white)}
+.flow-step h4{font-size:0.9rem;color:var(--charcoal);margin-bottom:8px}
+.flow-step p{font-size:0.83rem;color:var(--mid-gray);line-height:1.55}
+.what-you-get{background:var(--off-white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
+.what-you-get h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:40px}
+.feature-card{background:var(--white);border:1px solid var(--light-gray);border-radius:12px;padding:28px;transition:box-shadow 0.2s}
+.feature-card:hover{box-shadow:0 6px 24px rgba(0,91,92,0.09)}
+.feature-icon{width:44px;height:44px;background:var(--teal-tint);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.feature-icon svg{width:22px;height:22px;stroke:var(--teal);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.feature-card h4{font-size:0.975rem;color:var(--charcoal);margin-bottom:8px}
+.feature-card p{font-size:0.875rem;color:var(--mid-gray);line-height:1.6}
+.pricing{background:var(--charcoal);padding:80px 0;color:var(--white)}
+.pricing h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--white);margin-bottom:8px}
+.pricing .section-intro{color:rgba(255,255,255,0.55)}
+.pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto}
+.pricing-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:32px;display:flex;flex-direction:column}
+.pricing-card:hover{border-color:rgba(255,255,255,0.25)}
+.pricing-card.featured{background:var(--teal);border-color:var(--teal);position:relative}
+.pricing-card.featured::before{content:'Recommended';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--white);font-size:0.72rem;font-weight:700;text-transform:uppercase;padding:4px 14px;border-radius:50px}
+.pricing-tier{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.5);margin-bottom:8px}
+.pricing-card.featured .pricing-tier{color:rgba(255,255,255,0.7)}
+.pricing-name{font-family:'Sora',sans-serif;font-size:1.4rem;font-weight:600;color:var(--white);margin-bottom:20px}
+.pricing-setup{font-size:1.6rem;font-family:'Sora',sans-serif;font-weight:700;color:var(--white);margin-bottom:2px}
+.pricing-setup span{font-size:0.8rem;font-weight:400;color:rgba(255,255,255,0.5)}
+.pricing-monthly{font-size:0.875rem;color:rgba(255,255,255,0.6);margin-bottom:24px}
+.pricing-card.featured .pricing-monthly{color:rgba(255,255,255,0.75)}
+.pricing-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:0 0 20px}
+.pricing-card.featured .pricing-divider{border-color:rgba(255,255,255,0.25)}
+.pricing-features{list-style:none;padding:0;margin:0 0 28px;flex-grow:1}
+.pricing-features li{font-size:0.875rem;color:rgba(255,255,255,0.7);padding:5px 0 5px 24px;position:relative;line-height:1.55}
+.pricing-card.featured .pricing-features li{color:rgba(255,255,255,0.9)}
+.pricing-features li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+.final-cta{background:var(--teal);padding:80px 0;text-align:center}
+.final-cta h2{font-size:clamp(1.6rem,3.5vw,2.25rem);color:var(--white);margin-bottom:16px}
+.discovery-box{background:var(--white);border-radius:14px;padding:36px;max-width:640px;margin:0 auto;text-align:left}
+.discovery-box h3{color:var(--charcoal);font-size:1.2rem;margin-bottom:20px}
+.discovery-steps{list-style:none;padding:0;margin:0 0 28px}
+.discovery-steps li{font-size:0.9rem;color:var(--charcoal);padding:7px 0 7px 32px;position:relative;border-bottom:1px solid var(--light-gray);line-height:1.55}
+.discovery-steps li:last-child{border-bottom:none}
+.discovery-steps li::before{content:attr(data-num);position:absolute;left:0;width:22px;height:22px;background:var(--teal);color:var(--white);border-radius:50%;font-size:0.75rem;font-weight:700;font-family:'Sora',sans-serif;display:flex;align-items:center;justify-content:center;top:10px}
+.discovery-box .btn{width:100%;text-align:center;display:block}
+.discovery-disclaimer{font-size:0.82rem;color:var(--mid-gray);text-align:center;margin-top:12px;font-style:italic}
+footer{background:var(--charcoal);color:rgba(255,255,255,0.4);text-align:center;padding:28px 0;font-size:0.85rem}
+footer a{color:rgba(255,255,255,0.5)}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:0}.hero-visual{display:none}.features-grid{grid-template-columns:1fr 1fr}.pricing-grid{grid-template-columns:1fr;max-width:440px}.flow-steps{grid-template-columns:1fr 1fr;gap:32px}.flow-steps::before{display:none}.solution-content{grid-template-columns:1fr}}
+@media(max-width:600px){.main-nav a{display:none}.features-grid{grid-template-columns:1fr}.flow-steps{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="container"><div class="header-content">
+<a href="../../index.html"><img src="../../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
+<nav class="main-nav">
+<a href="../../index.html">Home</a><a href="../../services/index.html">Services</a><a href="../../articles/">Articles</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a>
+<button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
+</nav></div></div></header>
+<div class="niche-bar">BUILT SPECIFICALLY FOR UK VETS</div>
+<section class="hero"><div class="container"><div class="hero-inner"><div class="hero-text">
+<div class="hero-eyebrow">Never Miss a Lead</div>
+<h1>Respond within  <em>5 minutes</em></h1>
+<p class="hero-subtitle">Ensure every new pet owner receives a warm, personalised reply via WhatsApp or email, 24/7, automatically.</p>
+<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary btn-lg">Book a free mapping call</a>
+<div class="hero-stat"><div class="hero-stat-number">80%</div>
+<div class="hero-stat-label">of pet owners choose the first vet to respond.<br><em style="font-size:0.75rem;opacity:0.6">Source: VetClinic Insights 2023</em></div></div>
+</div><div class="hero-visual"><img src="hero.jpg" alt="Vets automation" style="width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,91,92,0.15);"></div>
+</div></div></section>
+<section class="problem"><div class="container-narrow">
+<h2>Stop Losing Patients to Faster Competitors</h2>
+<div class="problem-story">
+<p>It's a Sunday evening. A pet owner looking to register their new puppy searches for local vets and submits a form on your website. They want peace of mind, so they also message a large veterinary chain in the next town.</p>
+<p>The clinic is closed, so the enquiry sits in the practice inbox until Monday morning.</p>
+<p>When your receptionist opens the inbox on Monday, the pet owner has already received an instant, warm welcome message from the corporate chain and booked their first vaccination slot. Corporate competitors use automated systems to reply instantly. You lost a lifelong patient simply because you were closed.</p>
+</div>
+<p style="color:var(--mid-gray);margin-bottom:32px;">You are far more likely to qualify a lead if you respond within 5 minutes; wait just 30 minutes and that advantage drops sharply.</p>
+<div class="stat-callout"><span class="big-number">£10,800</span>
+<p>lost annually per patient due to slow follow-up.</p>
+<p class="source">Source: VetFinance Report 2023</p></div>
+<p style="color:var(--mid-gray);">If your average annual patient spend is worth £900 and you lose just 1 patient a month to slow follow-up, that's £10,800 a year walking out the door. Not because your veterinary clinic isn't good enough. Because someone else got there first.</p>
+</div></section>
+<section class="solution-intro"><div class="container">
+<div class="product-name">5-Minute Vet Response</div>
+<h2>From Enquiry to Qualified Lead, Automatically</h2>
+<div class="solution-content">
+<div><p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">Our n8n automation system captures every inbound enquiry and sends an instant, personalised acknowledgement within 5 minutes — day or night, weekday or weekend.</p>
+<p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">It gathers the exact qualifying questions you need for your industry, all beautifully AI-crafted to match your brand voice.</p></div>
+<div><img src="illustration.jpg" alt="Vets automation illustration"></div>
+</div>
+</div></section>
+<section class="how-it-works"><div class="container">
+<h2>How It Works</h2>
+<p class="section-intro">Seamlessly integrate with your existing systems</p>
+<div class="flow-steps">
+<div class="flow-step"><div class="flow-step-circle">1</div><h4>Capture Every Enquiry</h4><p>Pet owner submits an enquiry — from any channel, any time.</p></div>
+<div class="flow-step"><div class="flow-step-circle">2</div><h4>Instant Personalised Reply</h4><p>Within 5 minutes, they receive a warm, personalised reply that sounds exactly like you wrote it.</p></div>
+<div class="flow-step"><div class="flow-step-circle">3</div><h4>Qualify Leads Automatically</h4><p>The system automatically gathers 4–5 key qualifying questions specific to your business.</p></div>
+<div class="flow-step"><div class="flow-step-circle">4</div><h4>Seamless CRM Integration</h4><p>A contact is created in your CRM or email system with all their qualifying details attached.</p></div>
+</div>
+</div></section>
+<section class="what-you-get"><div class="container">
+<h2>What's Included</h2>
+<p class="section-intro" style="margin-bottom:0;">Comprehensive features tailored for private vets</p>
+<div class="features-grid">
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4>Always-on Enquiry Handling</h4><p>Never miss a lead with 24/7 automated responses.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h4>AI-Crafted Responses</h4><p>Responses trained on your tone for a personal touch.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Smart Qualifying Questions</h4><p>Tailored questions to ensure you get the information you need.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h4>Automatic Logging</h4><p>All details logged into your existing system or a simple CRM.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h4>Emergency Detection</h4><p>Immediate routing of critical pet health concerns.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h4>Loom Walkthrough & Documentation</h4><p>Easy-to-follow guides to ensure smooth operation.</p></div>
+</div>
+</div></section>
+<section class="pricing"><div class="container">
+<h2>Simple pricing</h2>
+<p class="section-intro">Fixed scope. No hourly rates. No surprises.</p>
+<div class="pricing-grid">
+<div class="pricing-card"><div class="pricing-tier">Starter</div><div class="pricing-name">Starter Build</div>
+<div class="pricing-setup">£500 <span>one-off</span></div><div class="pricing-monthly">1 automation, delivered in 1 week</div>
+<hr class="pricing-divider"><ul class="pricing-features">
+<li>Single automation workflow</li><li>Connected to your existing tools</li><li>Full documentation and walkthrough</li><li>2 weeks of support included</li>
+</ul><a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-white">Book a free call</a></div>
+<div class="pricing-card featured"><div class="pricing-tier">Growth</div><div class="pricing-name">Automation Jumpstart</div>
+<div class="pricing-setup">£3,000 <span>one-off</span></div><div class="pricing-monthly">5–10 automations, delivered in 1 month</div>
+<hr class="pricing-divider"><ul class="pricing-features">
+<li>Full automation audit and mapping</li><li>5–10 connected workflows</li><li>CRM and tool integration</li><li>Staff training session</li><li>1 month of priority support</li><li>Ongoing maintenance available</li>
+</ul><a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free call</a></div>
+</div>
+<p style="text-align:center;margin-top:28px;font-size:0.85rem;color:rgba(255,255,255,0.4);font-style:italic;">Both packages start with a free mapping call. Nothing is committed until we've both agreed it's the right fit.</p>
+</div></section>
+<section class="final-cta" id="book"><div class="container">
+<div class="discovery-box"><h3>Book a free Automation Mapping Call</h3>
+<ul class="discovery-steps">
+<li data-num="1">We map your current tools and processes — where things flow and where they get stuck.</li>
+<li data-num="2">We find your biggest automation opportunity — the one change that saves the most time.</li>
+<li data-num="3">We deliver your Automation Opportunity Map — a clear picture of what to automate and why.</li>
+<li data-num="4">We agree next steps — fixed pricing, no hourly rates, no surprises.</li>
+</ul>
+<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping call</a>
+<p class="discovery-disclaimer">It's not a sales pitch. It's a working session. 30–45 minutes, free, no obligation.</p>
+</div></div></section>
+<footer><div class="container"><p>© 2026 Join The Bots. All rights reserved. · <a href="../../index.html">jointhebots.com</a></p></div></footer>
+<script async src="https://tally.so/widgets/embed.js"></script>
+</body>
+</html>
