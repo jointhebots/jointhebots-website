@@ -103,6 +103,19 @@ header{background:var(--white);border-bottom:1px solid var(--light-gray);positio
 .discovery-steps li::before{content:attr(data-num);position:absolute;left:0;width:22px;height:22px;background:var(--teal);color:var(--white);border-radius:50%;font-size:0.75rem;font-weight:700;font-family:'Sora',sans-serif;display:flex;align-items:center;justify-content:center;top:10px}
 .discovery-box .btn{width:100%;text-align:center;display:block}
 .discovery-disclaimer{font-size:0.82rem;color:var(--mid-gray);text-align:center;margin-top:12px;font-style:italic}
+.mapping-session{background:var(--charcoal);padding:80px 0;color:var(--white)}
+.mapping-session h2{color:var(--white);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px;text-align:center}
+.mapping-session .mapping-intro{color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:0;text-align:center}
+.mapping-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:40px;margin-bottom:48px}
+.mapping-step{position:relative;padding-left:52px}
+.mapping-step-number{position:absolute;left:0;top:0;width:36px;height:36px;background:var(--teal);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:600;font-size:0.9rem}
+.mapping-step h4{color:var(--white);font-size:1rem;margin-bottom:6px}
+.mapping-step p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.55}
+.mapping-video-caption{text-align:center;color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:20px}
+.mapping-video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-bottom:48px;max-width:880px;margin-left:auto;margin-right:auto}
+.mapping-video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+.mapping-cta{text-align:center;border-top:1px solid rgba(255,255,255,0.12);padding-top:40px}
+.mapping-cta .no-obligation{margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.45);font-style:italic}
 footer{background:var(--charcoal);color:rgba(255,255,255,0.4);text-align:center;padding:28px 0;font-size:0.85rem}
 footer a{color:rgba(255,255,255,0.5)}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:0}.hero-visual{display:none}.features-grid{grid-template-columns:1fr 1fr}.pricing-grid{grid-template-columns:1fr;max-width:440px}.flow-steps{grid-template-columns:1fr 1fr;gap:32px}.flow-steps::before{display:none}.solution-content{grid-template-columns:1fr}}
@@ -187,17 +200,25 @@ footer a{color:rgba(255,255,255,0.5)}
 </div>
 <p style="text-align:center;margin-top:28px;font-size:0.85rem;color:rgba(255,255,255,0.4);font-style:italic;">Both packages start with a free mapping call. Nothing is committed until we've both agreed it's the right fit.</p>
 </div></section>
-<section class="final-cta" id="book"><div class="container">
-<div class="discovery-box"><h3>Book a free Automation Mapping Call</h3>
-<ul class="discovery-steps">
-<li data-num="1">We map your current tools and processes — where things flow and where they get stuck.</li>
-<li data-num="2">We find your biggest automation opportunity — the one change that saves the most time.</li>
-<li data-num="3">We deliver your Automation Opportunity Map — a clear picture of what to automate and why.</li>
-<li data-num="4">We agree next steps — fixed pricing, no hourly rates, no surprises.</li>
-</ul>
-<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping call</a>
-<p class="discovery-disclaimer">It's not a sales pitch. It's a working session. 30–45 minutes, free, no obligation.</p>
-</div></div></section>
+<section class="mapping-session" id="book"><div class="container">
+<h2>What happens on the mapping session</h2>
+<p class="mapping-intro">It's not a sales pitch. It's a working session. Here's what we cover.</p>
+<div class="mapping-steps">
+<div class="mapping-step"><div class="mapping-step-number">1</div><h4>Map your current tools</h4><p>We get a clear picture of what you're using, how data moves between them, and where things are falling through the cracks or being done manually.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">2</div><h4>Find the biggest opportunity</h4><p>We work through a structured gap analysis together to identify where automation would have the highest impact for your business right now.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">3</div><h4>Give you something useful</h4><p>You get a written Automation Opportunity Map showing a clear picture of where your business is today, your desired state, and a clear path between the two.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">4</div><h4>Agree next steps</h4><p>If there's a fit, we'll scope the work and propose either the Starter Build or Jumpstart. Fixed scope, no hourly rates, no surprises.</p></div>
+</div>
+<p class="mapping-video-caption">See what's inside your Automation Opportunity Map</p>
+<div class="mapping-video-wrapper">
+<iframe src="https://www.youtube.com/embed/2dAdxefRTic" title="Join The Bots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div class="mapping-cta">
+<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+<p class="no-obligation">We take on a small number of new clients each month. Free, no obligation.</p>
+<p class="no-obligation">Typically 30–45 minutes.</p>
+</div>
+</div></section>
 <footer><div class="container"><p>© 2026 Join The Bots. All rights reserved. · <a href="../../index.html">jointhebots.com</a></p></div></footer>
 <script async src="https://tally.so/widgets/embed.js"></script>
 </body>
