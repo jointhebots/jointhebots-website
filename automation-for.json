@@ -1,0 +1,23 @@
+[
+  {
+    "slug": "dentists",
+    "industry": "Dentists",
+    "title": "Stop Losing Patients to Faster-Replying Dentists",
+    "publishedAt": "2026-04-07",
+    "status": "published"
+  },
+  {
+    "slug": "recruitment-agencies",
+    "industry": "Recruitment Agencies",
+    "title": "Stop Losing Clients to Faster Competitors",
+    "publishedAt": "2026-04-07",
+    "status": "published"
+  },
+  {
+    "slug": "vets",
+    "industry": "Vets",
+    "title": "Fast Response Automation for Vets",
+    "publishedAt": "2026-04-07",
+    "status": "published"
+  }
+]
