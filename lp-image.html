@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Image URL — Landing Page Pipeline</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #F5F5F7;
+            color: #22252A;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            border-radius: 14px;
+            padding: 40px;
+            max-width: 520px;
+            width: 100%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+        }
+        h1 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: #005B5C;
+        }
+        .subtitle {
+            font-size: 0.9rem;
+            color: #6C727F;
+            margin-bottom: 24px;
+        }
+        .field {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #22252A;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E1E4EA;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.15s;
+        }
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #005B5C;
+        }
+        button {
+            width: 100%;
+            padding: 14px;
+            background: #F28C35;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+        button:hover { background: #D97A2A; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        .info {
+            background: #E6F3F3;
+            border-left: 3px solid #005B5C;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            color: #22252A;
+        }
+        .info strong { color: #005B5C; }
+        .error {
+            background: #fef0f0;
+            border-left: 3px solid #E05454;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            color: #22252A;
+            display: none;
+        }
+        .success {
+            background: #E8F5E9;
+            border-left: 3px solid #3BAF7A;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            color: #22252A;
+            display: none;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Custom Image URL</h1>
+        <p class="subtitle">Submit a custom image to your landing page approval flow.</p>
+
+        <div class="info">
+            <strong>Selecting:</strong> <span id="type-label">image</span><br>
+            <strong>Execution:</strong> <span id="exec-label">—</span>
+        </div>
+
+        <div class="error" id="error-box"></div>
+
+        <form id="image-form">
+            <div class="field">
+                <label for="image-url">Image URL</label>
+                <input type="url" id="image-url" placeholder="https://example.com/my-image.jpg" required>
+            </div>
+            <button type="submit" id="submit-btn">Submit image</button>
+        </form>
+
+        <div class="success" id="success-box">
+            ✓ Submitted. You can close this window.
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const exec = params.get('exec');
+        const type = params.get('type'); // 'hero' or 'illustration'
+
+        const typeLabel = document.getElementById('type-label');
+        const execLabel = document.getElementById('exec-label');
+        const errorBox = document.getElementById('error-box');
+        const form = document.getElementById('image-form');
+        const successBox = document.getElementById('success-box');
+        const submitBtn = document.getElementById('submit-btn');
+
+        if (!exec || !type) {
+            errorBox.textContent = 'Missing exec or type parameter in the URL. Use the link from Slack.';
+            errorBox.style.display = 'block';
+            submitBtn.disabled = true;
+        } else {
+            typeLabel.textContent = type === 'hero' ? 'Hero image' : 'Illustration';
+            execLabel.textContent = exec;
+        }
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const imageUrl = document.getElementById('image-url').value.trim();
+            if (!imageUrl) return;
+
+            const webhookUrl = 'https://primary-production-77e0.up.railway.app/webhook-waiting/'
+                + encodeURIComponent(exec)
+                + '?' + encodeURIComponent(type) + '=' + encodeURIComponent(imageUrl);
+
+            // Use fetch to trigger the webhook without leaving the page
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Submitting…';
+
+            fetch(webhookUrl, { method: 'GET', mode: 'no-cors' })
+                .then(function() {
+                    form.style.display = 'none';
+                    successBox.style.display = 'block';
+                })
+                .catch(function(err) {
+                    errorBox.textContent = 'Failed to submit: ' + err.message;
+                    errorBox.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Submit image';
+                });
+        });
+    </script>
+</body>
+</html>
