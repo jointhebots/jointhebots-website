@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Stop Losing Patients to Faster-Replying Dentists | Join The Bots</title>
-<meta name="description" content="Automate your dental enquiry responses with our 5-Minute Rule system.">
+<meta name="description" content="Ensure every new patient gets a personalised reply within 5 minutes, 24/7.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -54,6 +54,9 @@ header{background:var(--white);border-bottom:1px solid var(--light-gray);positio
 .product-name{display:inline-block;font-family:'Sora',sans-serif;font-weight:700;font-size:1.1rem;color:var(--teal);border:2px solid var(--teal);border-radius:6px;padding:3px 12px;margin-bottom:24px}
 .solution-content{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start;margin-top:24px}
 .solution-content img{width:100%;border-radius:12px;margin-top:8px}
+.five-min-banner{background:var(--off-white);padding:56px 0;border-bottom:1px solid var(--light-gray);text-align:center}
+.five-min-banner .container{max-width:880px}
+.five-min-banner img{width:100%;height:auto;border-radius:12px;box-shadow:0 8px 32px rgba(0,0,0,0.08);display:block;margin:0 auto}
 .how-it-works{background:var(--white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
 .how-it-works h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
 .section-intro{color:var(--mid-gray);font-size:1rem;margin-bottom:48px}
@@ -72,12 +75,22 @@ header{background:var(--white);border-bottom:1px solid var(--light-gray);positio
 .feature-icon svg{width:22px;height:22px;stroke:var(--teal);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .feature-card h4{font-size:0.975rem;color:var(--charcoal);margin-bottom:8px}
 .feature-card p{font-size:0.875rem;color:var(--mid-gray);line-height:1.6}
+.objections{background:var(--white);padding:72px 0;border-bottom:1px solid var(--light-gray)}
+.objections h2{font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px}
+.objection-list{margin-top:40px;display:flex;flex-direction:column;gap:16px}
+.objection-item{border:1px solid var(--light-gray);border-radius:10px;overflow:hidden}
+.objection-q{width:100%;text-align:left;background:var(--off-white);border:none;padding:18px 24px;font-family:'Sora',sans-serif;font-weight:500;font-size:0.975rem;color:var(--charcoal);cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;transition:background 0.15s}
+.objection-q:hover{background:var(--teal-tint)}
+.objection-q.open{background:var(--teal-tint);color:var(--teal)}
+.objection-chevron{width:20px;height:20px;flex-shrink:0;transition:transform 0.2s}
+.objection-q.open .objection-chevron{transform:rotate(180deg)}
+.objection-a{display:none;padding:20px 24px;background:var(--white);font-size:0.9rem;color:var(--mid-gray);line-height:1.7;border-top:1px solid var(--light-gray)}
+.objection-a.open{display:block}
 .pricing{background:var(--charcoal);padding:80px 0;color:var(--white)}
 .pricing h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--white);margin-bottom:8px}
 .pricing .section-intro{color:rgba(255,255,255,0.55)}
 .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto}
 .pricing-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:32px;display:flex;flex-direction:column}
-.pricing-card:hover{border-color:rgba(255,255,255,0.25)}
 .pricing-card.featured{background:var(--teal);border-color:var(--teal);position:relative}
 .pricing-card.featured::before{content:'Recommended';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--white);font-size:0.72rem;font-weight:700;text-transform:uppercase;padding:4px 14px;border-radius:50px}
 .pricing-tier{font-size:0.78rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:rgba(255,255,255,0.5);margin-bottom:8px}
@@ -94,7 +107,6 @@ header{background:var(--white);border-bottom:1px solid var(--light-gray);positio
 .pricing-card.featured .pricing-features li{color:rgba(255,255,255,0.9)}
 .pricing-features li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
 .final-cta{background:var(--teal);padding:80px 0;text-align:center}
-.final-cta h2{font-size:clamp(1.6rem,3.5vw,2.25rem);color:var(--white);margin-bottom:16px}
 .discovery-box{background:var(--white);border-radius:14px;padding:36px;max-width:640px;margin:0 auto;text-align:left}
 .discovery-box h3{color:var(--charcoal);font-size:1.2rem;margin-bottom:20px}
 .discovery-steps{list-style:none;padding:0;margin:0 0 28px}
@@ -103,6 +115,19 @@ header{background:var(--white);border-bottom:1px solid var(--light-gray);positio
 .discovery-steps li::before{content:attr(data-num);position:absolute;left:0;width:22px;height:22px;background:var(--teal);color:var(--white);border-radius:50%;font-size:0.75rem;font-weight:700;font-family:'Sora',sans-serif;display:flex;align-items:center;justify-content:center;top:10px}
 .discovery-box .btn{width:100%;text-align:center;display:block}
 .discovery-disclaimer{font-size:0.82rem;color:var(--mid-gray);text-align:center;margin-top:12px;font-style:italic}
+.mapping-session{background:var(--charcoal);padding:80px 0;color:var(--white)}
+.mapping-session h2{color:var(--white);font-size:clamp(1.5rem,3vw,2rem);margin-bottom:8px;text-align:center}
+.mapping-session .mapping-intro{color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:0;text-align:center}
+.mapping-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:32px;margin-top:40px;margin-bottom:48px}
+.mapping-step{position:relative;padding-left:52px}
+.mapping-step-number{position:absolute;left:0;top:0;width:36px;height:36px;background:var(--teal);color:var(--white);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Sora',sans-serif;font-weight:600;font-size:0.9rem}
+.mapping-step h4{color:var(--white);font-size:1rem;margin-bottom:6px}
+.mapping-step p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.55}
+.mapping-video-caption{text-align:center;color:rgba(255,255,255,0.65);font-size:1rem;margin-bottom:20px}
+.mapping-video-wrapper{position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:10px;margin-bottom:48px;max-width:880px;margin-left:auto;margin-right:auto}
+.mapping-video-wrapper iframe{position:absolute;top:0;left:0;width:100%;height:100%}
+.mapping-cta{text-align:center;border-top:1px solid rgba(255,255,255,0.12);padding-top:40px}
+.mapping-cta .no-obligation{margin-top:10px;font-size:0.85rem;color:rgba(255,255,255,0.45);font-style:italic}
 footer{background:var(--charcoal);color:rgba(255,255,255,0.4);text-align:center;padding:28px 0;font-size:0.85rem}
 footer a{color:rgba(255,255,255,0.5)}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr;gap:0}.hero-visual{display:none}.features-grid{grid-template-columns:1fr 1fr}.pricing-grid{grid-template-columns:1fr;max-width:440px}.flow-steps{grid-template-columns:1fr 1fr;gap:32px}.flow-steps::before{display:none}.solution-content{grid-template-columns:1fr}}
@@ -111,63 +136,72 @@ footer a{color:rgba(255,255,255,0.5)}
 </head>
 <body>
 <header><div class="container"><div class="header-content">
-<a href="../../index.html"><img src="../../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
+<a href="/"><img src="../../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
 <nav class="main-nav">
-<a href="../../index.html">Home</a><a href="../../services/index.html">Services</a><a href="../../articles/">Articles</a><a href="../../index.html#about">About</a><a href="../../index.html#contact">Contact</a>
+<a href="/">Home</a><a href="/services/">Services</a><a href="/articles/">Articles</a><a href="/#about">About</a><a href="/#contact">Contact</a>
 <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
 </nav></div></div></header>
 <div class="niche-bar">BUILT SPECIFICALLY FOR UK DENTISTS</div>
 <section class="hero"><div class="container"><div class="hero-inner"><div class="hero-text">
-<div class="hero-eyebrow">Never Miss a Lead</div>
-<h1>Stop losing new patients to  <em>faster-replying dentists</em></h1>
-<p class="hero-subtitle">The 5-Minute Rule for Private Dentists: every new patient gets a warm, personalised reply within 5 minutes — via WhatsApp or email — 24/7, automatically.</p>
-<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary btn-lg">Book a free mapping call</a>
-<div class="hero-stat"><div class="hero-stat-number">5x</div>
-<div class="hero-stat-label">Clinics responding within 5 minutes are 5 times more likely to secure new patients.<br><em style="font-size:0.75rem;opacity:0.6">Dental Economics</em></div></div>
+<div class="hero-eyebrow">5-Minute Response Rule</div>
+<h1>Stop losing new patients to <em>faster-replying dentists</em></h1>
+<p class="hero-subtitle">If you're not the first dental clinic to respond, you're already behind. Ensure every new patient enquiry receives a warm, personalised reply within 5 minutes — via WhatsApp or email — 24/7, automatically.</p>
+<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary btn-lg">Book a free discovery call</a>
+
 </div><div class="hero-visual"><img src="hero.jpg" alt="Dentists automation" style="width:100%;border-radius:12px;box-shadow:0 8px 32px rgba(0,91,92,0.15);"></div>
 </div></div></section>
 <section class="problem"><div class="container-narrow">
-<h2>The Problem</h2>
+<h2>The Challenge of Timely Responses</h2>
 <div class="problem-story">
 <p>It's a busy Saturday morning. Someone researching cosmetic dentistry or looking for a new local clinic fills out the contact form on your website. They are keen to get started so they also enquire with a large corporate dental chain nearby.</p>
-<p>Your reception team is swamped with patients in the clinic and leaves the web enquiries to be answered at the end of the day.</p>
-<p>By the time your staff replies that evening, the corporate chain has already sent an automated, welcoming response and secured the booking. Larger clinics use instant replies to make new patients feel cared for immediately. You lost a valuable treatment plan simply because the front desk was too busy to reply.</p>
+<p>Your reception team is swamped with patients in the clinic and leaves the web enquiries to be answered at the end of the day. By the time your staff replies that evening, the corporate chain has already sent an automated, welcoming response and secured the booking.</p>
+<p>You lost a valuable treatment plan simply because the front desk was too busy to reply. You are far more likely to qualify a lead if you respond within 5 minutes; wait just 30 minutes and that advantage drops sharply.</p>
 </div>
-<p style="color:var(--mid-gray);margin-bottom:32px;">You are far more likely to qualify a lead if you respond within 5 minutes; wait just 30 minutes and that advantage drops sharply.</p>
-<div class="stat-callout"><span class="big-number">£14,400</span>
-<p>Potential annual revenue lost due to slow follow-up on just one treatment plan per month.</p>
-<p class="source">Dental Practice Management</p></div>
-<p style="color:var(--mid-gray);">If your average treatment plan is worth £1,200 and you lose just 1 treatment plan a month to slow follow-up, that's £14,400 a year walking out the door. Not because your dental clinic isn't good enough. Because someone else got there first.</p>
+<p style="color:var(--mid-gray);margin-bottom:32px;">Larger clinics use instant replies to make new patients feel cared for immediately.</p>
+<div class="stat-callout"><span class="big-number">£1,200</span>
+<p>Average treatment plan value</p>
+<p class="source">Based on industry average figures</p></div>
+<p style="color:var(--mid-gray);">1 lost per month = £14,400 per year</p>
 </div></section>
 <section class="solution-intro"><div class="container">
-<div class="product-name">5-Minute Dental Response</div>
-<h2>The Solution</h2>
+<div class="product-name">n8n automation system</div>
+<h2>Respond Instantly with Confidence</h2>
 <div class="solution-content">
-<div><p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">Our n8n automation system captures every inbound enquiry and sends an instant, personalised acknowledgement within 5 minutes, day or night, weekday or weekend. It gathers the exact qualifying questions you need for your industry, all beautifully AI-crafted to match your brand voice.</p>
-<p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">This system ensures every potential patient feels valued and informed from the first contact, increasing your chances of securing their business and enhancing your clinic's reputation for responsiveness.</p></div>
+<div><p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">Our n8n automation system captures every inbound enquiry and sends an instant, personalised acknowledgement within 5 minutes, day or night, weekday or weekend. It gathers the exact qualifying questions you need for your industry, all carefully crafted to match your brand voice.</p>
+<p style="color:var(--mid-gray);margin-top:14px;font-size:0.975rem;line-height:1.7;">A new patient submits an enquiry — from any channel, any time. Within 5 minutes, they receive a warm, personalised reply that sounds exactly like you wrote it. The system automatically gathers 4–5 key qualifying questions specific to your business: What type of treatment are you enquiring about (e.g., implants, Invisalign, cosmetic)? Is this an emergency/pain issue, or a cosmetic/routine enquiry? What are your preferred days or times for an appointment? Which of our clinic locations is nearest to you? Are you a new or existing patient?</p></div>
 <div><img src="illustration.jpg" alt="Dentists automation illustration"></div>
 </div>
 </div></section>
 <section class="how-it-works"><div class="container">
 <h2>How It Works</h2>
-<p class="section-intro">From enquiry to qualified lead, automatically</p>
+<p class="section-intro">Effortlessly manage your patient enquiries.</p>
 <div class="flow-steps">
-<div class="flow-step"><div class="flow-step-circle">1</div><h4>Capture Every Enquiry</h4><p>A new patient submits an enquiry — from any channel, any time.</p></div>
-<div class="flow-step"><div class="flow-step-circle">2</div><h4>Instant Personalised Reply</h4><p>Within 5 minutes, they receive a warm, personalised reply that sounds exactly like you wrote it.</p></div>
-<div class="flow-step"><div class="flow-step-circle">3</div><h4>Qualifying Questions</h4><p>The system automatically gathers 4–5 key qualifying questions specific to your business.</p></div>
-<div class="flow-step"><div class="flow-step-circle">4</div><h4>Create a Qualified Lead</h4><p>A contact is created in your CRM or email system with all their qualifying details attached.</p></div>
+<div class="flow-step"><div class="flow-step-circle">1</div><h4>Capture Every Enquiry</h4><p>Our system ensures no new patient enquiry is missed, capturing them from all channels.</p></div>
+<div class="flow-step"><div class="flow-step-circle">2</div><h4>Immediate Personalised Response</h4><p>Within 5 minutes, send a warm, personalised reply that includes key qualifying questions.</p></div>
+<div class="flow-step"><div class="flow-step-circle">3</div><h4>Qualify Leads Automatically</h4><p>Gather necessary information to qualify leads, such as treatment type and urgency.</p></div>
+<div class="flow-step"><div class="flow-step-circle">4</div><h4>Seamless Integration</h4><p>Automatically log details into your CRM or email system, ready for your personal follow-up.</p></div>
 </div>
 </div></section>
 <section class="what-you-get"><div class="container">
-<h2>What's included</h2>
-<p class="section-intro" style="margin-bottom:0;">Tailored solutions for dental clinics</p>
+<h2>What is included</h2>
+<p class="section-intro" style="margin-bottom:0;">Managed entirely by us, no learning curve for you.</p>
 <div class="features-grid">
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4>Always-on Enquiry Handling</h4><p>Never miss a potential patient with 24/7 automated responses.</p></div>
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h4>AI-Crafted Responses</h4><p>Responses are trained on your tone for a seamless brand experience.</p></div>
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Smart Qualifying Questions</h4><p>Tailored questions to identify patient needs quickly and accurately.</p></div>
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h4>Automatic CRM Logging</h4><p>All interactions are logged in your existing system for easy follow-up.</p></div>
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h4>Optional Calendar Integration</h4><p>Seamlessly integrate with your calendar to streamline bookings.</p></div>
-<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h4>Emergency Triage</h4><p>Automatically identify and prioritise dental emergencies.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><h4>Always-on Enquiry Handling</h4><p>Never miss a new patient enquiry with 24/7 automated responses.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div><h4>AI-Crafted Responses</h4><p>Responses are trained on your tone, ensuring they sound like they came directly from you.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div><h4>Smart Qualifying Questions</h4><p>Ask the right questions to qualify leads specific to private dentists.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div><h4>Automatic Logging</h4><p>Details are automatically logged in your existing system or a simple CRM.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div><h4>Optional Calendar Integration</h4><p>Easily integrate with your calendar to streamline appointment scheduling.</p></div>
+<div class="feature-card"><div class="feature-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h4>Loom Walkthrough and Documentation</h4><p>Receive clear written guides and short Loom videos to understand the system.</p></div>
+</div>
+</div></section>
+<section class="objections"><div class="container-narrow">
+<h2>Questions we get asked</h2>
+<p class="section-intro">Common concerns from dental professionals, answered honestly.</p>
+<div class="objection-list">
+<div class="objection-item"><button class="objection-q" onclick="toggleObjection(this)">We already send auto-reply emails — why do we need this?<svg class="objection-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="objection-a">Generic 'we have received your message' replies don't qualify a prospect or move them forward. Our system actively engages the lead by asking specific questions about their needs, keeping them invested in your business rather than looking elsewhere.</div></div>
+<div class="objection-item"><button class="objection-q" onclick="toggleObjection(this)">Will it sound robotic?<svg class="objection-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="objection-a">No, the system is fully trained on your brand's unique voice. We iterate and adjust the wording until you are completely happy that it sounds exactly like your own professional communication.</div></div>
+<div class="objection-item"><button class="objection-q" onclick="toggleObjection(this)">How does the automation handle patients who are in severe dental pain?<svg class="objection-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="objection-a">The system identifies emergency keywords immediately. If a patient is in pain, it pauses the standard qualifying questions and instantly provides your out-of-hours or emergency contact instructions.</div></div>
+<div class="objection-item"><button class="objection-q" onclick="toggleObjection(this)">We're not very technical — will this be hard to manage?<svg class="objection-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button><div class="objection-a">Not at all. We set it all up and maintain it for you. We provide short Loom videos to show you exactly how it works, meaning you don't need to learn any complicated new software.</div></div>
 </div>
 </div></section>
 <section class="pricing"><div class="container">
@@ -187,18 +221,35 @@ footer a{color:rgba(255,255,255,0.5)}
 </div>
 <p style="text-align:center;margin-top:28px;font-size:0.85rem;color:rgba(255,255,255,0.4);font-style:italic;">Both packages start with a free mapping call. Nothing is committed until we've both agreed it's the right fit.</p>
 </div></section>
-<section class="final-cta" id="book"><div class="container">
-<div class="discovery-box"><h3>Book a free Automation Mapping Call</h3>
-<ul class="discovery-steps">
-<li data-num="1">We map your current tools and processes — where things flow and where they get stuck.</li>
-<li data-num="2">We find your biggest automation opportunity — the one change that saves the most time.</li>
-<li data-num="3">We deliver your Automation Opportunity Map — a clear picture of what to automate and why.</li>
-<li data-num="4">We agree next steps — fixed pricing, no hourly rates, no surprises.</li>
-</ul>
-<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping call</a>
-<p class="discovery-disclaimer">It's not a sales pitch. It's a working session. 30–45 minutes, free, no obligation.</p>
-</div></div></section>
-<footer><div class="container"><p>© 2026 Join The Bots. All rights reserved. · <a href="../../index.html">jointhebots.com</a></p></div></footer>
+<section class="mapping-session" id="book"><div class="container">
+<h2>What happens on the mapping session</h2>
+<p class="mapping-intro">It's not a sales pitch. It's a working session. Here's what we cover.</p>
+<div class="mapping-steps">
+<div class="mapping-step"><div class="mapping-step-number">1</div><h4>Map your current tools</h4><p>We get a clear picture of what you're using, how data moves between them, and where things are falling through the cracks or being done manually.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">2</div><h4>Find the biggest opportunity</h4><p>We work through a structured gap analysis together to identify where automation would have the highest impact for your business right now.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">3</div><h4>Give you something useful</h4><p>You get a written Automation Opportunity Map showing a clear picture of where your business is today, your desired state, and a clear path between the two.</p></div>
+<div class="mapping-step"><div class="mapping-step-number">4</div><h4>Agree next steps</h4><p>If there's a fit, we'll scope the work and propose either the Starter Build or Jumpstart. Fixed scope, no hourly rates, no surprises.</p></div>
+</div>
+<p class="mapping-video-caption">See what's inside your Automation Opportunity Map</p>
+<div class="mapping-video-wrapper">
+<iframe src="https://www.youtube.com/embed/2dAdxefRTic" title="Join The Bots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+</div>
+<div class="mapping-cta">
+<a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+<p class="no-obligation">We take on a small number of new clients each month. Free, no obligation.</p>
+<p class="no-obligation">Typically 30–45 minutes.</p>
+</div>
+</div></section>
+<footer><div class="container"><p>© 2026 Join The Bots. All rights reserved. · <a href="/">jointhebots.com</a></p></div></footer>
 <script async src="https://tally.so/widgets/embed.js"></script>
+<script>
+function toggleObjection(btn){
+  const answer=btn.nextElementSibling;
+  const isOpen=btn.classList.contains("open");
+  document.querySelectorAll(".objection-q").forEach(b=>b.classList.remove("open"));
+  document.querySelectorAll(".objection-a").forEach(a=>a.classList.remove("open"));
+  if(!isOpen){btn.classList.add("open");answer.classList.add("open");}
+}
+</script>
 </body>
 </html>
