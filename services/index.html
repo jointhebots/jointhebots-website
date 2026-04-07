@@ -457,6 +457,17 @@
             line-height: 1.55;
         }
 
+        /* ── 5-Minute Response landing pages (auto-populated from /automation-for.json) ── */
+        .lp-industries { padding: 64px 0; background: var(--white); border-bottom: 1px solid var(--light-gray); }
+        .lp-industries h2 { font-size: clamp(1.4rem, 3vw, 2rem); text-align: center; margin-bottom: 8px; }
+        .lp-industries .intro { text-align: center; color: var(--mid-gray); font-size: 1rem; margin-bottom: 40px; }
+        .lp-industries-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .lp-industry-card { background: var(--off-white); border-radius: 12px; border: 1px solid var(--light-gray); padding: 32px; text-decoration: none; color: var(--charcoal); transition: box-shadow 0.2s, border-color 0.2s; display: block; }
+        .lp-industry-card:hover { box-shadow: 0 8px 32px rgba(0,91,92,0.10); border-color: var(--teal); text-decoration: none; }
+        .lp-industry-card h3 { font-size: 1.2rem; color: var(--teal); margin-bottom: 8px; }
+        .lp-industry-card p { font-size: 0.9rem; color: var(--mid-gray); line-height: 1.55; }
+        @media (max-width: 680px) { .lp-industries-grid { grid-template-columns: 1fr; } }
+
         /* ── Footer ── */
         footer {
             background: var(--charcoal);
@@ -648,6 +659,46 @@
             </div>
         </div>
     </section>
+
+    <!-- ══════════════════════════════════════════
+         5-MINUTE RESPONSE LANDING PAGES
+         (auto-populated from /automation-for.json)
+    ══════════════════════════════════════════ -->
+    <section class="lp-industries">
+        <div class="container">
+            <h2>5-Minute Response landing pages</h2>
+            <p class="intro">Industry-specific guides to our 5-Minute Response automation system.</p>
+            <div class="lp-industries-grid" id="lp-industries-grid"></div>
+            <noscript>
+                <p style="text-align:center;color:var(--mid-gray);margin-top:16px;">Enable JavaScript to view the list of industry pages.</p>
+            </noscript>
+        </div>
+    </section>
+    <script>
+    (function () {
+        function escHtml(s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+        fetch('/automation-for.json', { cache: 'no-store' })
+            .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+            .then(function (list) {
+                var grid = document.getElementById('lp-industries-grid');
+                if (!grid || !Array.isArray(list)) return;
+                var pages = list.filter(function (x) { return x && x.status === 'published' && x.slug; });
+                pages.sort(function (a, b) { return (a.industry || '').localeCompare(b.industry || ''); });
+                if (pages.length === 0) { grid.parentElement.style.display = 'none'; return; }
+                grid.innerHTML = pages.map(function (x) {
+                    return '<a href="../automation-for/' + encodeURIComponent(x.slug) + '/" class="lp-industry-card">' +
+                           '<h3>' + escHtml(x.industry) + '</h3>' +
+                           '<p>' + escHtml(x.title) + '</p>' +
+                           '</a>';
+                }).join('');
+            })
+            .catch(function (err) {
+                console.warn('lp-industries fetch failed', err);
+                var grid = document.getElementById('lp-industries-grid');
+                if (grid) grid.parentElement.parentElement.parentElement.style.display = 'none';
+            });
+    })();
+    </script>
 
     <footer>
         <div class="container">
