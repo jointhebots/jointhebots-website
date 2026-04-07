@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Custom Image URL — Landing Page Pipeline</title>
+    <title>Pick Image — Landing Page Pipeline</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -34,50 +34,13 @@
             color: #6C727F;
             margin-bottom: 24px;
         }
-        .field {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: #22252A;
-        }
-        input[type="url"] {
-            width: 100%;
-            padding: 12px 14px;
-            border: 1px solid #E1E4EA;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: inherit;
-            transition: border-color 0.15s;
-        }
-        input[type="url"]:focus {
-            outline: none;
-            border-color: #005B5C;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #F28C35;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.15s;
-        }
-        button:hover { background: #D97A2A; }
-        button:disabled { background: #ccc; cursor: not-allowed; }
         .info {
             background: #E6F3F3;
             border-left: 3px solid #005B5C;
             padding: 12px 16px;
             border-radius: 6px;
             font-size: 0.85rem;
-            margin-bottom: 20px;
+            margin-bottom: 24px;
             color: #22252A;
         }
         .info strong { color: #005B5C; }
@@ -91,89 +54,237 @@
             color: #22252A;
             display: none;
         }
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6C727F;
+            margin-bottom: 10px;
+            margin-top: 8px;
+        }
+        #pick-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        button.pick {
+            padding: 14px 16px;
+            background: #fff;
+            color: #22252A;
+            border: 1px solid #E1E4EA;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, transform 0.05s;
+            font-family: inherit;
+            text-align: left;
+        }
+        button.pick:hover {
+            background: #F5F5F7;
+            border-color: #005B5C;
+        }
+        button.pick:active { transform: scale(0.99); }
+        details {
+            margin-bottom: 24px;
+            border: 1px solid #E1E4EA;
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        details summary {
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: #005B5C;
+        }
+        details[open] summary { margin-bottom: 12px; }
+        .field { margin-top: 8px; }
+        label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: #22252A;
+        }
+        input[type="url"] {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #E1E4EA;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color 0.15s;
+            margin-bottom: 10px;
+        }
+        input[type="url"]:focus {
+            outline: none;
+            border-color: #005B5C;
+        }
+        button.submit-url {
+            width: 100%;
+            padding: 12px;
+            background: #F28C35;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-family: inherit;
+        }
+        button.submit-url:hover { background: #D97A2A; }
+        button.reject {
+            width: 100%;
+            padding: 12px;
+            background: #fff;
+            color: #E05454;
+            border: 1px solid #E05454;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.15s;
+            font-family: inherit;
+        }
+        button.reject:hover { background: #fef0f0; }
+        button:disabled {
+            background: #ccc !important;
+            color: #fff !important;
+            border-color: #ccc !important;
+            cursor: not-allowed;
+        }
         .success {
             background: #E8F5E9;
             border-left: 3px solid #3BAF7A;
-            padding: 12px 16px;
+            padding: 16px;
             border-radius: 6px;
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             color: #22252A;
             display: none;
             text-align: center;
+            margin-top: 16px;
+        }
+        .success.reject-style {
+            background: #fef0f0;
+            border-left-color: #E05454;
         }
     </style>
 </head>
 <body>
     <div class="card">
-        <h1>Custom Image URL</h1>
-        <p class="subtitle">Submit a custom image to your landing page approval flow.</p>
+        <h1>Pick <span id="type-label">image</span></h1>
+        <p class="subtitle">Choose one of the generated images, paste a custom URL, or reject all and stop the run.</p>
 
         <div class="info">
-            <strong>Selecting:</strong> <span id="type-label">image</span><br>
             <strong>Execution:</strong> <span id="exec-label">—</span>
         </div>
 
         <div class="error" id="error-box"></div>
 
-        <form id="image-form">
-            <div class="field">
-                <label for="image-url">Image URL</label>
-                <input type="url" id="image-url" placeholder="https://example.com/my-image.jpg" required>
-            </div>
-            <button type="submit" id="submit-btn">Submit image</button>
-        </form>
+        <div id="picker-area">
+            <div class="section-label" id="pick-section-label" style="display:none;">Generated options</div>
+            <div id="pick-list"></div>
+
+            <details>
+                <summary>Or paste a custom image URL</summary>
+                <div class="field">
+                    <label for="image-url">Custom URL</label>
+                    <input type="url" id="image-url" placeholder="https://example.com/image.jpg">
+                    <button type="button" class="submit-url" id="submit-url-btn">Submit custom URL</button>
+                </div>
+            </details>
+
+            <button type="button" class="reject" id="reject-btn">&#10005; Reject all &amp; stop this run</button>
+        </div>
 
         <div class="success" id="success-box">
-            ✓ Submitted. You can close this window.
+            Submitted. You can close this window.
         </div>
     </div>
 
     <script>
-        const params = new URLSearchParams(window.location.search);
-        const exec = params.get('exec');
-        const type = params.get('type'); // 'hero' or 'illustration'
+        var params = new URLSearchParams(window.location.search);
+        var exec = params.get('exec');
+        var type = params.get('type');
+        var labelsParam = params.get('labels') || '';
+        var labels = labelsParam ? labelsParam.split(',') : [];
 
-        const typeLabel = document.getElementById('type-label');
-        const execLabel = document.getElementById('exec-label');
-        const errorBox = document.getElementById('error-box');
-        const form = document.getElementById('image-form');
-        const successBox = document.getElementById('success-box');
-        const submitBtn = document.getElementById('submit-btn');
+        var typeLabel = document.getElementById('type-label');
+        var execLabel = document.getElementById('exec-label');
+        var errorBox = document.getElementById('error-box');
+        var pickerArea = document.getElementById('picker-area');
+        var pickList = document.getElementById('pick-list');
+        var pickSectionLabel = document.getElementById('pick-section-label');
+        var successBox = document.getElementById('success-box');
+        var submitUrlBtn = document.getElementById('submit-url-btn');
+        var rejectBtn = document.getElementById('reject-btn');
+        var imageUrlInput = document.getElementById('image-url');
+
+        var allButtons = [];
 
         if (!exec || !type) {
             errorBox.textContent = 'Missing exec or type parameter in the URL. Use the link from Slack.';
             errorBox.style.display = 'block';
-            submitBtn.disabled = true;
+            pickerArea.style.display = 'none';
         } else {
-            typeLabel.textContent = type === 'hero' ? 'Hero image' : 'Illustration';
+            typeLabel.textContent = type === 'hero' ? 'hero image' : type === 'illustration' ? 'illustration' : type;
             execLabel.textContent = exec;
+
+            // Render picker buttons (if labels were passed)
+            if (labels.length > 0) {
+                pickSectionLabel.style.display = 'block';
+                labels.forEach(function(label, idx) {
+                    var btn = document.createElement('button');
+                    btn.type = 'button';
+                    btn.className = 'pick';
+                    btn.textContent = (idx + 1) + '. ' + label;
+                    btn.addEventListener('click', function() { submit(String(idx)); });
+                    pickList.appendChild(btn);
+                    allButtons.push(btn);
+                });
+            }
+            allButtons.push(submitUrlBtn, rejectBtn);
         }
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const imageUrl = document.getElementById('image-url').value.trim();
-            if (!imageUrl) return;
-
-            const webhookUrl = 'https://primary-production-77e0.up.railway.app/webhook-waiting/'
+        function submit(value) {
+            var webhookUrl = 'https://primary-production-77e0.up.railway.app/webhook-waiting/'
                 + encodeURIComponent(exec)
-                + '?' + encodeURIComponent(type) + '=' + encodeURIComponent(imageUrl);
+                + '?' + encodeURIComponent(type) + '=' + encodeURIComponent(value);
 
-            // Use fetch to trigger the webhook without leaving the page
-            submitBtn.disabled = true;
-            submitBtn.textContent = 'Submitting…';
+            allButtons.forEach(function(b) { b.disabled = true; });
 
             fetch(webhookUrl, { method: 'GET', mode: 'no-cors' })
                 .then(function() {
-                    form.style.display = 'none';
+                    pickerArea.style.display = 'none';
+                    if (value === 'reject') {
+                        successBox.textContent = '\u2715 Rejected. The run has been stopped \u2014 you can close this window.';
+                        successBox.classList.add('reject-style');
+                    } else {
+                        successBox.textContent = '\u2713 Submitted. You can close this window.';
+                    }
                     successBox.style.display = 'block';
                 })
                 .catch(function(err) {
                     errorBox.textContent = 'Failed to submit: ' + err.message;
                     errorBox.style.display = 'block';
-                    submitBtn.disabled = false;
-                    submitBtn.textContent = 'Submit image';
+                    allButtons.forEach(function(b) { b.disabled = false; });
                 });
+        }
+
+        submitUrlBtn.addEventListener('click', function() {
+            var url = imageUrlInput.value.trim();
+            if (!url) {
+                errorBox.textContent = 'Please paste an image URL first.';
+                errorBox.style.display = 'block';
+                return;
+            }
+            submit(url);
         });
+
+        rejectBtn.addEventListener('click', function() { submit('reject'); });
     </script>
 </body>
 </html>
