@@ -485,20 +485,6 @@ footer {
     font-weight: 500;
 }
 
-.footer-sectors {
-    margin-bottom: 20px;
-    font-size: 0.85rem;
-}
-
-.footer-sectors a {
-    color: rgba(255,255,255,0.6);
-    text-decoration: none;
-}
-
-.footer-sectors a:hover {
-    color: white;
-}
-
 .copyright {
     font-size: 0.9rem;
     opacity: 0.7;

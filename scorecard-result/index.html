@@ -204,8 +204,30 @@
             background: var(--charcoal);
             color: rgba(255,255,255,0.5);
             text-align: center;
-            padding: 28px 0;
+            padding: 48px 0;
             font-size: 0.85rem;
+        }
+        .footer-cta {
+            font-size: 1.3rem;
+            max-width: 900px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            font-weight: 500;
+            color: rgba(255,255,255,0.85);
+        }
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.7;
+            margin-top: 20px;
+        }
+        .attribution {
+            font-size: 0.8rem;
+            opacity: 0.5;
+            margin-top: 8px;
+        }
+        .attribution a {
+            color: white;
+            text-decoration: underline;
         }
 
         /* ── Responsive ── */
@@ -221,15 +243,15 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="../index.html">
+                <a href="../">
                     <img src="../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo">
                 </a>
                 <nav class="main-nav">
-                    <a href="../index.html">Home</a>
-                    <a href="../services/index.html">Services</a>
+                    <a href="../">Home</a>
+                    <a href="../services/">Services</a>
                     <a href="../articles/">Articles</a>
-                    <a href="../index.html#about">About</a>
-                    <a href="../index.html#contact">Contact</a>
+                    <a href="../#about">About</a>
+                    <a href="../#contact">Contact</a>
                     <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
                 </nav>
             </div>
@@ -250,7 +272,9 @@
     <!-- ── Footer ── -->
     <footer>
         <div class="container">
-            <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+            <p class="footer-cta">The businesses getting ahead aren't the ones with the biggest teams. They're the ones where people, systems, and automation work in perfect harmony.</p>
+            <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+            <p class="attribution">Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
         </div>
     </footer>
 
@@ -299,7 +323,7 @@
 
         if (!cfg) {
             // No valid params — redirect to homepage
-            window.location.href = '../index.html';
+            window.location.href = '../';
             return;
         }
 
