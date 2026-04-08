@@ -5,6 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stop Losing Holiday Enquiries to Slow Follow-Up | Join The Bots</title>
     <meta name="description" content="The 5-Minute Rule ensures every inbound holiday enquiry gets an instant, personalised response — before your prospect opens a competitor's tab. Built for UK independent travel agents.">
+    <meta property="og:title" content="Stop Losing Holiday Enquiries to Slow Follow-Up | Join The Bots">
+    <meta property="og:description" content="The 5-Minute Rule ensures every inbound holiday enquiry gets an instant, personalised response. Built for UK independent travel agents.">
+    <meta property="og:image" content="https://jointhebots.com/automation-for/travel-agents/hero.jpg">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://jointhebots.com/automation-for/travel-agents/">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Stop Losing Holiday Enquiries to Slow Follow-Up | Join The Bots">
+    <meta name="twitter:description" content="The 5-Minute Rule ensures every inbound holiday enquiry gets an instant, personalised response. Built for UK independent travel agents.">
+    <meta name="twitter:image" content="https://jointhebots.com/automation-for/travel-agents/hero.jpg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -260,6 +269,27 @@
             font-size: clamp(1.5rem, 3vw, 2rem);
             margin-bottom: 16px;
         }
+
+        .solution-content { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; margin-top: 24px; }
+        .solution-content img { width: 100%; border-radius: 12px; margin-top: 8px; box-shadow: 0 8px 32px rgba(0,91,92,0.10); }
+
+        .five-min-banner { background: var(--off-white); padding: 56px 0; border-bottom: 1px solid var(--light-gray); text-align: center; }
+        .five-min-banner .container { max-width: 880px; }
+        .five-min-banner img { width: 100%; height: auto; border-radius: 12px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); display: block; margin: 0 auto; }
+
+        .mapping-session { background: var(--charcoal); padding: 80px 0; color: var(--white); }
+        .mapping-session h2 { color: var(--white); font-size: clamp(1.5rem,3vw,2rem); margin-bottom: 8px; text-align: center; }
+        .mapping-session .mapping-intro { color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 0; text-align: center; }
+        .mapping-steps { display: grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap: 32px; margin-top: 40px; margin-bottom: 48px; }
+        .mapping-step { position: relative; padding-left: 52px; }
+        .mapping-step-number { position: absolute; left: 0; top: 0; width: 36px; height: 36px; background: var(--teal); color: var(--white); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Sora',sans-serif; font-weight: 600; font-size: 0.9rem; }
+        .mapping-step h4 { color: var(--white); font-size: 1rem; margin-bottom: 6px; }
+        .mapping-step p { color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.55; }
+        .mapping-video-caption { text-align: center; color: rgba(255,255,255,0.65); font-size: 1rem; margin-bottom: 20px; }
+        .mapping-video-wrapper { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 10px; margin-bottom: 48px; max-width: 880px; margin-left: auto; margin-right: auto; }
+        .mapping-video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+        .mapping-cta { text-align: center; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 40px; }
+        .mapping-cta .no-obligation { margin-top: 10px; font-size: 0.85rem; color: rgba(255,255,255,0.45); font-style: italic; }
 
         .product-name {
             display: inline-block;
@@ -756,6 +786,7 @@
             .flow-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
             .flow-steps::before { display: none; }
             .testimonial-grid { grid-template-columns: 1fr; }
+            .solution-content { grid-template-columns: 1fr; }
         }
 
         .btn-nav { background: #F28C35; color: #fff; border: none; padding: 10px 20px; border-radius: 6px; font-family: 'Inter', sans-serif; font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: background 0.15s; }
@@ -774,15 +805,15 @@
     <header>
         <div class="container">
             <div class="header-content">
-                <a href="../../index.html">
+                <a href="../../">
                     <img src="../../images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo">
                 </a>
                 <nav class="main-nav">
-                    <a href="../../index.html">Home</a>
-                    <a href="../../services/index.html">Services</a>
+                    <a href="../../">Home</a>
+                    <a href="../../services/">Services</a>
                     <a href="../../articles/">Articles</a>
-                    <a href="../../index.html#about">About</a>
-                    <a href="../../index.html#contact">Contact</a>
+                    <a href="../../#about">About</a>
+                    <a href="../../#contact">Contact</a>
                     <button data-tally-open="pbKKpE" data-tally-layout="modal" data-tally-width="700" class="btn-nav">Take the scorecard</button>
                 </nav>
             </div>
@@ -809,7 +840,7 @@
                     </div>
                 </div>
                 <div class="hero-visual">
-                    <img src="../../images/articles/stop-losing-holiday-enquiries.jpg" alt="Travel agent responding to holiday enquiries with automated follow-up system" style="width:100%; border-radius:12px; box-shadow: 0 8px 32px rgba(0,91,92,0.15);">
+                    <img src="hero.jpg" alt="Travel agent handing passport and tickets to a smiling client" style="width:100%; border-radius:12px; box-shadow: 0 8px 32px rgba(0,91,92,0.15);">
                 </div>
             </div>
         </div>
@@ -844,11 +875,16 @@
          SOLUTION
     ══════════════════════════════════════════ -->
     <section class="solution-intro">
-        <div class="container-narrow">
+        <div class="container">
             <div class="product-name">The 5-Minute Rule</div>
             <h2>An automation system that responds to every enquiry before your prospect opens a competitor's tab.</h2>
-            <p style="color: var(--mid-gray); margin-top: 16px; font-size: 0.975rem; line-height: 1.7;">We build an n8n automation system that captures every inbound holiday enquiry — via WhatsApp, email, or web form — and sends an instant, personalised acknowledgement within 5 minutes. Day or night. Weekday or weekend. It then asks qualifying questions (travel dates, destination, party size, budget) so when you follow up personally, you already have everything you need.</p>
-            <p style="color: var(--mid-gray); margin-top: 14px; font-size: 0.975rem; line-height: 1.7;">The messages are AI-crafted to match your brand voice. Clients feel personally attended to. You follow up with your expertise when you're ready. Everyone wins.</p>
+            <div class="solution-content">
+                <div>
+                    <p style="color: var(--mid-gray); margin-top: 16px; font-size: 0.975rem; line-height: 1.7;">We build an n8n automation system that captures every inbound holiday enquiry — via WhatsApp, email, or web form — and sends an instant, personalised acknowledgement within 5 minutes. Day or night. Weekday or weekend. It then asks qualifying questions (travel dates, destination, party size, budget) so when you follow up personally, you already have everything you need.</p>
+                    <p style="color: var(--mid-gray); margin-top: 14px; font-size: 0.975rem; line-height: 1.7;">The messages are AI-crafted to match your brand voice. Clients feel personally attended to. You follow up with your expertise when you're ready. Everyone wins.</p>
+                </div>
+                <div><img src="../../images/articles/stop-losing-holiday-enquiries.jpg" alt="Travel agent responding to holiday enquiries with automated follow-up system"></div>
+            </div>
         </div>
     </section>
 
@@ -882,6 +918,15 @@
                     <p>The contact is created in Pipedrive (or your CRM of choice) with all qualifying details, ready for you.</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- ══════════════════════════════════════════
+         5-MINUTE BANNER
+    ══════════════════════════════════════════ -->
+    <section class="five-min-banner">
+        <div class="container">
+            <img src="5-minute.png" alt="Travel agents 5-minute response">
         </div>
     </section>
 
@@ -1007,119 +1052,75 @@
     ══════════════════════════════════════════ -->
     <section class="pricing">
         <div class="container">
-            <h2>Pricing</h2>
-            <p class="section-intro">Fixed scope. No hourly rates. No surprises. All packages include a free discovery call first.</p>
+            <h2>Simple pricing</h2>
+            <p class="section-intro">Fixed scope. No hourly rates. No surprises.</p>
 
             <div class="pricing-grid">
-
                 <div class="pricing-card">
                     <div class="pricing-tier">Starter</div>
-                    <div class="pricing-name">Solo Agent</div>
-                    <div class="pricing-setup">£797 <span>one-off setup</span></div>
-                    <div class="pricing-monthly">then £147/month</div>
+                    <div class="pricing-name">Starter Build</div>
+                    <div class="pricing-setup">£500 <span>one-off</span></div>
+                    <div class="pricing-monthly">1 automation, delivered in 1 week</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
-                        <li>Single channel (WhatsApp OR email)</li>
-                        <li>Personalised response templates</li>
-                        <li>Basic CRM integration</li>
-                        <li>Up to 200 automated responses/month</li>
-                        <li>Hosting and monitoring included</li>
-                        <li>Email support</li>
+                        <li>Single automation workflow</li>
+                        <li>Connected to your existing tools</li>
+                        <li>Full documentation and walkthrough</li>
+                        <li>2 weeks of support included</li>
                     </ul>
                     <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-white">Book a free call</a>
                 </div>
 
                 <div class="pricing-card featured">
                     <div class="pricing-tier">Growth</div>
-                    <div class="pricing-name">Independent Agency</div>
-                    <div class="pricing-setup">£1,497 <span>one-off setup</span></div>
-                    <div class="pricing-monthly">then £297/month</div>
+                    <div class="pricing-name">Automation Jumpstart</div>
+                    <div class="pricing-setup">£3,000 <span>one-off</span></div>
+                    <div class="pricing-monthly">5–10 automations, delivered in 1 month</div>
                     <hr class="pricing-divider">
                     <ul class="pricing-features">
-                        <li>WhatsApp and email, both channels</li>
-                        <li>AI-personalised responses trained on your voice</li>
-                        <li>Full CRM pipeline integration</li>
-                        <li>Up to 500 automated responses/month</li>
-                        <li>Monthly optimisation included</li>
-                        <li>Priority support</li>
+                        <li>Full automation audit and mapping</li>
+                        <li>5–10 connected workflows</li>
+                        <li>CRM and tool integration</li>
+                        <li>Staff training session</li>
+                        <li>1 month of priority support</li>
+                        <li>Ongoing maintenance available</li>
                     </ul>
                     <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free call</a>
                 </div>
-
-                <div class="pricing-card">
-                    <div class="pricing-tier">Scale</div>
-                    <div class="pricing-name">Multi-Branch / Team</div>
-                    <div class="pricing-setup">£2,497 <span>one-off setup</span></div>
-                    <div class="pricing-monthly">then £497/month</div>
-                    <hr class="pricing-divider">
-                    <ul class="pricing-features">
-                        <li>WhatsApp, email, Facebook Messenger, Instagram DM</li>
-                        <li>Advanced AI personalisation</li>
-                        <li>Custom reporting dashboard</li>
-                        <li>Unlimited automated responses</li>
-                        <li>Weekly optimisation and quarterly strategy review</li>
-                        <li>Dedicated account manager</li>
-                    </ul>
-                    <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-white">Book a free call</a>
-                </div>
-
             </div>
 
-            <p style="text-align:center; margin-top: 28px; font-size: 0.85rem; color: rgba(255,255,255,0.4); font-style: italic;">All packages start with a free discovery call. Nothing is committed until we've both agreed it's the right fit.</p>
+            <p style="text-align:center; margin-top: 28px; font-size: 0.85rem; color: rgba(255,255,255,0.4); font-style: italic;">Both packages start with a free mapping call. Nothing is committed until we've both agreed it's the right fit.</p>
         </div>
     </section>
 
     <!-- ══════════════════════════════════════════
-         TESTIMONIALS (from main site)
+         MAPPING SESSION
     ══════════════════════════════════════════ -->
-    <section class="testimonials">
+    <section class="mapping-session" id="book">
         <div class="container">
-            <h2>What clients say about working with us</h2>
-            <p class="section-intro">We build for travel agents the same way we build for every client: properly.</p>
-
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <blockquote>"John was great from start to finish, going above and beyond with documentation and videos so I could manage the system myself. Even after the job was completed he helped me with an issue without requesting any payment. Great communicator and kept a tight schedule."</blockquote>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Brok Nielsen</span>
-                        <span class="testimonial-project">Together Agency · Hired multiple times</span>
-                    </div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">★★★★★</div>
-                    <blockquote>"I enjoyed working with John as a second set of eyes on my CRM automations. John quickly got to grips with my setup and tech stack and was flexible in meeting my requirements. His communication was top-notch and he was always available for a call."</blockquote>
-                    <div class="testimonial-meta">
-                        <span class="testimonial-name">Nick Sutton</span>
-                        <span class="testimonial-project">EmergencyLocate · CRM Process Optimisation</span>
-                    </div>
-                </div>
+            <h2>What happens on the mapping session</h2>
+            <p class="mapping-intro">It's not a sales pitch. It's a working session. Here's what we cover.</p>
+            <div class="mapping-steps">
+                <div class="mapping-step"><div class="mapping-step-number">1</div><h4>Map your current tools</h4><p>We get a clear picture of what you're using, how data moves between them, and where things are falling through the cracks or being done manually.</p></div>
+                <div class="mapping-step"><div class="mapping-step-number">2</div><h4>Find the biggest opportunity</h4><p>We work through a structured gap analysis together to identify where automation would have the highest impact for your business right now.</p></div>
+                <div class="mapping-step"><div class="mapping-step-number">3</div><h4>Give you something useful</h4><p>You get a written Automation Opportunity Map showing a clear picture of where your business is today, your desired state, and a clear path between the two.</p></div>
+                <div class="mapping-step"><div class="mapping-step-number">4</div><h4>Agree next steps</h4><p>If there's a fit, we'll scope the work and propose either the Starter Build or Jumpstart. Fixed scope, no hourly rates, no surprises.</p></div>
             </div>
-        </div>
-    </section>
-
-    <!-- ══════════════════════════════════════════
-         FINAL CTA
-    ══════════════════════════════════════════ -->
-    <section class="final-cta" id="book">
-        <div class="container">
-            <div class="discovery-box">
-                <h3>Book a free Lead Response Audit</h3>
-                <ul class="discovery-steps">
-                    <li data-num="1">We audit your current enquiry flow — where leads come in, how fast you respond, and where they fall through the cracks.</li>
-                    <li data-num="2">We calculate what slow response times are costing you in lost revenue each month.</li>
-                    <li data-num="3">We show you exactly how The 5-Minute Rule would work for your agency.</li>
-                    <li data-num="4">If there's a fit, we scope the work and agree a plan. Fixed price, no surprises.</li>
-                </ul>
-                <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free discovery call</a>
-                <p class="discovery-disclaimer">No obligation. No hard sell. Typically 30–45 minutes. We take on a small number of new clients each month.</p>
+            <p class="mapping-video-caption">See what's inside your Automation Opportunity Map</p>
+            <div class="mapping-video-wrapper">
+                <iframe src="https://www.youtube.com/embed/2dAdxefRTic" title="Join The Bots" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            </div>
+            <div class="mapping-cta">
+                <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free mapping session</a>
+                <p class="no-obligation">We take on a small number of new clients each month. Free, no obligation.</p>
+                <p class="no-obligation">Typically 30–45 minutes.</p>
             </div>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;·&nbsp; <a href="../../index.html">jointhebots.com</a></p>
+            <p>&copy; 2026 Join The Bots. All rights reserved. &nbsp;·&nbsp; <a href="../../">jointhebots.com</a></p>
         </div>
     </footer>
 
