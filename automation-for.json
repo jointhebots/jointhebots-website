@@ -1,36 +1,8 @@
 [
   {
-    "slug": "dentists",
-    "industry": "Dentists",
-    "title": "Stop Losing Patients to Faster-Replying Dentists",
-    "publishedAt": "2026-04-07",
-    "status": "published"
-  },
-  {
-    "slug": "recruitment-agencies",
-    "industry": "Recruitment Agencies",
-    "title": "Stop Losing Clients to Faster Competitors",
-    "publishedAt": "2026-04-07",
-    "status": "published"
-  },
-  {
-    "slug": "vets",
-    "industry": "Vets",
-    "title": "Fast Response Automation for Vets",
-    "publishedAt": "2026-04-07",
-    "status": "published"
-  },
-  {
-    "slug": "travel-agents",
-    "industry": "Travel Agents",
-    "title": "Stop Losing Holiday Enquiries to Slow Follow-Up",
-    "publishedAt": "2026-04-08",
-    "status": "published"
-  },
-  {
-    "slug": "manufacturing",
-    "industry": "Manufacturing",
-    "title": "Business Automation for Manufacturers",
+    "slug": "legal-services",
+    "industry": "Legal Services",
+    "title": "Stop Losing Clients to Faster Replying Firms",
     "publishedAt": "2026-04-08",
     "status": "published"
   }
