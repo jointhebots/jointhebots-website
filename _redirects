@@ -1,0 +1,5 @@
+/travel-agents          /automation-for/travel-agents/  301!
+/travel-agents/*        /automation-for/travel-agents/:splat  301!
+/manufacturing          /automation-for/manufacturing/  301!
+/manufacturing/*        /automation-for/manufacturing/:splat  301!
+/*  /results/index.html  200
