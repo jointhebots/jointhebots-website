@@ -2,4 +2,6 @@
 /travel-agents/*        /automation-for/travel-agents/:splat  301!
 /manufacturing          /automation-for/manufacturing/  301!
 /manufacturing/*        /automation-for/manufacturing/:splat  301!
+/automation-for/legal-services           /automation-for/solicitors/  301!
+/automation-for/legal-services/*         /automation-for/solicitors/:splat  301!
 /*  /results/index.html  200
