@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /scorecard-result/
+Disallow: /results/
+
+Sitemap: https://jointhebots.com/sitemap.xml
