@@ -1,6 +1,22 @@
 {
   "articles": [
     {
+      "title": "Will AI Replace Your Team?",
+      "slug": "will-ai-replace-your-team",
+      "date": "2026-04-08",
+      "author": "Tom Hussey",
+      "excerpt": "You log into LinkedIn and see another thread about AI wiping out entire departments. The fear is real. But the reality inside most companies is entirely...",
+      "tags": ["ai", "automation", "process-improvement", "strategy"]
+    },
+    {
+      "title": "How to Automate Tasks and Boost Productivity",
+      "slug": "how-to-automate-tasks-and-boost-productivity",
+      "date": "2026-03-29",
+      "author": "Tom Hussey",
+      "excerpt": "Most businesses are slow because the team spends hours every day doing repetitive tasks which a computer could handle automatically. You will recognise these...",
+      "tags": ["automation", "workflow", "productivity", "process-improvement"]
+    },
+    {
       "title": "Is SaaS Really Dead?",
       "slug": "is-saas-really-dead",
       "date": "2026-03-27",
