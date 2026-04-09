@@ -615,6 +615,13 @@
 
           pageData = data;
 
+          // Log anonymous page view (fire and forget)
+          fetch('https://primary-production-77e0.up.railway.app/webhook/page-visit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ page_code: pageCode, email: '', name: '', stage: 'page-view', visited_at: new Date().toISOString(), location_doc_id: data.location_doc_id || '' })
+          }).catch(function () {});
+
           if (!data.results_live) {
             showState('notlive');
             return;
