@@ -617,7 +617,7 @@
           pageData = data;
 
           if (!data.results_live) {
-            var firmName = (data.prospect && data.prospect.firm_name) ? data.prospect.firm_name : 'your firm';
+            var firmName = (data.prospect && data.prospect.business_name) ? data.prospect.business_name : 'your firm';
             document.getElementById('notlive-message').textContent =
               'Hi ' + firmName + ', your results are being prepared.';
             showState('notlive');
@@ -629,7 +629,7 @@
           var town = (data.prospect && data.prospect.town) || 'your area';
           var firmCount = (data.leaderboard && data.leaderboard.length) ? data.leaderboard.length : 'several';
 
-          var firmName = (data.prospect && data.prospect.firm_name) ? data.prospect.firm_name : 'your business';
+          var firmName = (data.prospect && data.prospect.business_name) ? data.prospect.business_name : 'your business';
 
           document.getElementById('preemail-subheading').textContent =
             'We contacted various ' + sector.toLowerCase() + ' in ' + town + ' as a potential customer. We timed every response. Here\u2019s how your business performed.';
@@ -748,7 +748,7 @@
         var sector = (data.prospect && data.prospect.sector) || 'business';
         var town = (data.prospect && data.prospect.town) || 'your area';
         var alias = (data.prospect && data.prospect.alias) || '?';
-        var firmName = (data.prospect && data.prospect.firm_name) || 'Your business';
+        var firmName = (data.prospect && data.prospect.business_name) || 'Your business';
         var myEntry = data.leaderboard ? data.leaderboard.find(function(l) { return l.is_you; }) : null;
         var grade = myEntry ? myEntry.score : (data.breakdown ? data.breakdown.score : 'F');
 
@@ -786,12 +786,9 @@
         var detail = data.breakdown || {};
 
         var breakdownRows = [
-          ['Our enquiry method', detail.enquiry_method || '\u2014'],
           ['Our enquiry sent', formatDate(detail.enquiry_sent_at)],
           ['Your first response', formatDate(detail.response_at)],
           ['Your response time', formatTime(detail.response_mins)],
-          ['Your reply type', detail.reply_type || '\u2014'],
-          ['Your response method', detail.response_method || '\u2014'],
           ['Your human response', detail.human_response_at ? formatDate(detail.human_response_at) + ' (' + formatTime(detail.human_response_mins) + ')' : '\u2014'],
           ['Your grade', gradeBadge(grade)]
         ];
