@@ -434,7 +434,6 @@
         <div class="state-card">
           <div class="state-icon" aria-hidden="true">&#9203;</div>
           <h2 id="notlive-heading">Your results are being prepared</h2>
-          <p id="notlive-message"></p>
           <p>Leave your details below and we'll send you your results as soon as they're ready, so you can see how you compare to your competitors.</p>
         <div class="email-form-wrap" style="margin-top:28px;">
           <form id="notlive-email-form" novalidate>
@@ -617,8 +616,6 @@
           pageData = data;
 
           if (!data.results_live) {
-            document.getElementById('notlive-message').textContent =
-              'Your results are being prepared. Check back soon.';
             showState('notlive');
             return;
           }
