@@ -617,9 +617,8 @@
           pageData = data;
 
           if (!data.results_live) {
-            var firmName = (data.prospect && data.prospect.business_name) ? data.prospect.business_name : 'your firm';
             document.getElementById('notlive-message').textContent =
-              'Hi ' + firmName + ', your results are being prepared.';
+              'Your results are being prepared. Check back soon.';
             showState('notlive');
             return;
           }
