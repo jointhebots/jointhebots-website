@@ -1,5 +1,152 @@
 [
   {
+    "slug": "accountancy-firms",
+    "industry": "Accountancy Firms",
+    "title": "Stop Losing Clients to Faster-Replying Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "architects",
+    "industry": "Architects",
+    "title": "Architects: Stop Losing Enquiries to Faster Practices",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "care-homes",
+    "industry": "Care Homes",
+    "title": "Stop Losing Residents to Faster Care Homes",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "cleaners",
+    "industry": "Cleaning Companies",
+    "title": "Stop Losing Cleaning Contracts to Faster Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "contractors",
+    "industry": "Contractors",
+    "title": "Stop Losing Clients to Faster-Replying Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "dentists",
+    "industry": "Dentists",
+    "title": "Stop Losing Patients to Faster-Replying Dentists",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "event-managers",
+    "industry": "Event Managers",
+    "title": "Stop Losing Event Contracts to Faster Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "independent-financial-advisors",
+    "industry": "Independent Financial Advisers",
+    "title": "Stop Losing Client Enquiries to Faster Advisers",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "insurance-brokers",
+    "industry": "Insurance Brokers",
+    "title": "Stop Losing Business to Faster Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "letting-agents",
+    "industry": "Letting Agents",
+    "title": "Stop Losing Landlords to Faster Agents",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "manufacturing",
+    "industry": "Manufacturers",
+    "title": "Business Automation for Manufacturers",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "mortgage-brokers",
+    "industry": "Mortgage Brokers",
+    "title": "Stop Losing Mortgage Applications to Faster Brokers",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "physios",
+    "industry": "Physiotherapy Clinics",
+    "title": "Physiotherapy Clinics: Stop Losing Patients to Faster Replies",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "private-clinics",
+    "industry": "Private Clinics",
+    "title": "Stop Losing Patient Enquiries to Faster Clinics",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "private-tuition",
+    "industry": "Private Tutors",
+    "title": "Stop Losing Students to Fast Responders",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "recruitment-agencies",
+    "industry": "Recruitment Agencies",
+    "title": "Stop Losing Clients to Faster Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "security-companies",
+    "industry": "Security Companies",
+    "title": "Stop Losing Customers to Faster Competitors",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "solicitors",
+    "industry": "Solicitors",
+    "title": "Stop Losing Clients to Faster Replying Firms",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "travel-agents",
+    "industry": "Travel Agents",
+    "title": "Stop Losing Holiday Enquiries to Slow Follow-Up",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "vets",
+    "industry": "Vets",
+    "title": "Fast Response Automation for Vets",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
+    "slug": "wedding-venues",
+    "industry": "Wedding Venues",
+    "title": "Stop Losing Wedding Enquiries to Faster Venues",
+    "publishedAt": "2026-04-08",
+    "status": "published"
+  },
+  {
     "slug": "estate-agents",
     "industry": "Estate Agents",
     "title": "Stop Losing Valuation Requests to Faster Agents",

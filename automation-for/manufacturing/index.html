@@ -131,6 +131,33 @@
                 font-size: 1.75rem;
             }
         }
+
+        .pricing{background:var(--charcoal);padding:80px 0;color:var(--white);text-align:center}
+        .pricing h2{font-size:clamp(1.5rem,3vw,2rem);color:var(--white);margin-bottom:8px}
+        .pricing .section-intro{color:rgba(255,255,255,0.55)}
+        .pricing-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:48px;max-width:800px;margin-left:auto;margin-right:auto}
+        .pricing-card{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:14px;padding:32px;display:flex;flex-direction:column;text-align:left}
+        .pricing-card.featured{background:var(--teal);border-color:var(--teal);position:relative}
+        .pricing-card.featured::before{content:'Recommended';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--orange);color:var(--white);font-size:0.72rem;font-weight:700;text-transform:uppercase;padding:4px 14px;border-radius:50px}
+        .pricing-tier{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.45);margin-bottom:6px}
+        .pricing-card.featured .pricing-tier{color:rgba(255,255,255,0.7)}
+        .pricing-name{font-family:'Sora',sans-serif;font-size:1.15rem;font-weight:700;margin-bottom:16px}
+        .pricing-setup{font-family:'Sora',sans-serif;font-size:1.8rem;font-weight:700;margin-bottom:4px}
+        .pricing-setup span{font-size:0.85rem;font-weight:400;opacity:0.5}
+        .pricing-monthly{font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:20px}
+        .pricing-card.featured .pricing-monthly{color:rgba(255,255,255,0.75)}
+        .pricing-divider{border:none;border-top:1px solid rgba(255,255,255,0.1);margin:0 0 20px}
+        .pricing-card.featured .pricing-divider{border-color:rgba(255,255,255,0.25)}
+        .pricing-features{list-style:none;padding:0;margin:0 0 24px;flex-grow:1}
+        .pricing-features li{font-size:0.85rem;color:rgba(255,255,255,0.65);padding:5px 0 5px 22px;position:relative}
+        .pricing-card.featured .pricing-features li{color:rgba(255,255,255,0.9)}
+        .pricing-features li::before{content:'✓';position:absolute;left:0;color:var(--green)}
+        .btn-white{background:var(--white);color:var(--charcoal)}
+        .btn-white:hover{background:#e9ecef}
+
+        @media (max-width: 900px) {
+            .pricing-grid{grid-template-columns:1fr;max-width:440px}
+        }
     </style>
 </head>
 <body>
@@ -273,42 +300,23 @@
         </div>
     </section>
 
-    <!-- ── Services ── -->
-    <section class="services">
-        <div class="container">
-            <h2>What we build</h2>
-            <p class="section-intro">Both start with a free mapping session. We find your highest-impact automation opportunities before we recommend or build anything.</p>
-
-            <div class="service-cards">
-                <div class="service-card">
-                    <div class="service-tag">Starter Build</div>
-                    <h3>One automation, built and running</h3>
-                    <p>We start with a free mapping session to find your highest-impact automation opportunity. Then we build it, test it, and keep it running.</p>
-                    <ul>
-                        <li>One automation built and deployed into your existing tools</li>
-                        <li>Managed by us so you don't have to think about it</li>
-                        <li>Delivered within 1 week</li>
-                    </ul>
-                    <div class="service-price">£500 · fixed scope</div>
-                    <a href="../../services/" class="btn btn-secondary">See full details</a>
-                </div>
-
-                <div class="service-card">
-                    <div class="service-tag">Automation Jumpstart</div>
-                    <h3>Your top automations, all at once</h3>
-                    <p>We tackle your top 5–10 automation opportunities in one engagement. You get the bots built and running, plus a full Automation Blueprint covering what to focus on next.</p>
-                    <ul>
-                        <li>5–10 bots built, deployed, and managed by us</li>
-                        <li>Full Automation Blueprint included</li>
-                        <li>Delivered within 1 month</li>
-                    </ul>
-                    <div class="service-price">£3,000 · fixed scope</div>
-                    <a href="../../services/" class="btn btn-secondary">See full details</a>
-                </div>
-            </div>
-
-            <p style="text-align:center; font-size:0.95rem; color:#6C727F; margin-top: -20px;">We build on whatever tools you're already using. If it has an API, we can connect it.</p>
-        </div>
+    <section class="pricing"><div class="container">
+<h2>Simple pricing</h2>
+<p class="section-intro">Fixed scope. No hourly rates. No surprises.</p>
+<div class="pricing-grid">
+<div class="pricing-card"><div class="pricing-tier">Starter</div><div class="pricing-name">Starter Build</div>
+<div class="pricing-setup">£500 <span>one-off</span></div><div class="pricing-monthly">1 automation, delivered in 1 week</div>
+<hr class="pricing-divider"><ul class="pricing-features">
+<li>Single automation workflow</li><li>Connected to your existing tools</li><li>Full documentation and walkthrough</li><li>2 weeks of support included</li>
+</ul><a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-white">Book a free call</a></div>
+<div class="pricing-card featured"><div class="pricing-tier">Growth</div><div class="pricing-name">Automation Jumpstart</div>
+<div class="pricing-setup">£3,000 <span>one-off</span></div><div class="pricing-monthly">5–10 automations, delivered in 1 month</div>
+<hr class="pricing-divider"><ul class="pricing-features">
+<li>Full automation audit and mapping</li><li>5–10 connected workflows</li><li>CRM and tool integration</li><li>Staff training session</li><li>1 month of priority support</li><li>Ongoing maintenance available</li>
+</ul><a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" class="btn btn-primary">Book a free call</a></div>
+</div>
+<p style="text-align:center;margin-top:28px;font-size:0.85rem;color:rgba(255,255,255,0.4);font-style:italic;">Both packages start with a free mapping call. Nothing is committed until we've both agreed it's the right fit.</p>
+</div>
     </section>
 
     <!-- ── Social proof ── -->
