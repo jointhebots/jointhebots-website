@@ -1,6 +1,14 @@
 {
   "articles": [
     {
+      "title": "How to Automate Workflows with n8n",
+      "slug": "how-to-automate-workflows-with-n8n",
+      "date": "2026-04-10",
+      "author": "Tom Hussey",
+      "excerpt": "n8n is a tool that quietly sits in the background of your business and moves information between your apps automatically so your team doesn\u2019t have to...",
+      "tags": ["automation", "n8n", "workflow", "crm", "process-improvement"]
+    },
+    {
       "title": "Will AI Replace Your Team?",
       "slug": "will-ai-replace-your-team",
       "date": "2026-04-08",
