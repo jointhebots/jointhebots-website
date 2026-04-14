@@ -433,8 +433,8 @@
       <div class="state-notlive">
         <div class="state-card">
           <div class="state-icon" aria-hidden="true">&#9203;</div>
-          <h2 id="notlive-heading">Your results are being prepared</h2>
-          <p>Leave your details below and we'll send you your results as soon as they're ready, so you can see how you compare to your competitors.</p>
+          <h2 id="notlive-heading">Your results are on their way</h2>
+          <p id="notlive-body">John is still compiling the full leaderboard. Leave your details below and we'll send you a direct link as soon as everything is ready.</p>
         <div class="email-form-wrap" style="margin-top:28px;">
           <form id="notlive-email-form" novalidate>
             <div class="form-group">
@@ -445,11 +445,11 @@
               <label for="notlive-input-email">Your Email</label>
               <input type="email" id="notlive-input-email" name="email" placeholder="e.g. sarah@yourfirm.co.uk" required>
             </div>
-            <button type="submit" class="btn-primary" id="notlive-btn-submit">Notify me when results are ready</button>
+            <button type="submit" class="btn-primary" id="notlive-btn-submit">Send me my results</button>
             <div class="form-error" id="notlive-form-error"></div>
           </form>
         </div>
-        <p id="notlive-success" style="display:none; color:var(--green); font-weight:500; margin-top:20px;">Thanks! We'll email you as soon as your results are live.</p>
+        <p id="notlive-success" style="display:none; color:var(--green); font-weight:500; margin-top:20px;">Done. We'll be in touch as soon as your results are live.</p>
         </div>
       </div>
     </div>
@@ -457,7 +457,7 @@
     <!-- Pre-email state -->
     <div id="state-preemail" class="state">
       <section class="hero">
-        <h1>How Fast Do You Reply to New Enquiries?</h1>
+        <h1 id="preemail-h1">Your results are ready</h1>
         <p class="subheading" id="preemail-subheading"></p>
         <p class="body-text" id="preemail-body"></p>
 
@@ -474,6 +474,7 @@
             <button type="submit" class="btn-primary" id="btn-submit">Show My Results</button>
             <div class="form-error" id="form-error"></div>
           </form>
+          <p class="small-print">We'll use your email to send you your results and to follow up about what we found. That's it. No newsletters. No mailing lists. You can opt out at any time.</p>
         </div>
 
         <!-- Blurred preview table -->
@@ -521,14 +522,21 @@
         <p class="grade-key">Excellent = Under 5 minutes &middot; Good = Under 30 minutes &middot; Average = Under 4 hours &middot; Poor = Under 24 hours &middot; Fail = Over 24 hours or no response</p>
       </section>
 
+      <!-- First CTA -->
+      <p style="text-align:center; margin: 32px 0 8px; font-size: 1rem; color: #555;">Ready to talk? Book a free 30 minute mapping session.</p>
+      <div style="text-align:center; margin-bottom: 40px;">
+        <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" rel="noopener" class="btn-cta">Book a Free Mapping Session</a>
+      </div>
+
       <!-- Why speed matters -->
-      <div class="commentary" style="border-left-color: var(--orange);">
-        <strong>Why does responding in under 5 minutes matter?</strong> Research shows that contacting a lead within 5 minutes makes you 21 times more likely to convert them into a customer. After 30 minutes, the odds drop dramatically. The business that replies first builds trust, demonstrates professionalism, and captures attention before competitors even get a chance. Speed isn't just a nice-to-have — it's the single biggest factor in winning new business from inbound enquiries.
+      <div class="commentary" style="border-left-color: var(--orange);" id="why-speed-matters">
+        <strong>Why does speed matter?</strong><br><br>A Harvard Business Review study found that responding within 5 minutes makes you 21 times more likely to qualify a prospect than responding within 30 minutes. After an hour, that drops by 60 times.<br><br>The business that replies first gets the conversation. Every time.
       </div>
 
       <!-- Detailed breakdown -->
       <section class="results-section">
         <h2 id="breakdown-title">Your Detailed Breakdown</h2>
+        <p id="breakdown-subtitle" style="font-style: italic; color: #888; font-size: 0.9rem; margin-bottom: 16px;"></p>
         <div class="table-wrap">
           <table class="breakdown-table" id="breakdown-table">
             <tbody id="breakdown-body"></tbody>
@@ -539,11 +547,26 @@
       <!-- Commentary -->
       <div class="commentary" id="commentary"></div>
 
-      <!-- CTA -->
+      <!-- Grade-specific commentary -->
       <section class="cta-section">
         <h2 id="cta-heading"></h2>
-        <p>We help businesses respond to new enquiries in seconds, not hours. Automated, professional, and always-on — so you never miss another opportunity.</p>
-        <a href="https://jointhebots.pipedrive.com/scheduler" target="_blank" rel="noopener" class="btn-cta">Book a Free Call</a>
+        <div id="cta-body"></div>
+      </section>
+
+      <!-- Book a Free Mapping Session -->
+      <section class="cta-section" style="border-top:1px solid #eee; margin-top:32px; padding-top:32px;">
+        <h2>Book a Free Mapping Session</h2>
+        <p>The next step is a free 30 minute session with us. We'll find your biggest automation opportunity and give you a written plan of exactly what to do about it.</p>
+        <p style="max-width:640px; margin: 24px auto 16px; font-size: 1rem; color: #555;">Not sure what you're signing up for? Here's a 90-second walkthrough of exactly what the mapping session covers.</p>
+        <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin: 0 auto 16px; max-width:640px;">
+          <iframe src="https://www.youtube.com/embed/2dAdxefRTic" frameborder="0" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
+        </div>
+        <h3 style="font-family:'Sora',sans-serif; font-weight:700; color:var(--teal); font-size:1.15rem; max-width:640px; margin: 8px auto 24px; line-height:1.4;">You'll leave with a written Automation Opportunity Map regardless of what you decide afterwards.</h3>
+        <blockquote style="background:#f8f8f8; border-left:4px solid #3BAF7A; padding:20px 24px; border-radius:0 10px 10px 0; margin:24px auto; text-align:left; max-width:640px;">
+          <p style="font-style:italic; margin-bottom:8px;">"John was great from start to finish, going above and beyond with documentation and videos so I could manage the system myself. Great communicator and kept a tight schedule."</p>
+          <p style="font-weight:600; font-size:0.9rem; margin:0;">Brok Nielsen, Together Agency</p>
+        </blockquote>
+        <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" rel="noopener" class="btn-cta">Book a Free Mapping Session</a>
         <p id="exclusivity-note" style="color:#888; font-size:0.85rem; margin-top:20px; font-style:italic; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.6;"></p>
       </section>
 
@@ -554,7 +577,7 @@
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container">
-      <p class="footer-cta">The businesses getting ahead aren't the ones with the biggest teams. They're the ones where people, systems, and automation work in perfect harmony.</p>
+      <p class="footer-cta">The businesses pulling ahead aren't the ones with the biggest teams. They're the ones where the right thing happens automatically, at the right moment, every single time.</p>
       <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
       <p class="attribution">Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
     </div>
@@ -579,6 +602,25 @@
         if (!unix) return '\u2014';
         var d = new Date(unix * 1000);
         return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' }) + ', ' + d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      }
+
+      function formatDateOnly(unix) {
+        if (!unix) return '';
+        var d = new Date(unix * 1000);
+        return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+      }
+
+      function formatTimeOnly(unix) {
+        if (!unix) return '';
+        var d = new Date(unix * 1000);
+        return d.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit' });
+      }
+
+      function singularise(s) {
+        if (!s) return s;
+        if (/ies$/i.test(s)) return s.replace(/ies$/i, 'y');
+        if (/s$/i.test(s) && !/ss$/i.test(s)) return s.replace(/s$/i, '');
+        return s;
       }
 
       var gradeLabels = { A: 'Excellent', B: 'Good', C: 'Average', D: 'Poor', F: 'Fail' };
@@ -622,25 +664,37 @@
             body: JSON.stringify({ page_code: pageCode, email: '', name: '', stage: 'page-view', visited_at: new Date().toISOString(), location_doc_id: data.location_doc_id || '' })
           }).catch(function () {});
 
+          var town = (data.prospect && data.prospect.town) || 'your area';
+
           if (!data.results_live) {
+            var notliveBody = document.getElementById('notlive-body');
+            if (notliveBody) {
+              notliveBody.textContent = 'John is still compiling the full leaderboard for ' + town + '. Leave your details below and we\u2019ll send you a direct link as soon as everything is ready.';
+            }
             showState('notlive');
             return;
           }
 
           // Populate pre-email content
           var sector = (data.prospect && data.prospect.sector) || 'business';
-          var town = (data.prospect && data.prospect.town) || 'your area';
+          var sectorsPlural = sector.toLowerCase();
+          var sectorSingular = singularise(sectorsPlural);
           var firmCount = (data.leaderboard && data.leaderboard.length) ? data.leaderboard.length : 'several';
-
           var firmName = (data.prospect && data.prospect.business_name) ? data.prospect.business_name : 'your business';
 
+          var enquirySentAt = (data.breakdown && data.breakdown.enquiry_sent_at) ? data.breakdown.enquiry_sent_at : null;
+          var enquiryDate = formatDateOnly(enquirySentAt);
+
+          document.getElementById('preemail-h1').textContent =
+            (enquiryDate ? 'On ' + enquiryDate + ' we tested ' : 'We tested ') + firmCount + ' ' + sectorsPlural + ' in ' + town + '. The results are in. Yours are on this page.';
+
           document.getElementById('preemail-subheading').textContent =
-            'We contacted various ' + sector.toLowerCase() + ' in ' + town + ' as a potential customer. We timed every response. Here\u2019s how your business performed.';
+            'Your rank, your response time, and your grade are waiting for you. So are the results for all of them.';
 
           document.getElementById('preemail-body').textContent =
-            'When someone contacts you, how long they wait for a reply matters. We sent a real enquiry to ' + firmCount + ' ' + sector.toLowerCase() + ' in ' + town + ' and tracked exactly how long each one took to respond \u2014 and how they responded. Enter your email below to see the full results, including where you ranked and a detailed breakdown of your performance.';
+            'Enter your details to unlock your full results.';
 
-          document.getElementById('btn-submit').textContent = 'Show the results for ' + firmName;
+          document.getElementById('btn-submit').textContent = 'Show my results for ' + firmName;
 
           // Populate blurred preview table
           var previewBody = document.getElementById('preview-table-body');
@@ -692,7 +746,7 @@
         }).catch(function () {
           errorEl.textContent = 'Something went wrong. Please try again.';
           errorEl.classList.add('visible');
-          btn.disabled = false; btn.textContent = 'Notify me when results are ready';
+          btn.disabled = false; btn.textContent = 'Send me my results';
         });
       });
 
@@ -741,7 +795,8 @@
             errorEl.textContent = 'Something went wrong. Please try again.';
             errorEl.classList.add('visible');
             btn.disabled = false;
-            btn.textContent = 'Show My Results';
+            var firmNameReset = (pageData && pageData.prospect && pageData.prospect.business_name) ? pageData.prospect.business_name : 'your business';
+            btn.textContent = 'Show my results for ' + firmNameReset;
           });
       });
 
@@ -749,15 +804,18 @@
       function renderResults() {
         var data = pageData;
         var sector = (data.prospect && data.prospect.sector) || 'business';
+        var sectorLower = sector.toLowerCase();
+        var sectorSingular = singularise(sectorLower);
         var town = (data.prospect && data.prospect.town) || 'your area';
         var alias = (data.prospect && data.prospect.alias) || '?';
         var firmName = (data.prospect && data.prospect.business_name) || 'Your business';
         var myEntry = data.leaderboard ? data.leaderboard.find(function(l) { return l.is_you; }) : null;
         var grade = myEntry ? myEntry.score : (data.breakdown ? data.breakdown.score : 'F');
+        var enquirySentAt = (data.breakdown && data.breakdown.enquiry_sent_at) ? data.breakdown.enquiry_sent_at : null;
 
         // Leaderboard title
         document.getElementById('leaderboard-title').textContent =
-          sector + ' Response Time Leaderboard for ' + town;
+          'Response Time Leaderboard for ' + town;
 
         // Alias banner (hidden — highlighting is self-explanatory)
         document.getElementById('alias-banner').style.display = 'none';
@@ -806,24 +864,71 @@
         document.getElementById('breakdown-title').textContent =
           'Breakdown for ' + firmName;
 
-        // Commentary
-        var commentary = document.getElementById('commentary');
-        var gradeLabel = gradeLabels[grade] || grade;
-        if (grade === 'A' || grade === 'B') {
-          commentary.innerHTML = '<strong>Great result.</strong> You\u2019re one of the fastest responders in ' + town + '. Speed like this turns enquiries into clients.';
-        } else if (grade === 'C' || grade === 'D') {
-          commentary.innerHTML = '<strong>There\u2019s room to improve.</strong> In a competitive market, the first business to reply often wins. It doesn\u2019t matter how good you are if the prospect has already picked up the phone to a competitor who got back to them first.';
-        } else {
-          commentary.innerHTML = '<strong>Your business didn\u2019t respond to our enquiry.</strong> Every missed enquiry is a missed opportunity \u2014 and while you\u2019re not replying, your competitors are. It doesn\u2019t matter how good your service is if a prospect has already gone elsewhere.';
+        // Breakdown subtitle
+        var subtitleEl = document.getElementById('breakdown-subtitle');
+        if (subtitleEl) {
+          if (enquirySentAt) {
+            subtitleEl.textContent = 'Rob\u2019s enquiry arrived at ' + formatTimeOnly(enquirySentAt) + ' on ' + formatDateOnly(enquirySentAt) + '. Here\u2019s what happened next.';
+          } else {
+            subtitleEl.textContent = 'Here\u2019s what happened next.';
+          }
         }
 
-        // CTA heading
-        document.getElementById('cta-heading').textContent =
-          'Want to Be the Fastest in ' + town + '?';
+        // Commentary (grade-specific)
+        var commentary = document.getElementById('commentary');
+        var commentaryByGrade = { A: '', B: '', C: '', D: '', F: '' };
+        var commentaryHtml = (grade in commentaryByGrade) ? commentaryByGrade[grade] : commentaryByGrade.F;
+        commentary.innerHTML = commentaryHtml;
+        commentary.style.display = commentaryHtml ? '' : 'none';
+
+        // CTA heading (grade-specific)
+        var ctaHeadingByGrade = {
+          A: 'You\u2019re Already Winning. Now Make It Impossible to Lose.',
+          B: 'The Gap Between Good and Excellent Is Smaller Than You Think.',
+          C: 'You\u2019re Not Losing Badly. You\u2019re Losing Quietly.',
+          D: 'Every Hour You Wait Is An Hour Someone Else Has.',
+          F: 'Every Missed Enquiry Is a Missed Client. That\u2019s Fixable.'
+        };
+        document.getElementById('cta-heading').textContent = ctaHeadingByGrade[grade] || ctaHeadingByGrade.F;
+
+        // CTA body (grade-specific) — narrative only; "next step" pitch lives in Book section below
+        var ctaBodyByGrade = {
+          A: '<p>Excellent. You hit the 5-minute window.</p>' +
+             '<p style="margin-top:14px;">That means you already have something working. The question is how robust it is. Does it fire on every channel? Does it work when your best person is on holiday? Does it qualify the lead, book the callback, and update your CRM without anyone lifting a finger?</p>' +
+             '<p style="margin-top:14px;">Speed gets you into the conversation. What happens next determines whether you win the client. Most fast-responding firms are still losing business somewhere between the first reply and the signed retainer, because the system that handles the first touch doesn\u2019t carry through to the second and third.</p>' +
+             '<p style="margin-top:14px;">The firms that consistently win aren\u2019t just fast. They\u2019re joined up end to end.</p>',
+          B: '<p>The gap between Good and Excellent isn\u2019t just a label. It\u2019s the difference between sometimes winning the race and winning it every time.</p>' +
+             '<p style="margin-top:14px;">You\u2019re clearly doing something right. But is your current setup responding consistently across every channel (website, phone, email, WhatsApp) at every hour of the day? And when a lead does come in, does the system carry it all the way through to a booked call, or does it still depend on someone picking it up at the right moment?</p>' +
+             '<p style="margin-top:14px;">The 5-minute window is within reach. And once response time is handled, there\u2019s usually a bigger opportunity sitting just behind it: in how leads are qualified, followed up, and converted after that first reply. Most firms think that part is working. It usually isn\u2019t.</p>',
+          C: '<p>Average sounds acceptable. In most contexts it is. Here it isn\u2019t.</p>' +
+             '<p style="margin-top:14px;">By the time your reply arrived, the prospect had probably already spoken to whichever firm replied first. That firm got the conversation. It didn\u2019t matter whether they were better than you. They were faster.</p>' +
+             '<p style="margin-top:14px;">You didn\u2019t lose because your service wasn\u2019t good enough. You lost because someone else replied first.</p>' +
+             '<p style="margin-top:14px;">You never see the enquiries that went cold. The pipeline just looks a little quieter than it should.</p>' +
+             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
+             '<p style="margin-top:14px;">We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. Not when someone happens to be at their desk. Every time.</p>' +
+             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
+             '<p style="margin-top:14px;">That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
+          D: '<p>A Poor result means your reply arrived somewhere between 4 and 24 hours after the enquiry.</p>' +
+             '<p style="margin-top:14px;">By that point, the prospect had almost certainly already spoken to someone else. Not because your firm wasn\u2019t capable. Because someone else was there first.</p>' +
+             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
+             '<p style="margin-top:14px;">That\u2019s what the firm who beat you to it looks like.</p>' +
+             '<p style="margin-top:14px;">This isn\u2019t about effort. Most firms miss the window not because they don\u2019t care but because their systems aren\u2019t built to catch enquiries when nobody is watching.</p>' +
+             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
+             '<p style="margin-top:14px;">The fix doesn\u2019t require more staff or longer hours. We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. The moment an enquiry arrives, the system replies, confirms receipt, asks a qualifying question, and books a callback. That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
+          F: '<p>We didn\u2019t receive a reply.</p>' +
+             '<p style="margin-top:14px;">That happens more than you\u2019d think.</p>' +
+             '<p style="margin-top:14px;">Every unanswered enquiry is a potential client who went elsewhere. Not because your firm couldn\u2019t help them. Because nobody answered.</p>' +
+             '<p style="margin-top:14px;">This isn\u2019t unusual. Most firms miss enquiries outside office hours, during busy periods, or when the right person isn\u2019t available. The enquiry arrives. Nobody sees it in time. It goes cold. The prospect moves on.</p>' +
+             '<p style="margin-top:14px;">The good news is that this is entirely fixable. It doesn\u2019t require more staff or longer hours. It requires a system that never switches off.</p>' +
+             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
+             '<p style="margin-top:14px;">We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. No missed calls. No enquiries that slip through. No leads that go cold because nobody was there to answer.</p>' +
+             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>'
+        };
+        document.getElementById('cta-body').innerHTML = ctaBodyByGrade[grade] || ctaBodyByGrade.F;
 
         // Exclusivity note
         document.getElementById('exclusivity-note').textContent =
-          'To avoid conflicts of interest, we only partner with one ' + sector.toLowerCase() + ' in ' + town + '. This means your competitors won\u2019t have access to the same tools and strategies we build for you.';
+          'To avoid a conflict of interest, we work with one ' + sectorSingular + ' per town. If you\u2019d like to talk, that spot in ' + town + ' is still open.';
 
         showState('postemail');
         window.scrollTo({ top: 0, behavior: 'smooth' });
