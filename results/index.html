@@ -355,6 +355,90 @@
       margin: 0 auto 28px;
       font-size: 1.05rem;
     }
+    /* Verdict section: left-aligned prose with hierarchy */
+    .cta-section.verdict { text-align: left; }
+    .cta-section.verdict > h2 { text-align: center; margin-bottom: 24px; }
+    .cta-section.verdict .cta-prose {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .cta-section.verdict .cta-prose p {
+      text-align: left;
+      max-width: 640px;
+      margin: 0 0 16px;
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    .cta-section.verdict .cta-prose p.cta-lead {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1.25rem;
+      color: var(--charcoal);
+      margin-bottom: 20px;
+      line-height: 1.4;
+    }
+    .cta-section.verdict .cta-prose p.cta-pullquote {
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #555;
+      margin: 24px 0 0;
+    }
+    .cta-section.verdict .cta-prose p.cta-diagnostic {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      color: var(--charcoal);
+      background: #fff8ea;
+      border-left: 4px solid var(--orange);
+      padding: 12px 20px;
+      margin: 24px 0;
+    }
+    /* Book section: tinted so it reads as a separate "next step" card */
+    .cta-section.book {
+      background: linear-gradient(180deg, #f1faf6 0%, #eaf6f1 100%);
+    }
+    .cta-section.book .book-prose {
+      max-width: 640px;
+      margin: 0 auto 16px;
+      text-align: left;
+      color: #444;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+    /* Testimonial card (dark, standalone) */
+    .testimonial-card {
+      background: var(--charcoal);
+      color: var(--white);
+      border-radius: 16px;
+      padding: 40px 32px;
+      margin: 48px 0;
+      text-align: center;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    }
+    .testimonial-card h2 {
+      color: var(--white);
+      font-size: clamp(1.2rem, 2.4vw, 1.5rem);
+      margin-bottom: 24px;
+    }
+    .testimonial-card blockquote {
+      border-left: 4px solid var(--green);
+      padding: 4px 0 4px 20px;
+      margin: 0 auto;
+      max-width: 640px;
+      text-align: left;
+    }
+    .testimonial-card blockquote p { margin: 0 0 8px; }
+    .testimonial-card blockquote p.who { font-weight: 600; font-size: 0.9rem; margin: 8px 0 0; color: #cfd3d7; }
+    .testimonial-card blockquote p.quote { font-style: italic; color: var(--white); }
+    .cta-section.book .amap-guarantee {
+      font-family: 'Inter', sans-serif;
+      font-weight: 700;
+      color: var(--teal);
+      font-size: 1rem;
+      max-width: 560px;
+      margin: 8px auto 20px;
+      line-height: 1.5;
+    }
     .btn-cta {
       display: inline-block;
       padding: 16px 40px;
@@ -386,6 +470,38 @@
       thead th, tbody td { padding: 10px 12px; font-size: 0.85rem; }
       .alias-banner { font-size: 0.9rem; padding: 12px 16px; }
       .commentary { padding: 20px; font-size: 0.95rem; }
+    }
+    /* Stacked leaderboard for narrow screens */
+    @media (max-width: 560px) {
+      .table-wrap { overflow-x: visible; box-shadow: none; background: transparent; }
+      #leaderboard-table, #leaderboard-table tbody, #leaderboard-table tr, #leaderboard-table td { display: block; width: 100%; }
+      #leaderboard-table thead { display: none; }
+      #leaderboard-table tr {
+        background: var(--white);
+        border-radius: 10px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        margin-bottom: 12px;
+        padding: 12px 16px;
+      }
+      #leaderboard-table tr.highlighted-row { background: var(--teal); color: var(--white); }
+      #leaderboard-table td {
+        border: none;
+        padding: 4px 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      #leaderboard-table td::before {
+        content: attr(data-label);
+        font-family: 'Sora', sans-serif;
+        font-size: 0.75rem;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        color: #888;
+        flex-shrink: 0;
+        margin-right: 12px;
+      }
+      #leaderboard-table tr.highlighted-row td::before { color: rgba(255,255,255,0.8); }
     }
   </style>
 </head>
@@ -422,8 +538,10 @@
         <div class="state-card">
           <div class="state-icon" aria-hidden="true">&#128269;</div>
           <h2>We couldn't find that page</h2>
-          <p>This results link doesn't match anything in our system. Double-check the URL from your email and try again.</p>
-          <a href="../" class="btn-cta">Back to Home</a>
+          <p>That URL doesn't match anything in our system.</p>
+          <p>Double-check the code from your note and try again. If you're still stuck, drop us a line at <a href="mailto:john@jointhebots.com">john@jointhebots.com</a>.</p>
+          <p style="margin-top:20px;">While you're here, have a look at what we do. It's relevant to why you received our correspondence.</p>
+          <a href="/services/" class="btn-cta">See what we do</a>
         </div>
       </div>
     </div>
@@ -434,7 +552,7 @@
         <div class="state-card">
           <div class="state-icon" aria-hidden="true">&#9203;</div>
           <h2 id="notlive-heading">Your results are on their way</h2>
-          <p id="notlive-body">John is still compiling the full leaderboard. Leave your details below and we'll send you a direct link as soon as everything is ready.</p>
+          <p id="notlive-body">We're still compiling the full leaderboard. Leave your details below and we'll send you a direct link as soon as everything is ready.</p>
         <div class="email-form-wrap" style="margin-top:28px;">
           <form id="notlive-email-form" novalidate>
             <div class="form-group">
@@ -547,27 +665,31 @@
       <!-- Commentary -->
       <div class="commentary" id="commentary"></div>
 
-      <!-- Grade-specific commentary -->
-      <section class="cta-section">
+      <!-- Grade-specific verdict -->
+      <section class="cta-section verdict">
         <h2 id="cta-heading"></h2>
-        <div id="cta-body"></div>
+        <div class="cta-prose" id="cta-body"></div>
+      </section>
+
+      <!-- Testimonial (standalone dark section) -->
+      <section class="testimonial-card">
+        <h2>What past clients have said</h2>
+        <blockquote>
+          <p class="quote">"John was great from start to finish, going above and beyond with documentation and videos so I could manage the system myself. Great communicator and kept a tight schedule."</p>
+          <p class="who">Brok Nielsen, Together Agency</p>
+        </blockquote>
       </section>
 
       <!-- Book a Free Mapping Session -->
-      <section class="cta-section" style="border-top:1px solid #eee; margin-top:32px; padding-top:32px;">
+      <section class="cta-section book">
         <h2>Book a Free Mapping Session</h2>
-        <p>The next step is a free 30 minute session with us. We'll find your biggest automation opportunity and give you a written plan of exactly what to do about it.</p>
-        <p style="max-width:640px; margin: 24px auto 16px; font-size: 1rem; color: #555;">Not sure what you're signing up for? Here's a 90-second walkthrough of exactly what the mapping session covers.</p>
+        <p class="book-prose">The next step is a free 30 minute session with us. We'll find your biggest automation opportunity and give you a written plan of exactly what to do about it. Here's what a typical session looks like:</p>
         <div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin: 0 auto 16px; max-width:640px;">
           <iframe src="https://www.youtube.com/embed/2dAdxefRTic" frameborder="0" allowfullscreen style="position:absolute; top:0; left:0; width:100%; height:100%;"></iframe>
         </div>
-        <h3 style="font-family:'Sora',sans-serif; font-weight:700; color:var(--teal); font-size:1.15rem; max-width:640px; margin: 8px auto 24px; line-height:1.4;">You'll leave with a written Automation Opportunity Map regardless of what you decide afterwards.</h3>
-        <blockquote style="background:#f8f8f8; border-left:4px solid #3BAF7A; padding:20px 24px; border-radius:0 10px 10px 0; margin:24px auto; text-align:left; max-width:640px;">
-          <p style="font-style:italic; margin-bottom:8px;">"John was great from start to finish, going above and beyond with documentation and videos so I could manage the system myself. Great communicator and kept a tight schedule."</p>
-          <p style="font-weight:600; font-size:0.9rem; margin:0;">Brok Nielsen, Together Agency</p>
-        </blockquote>
+        <p class="amap-guarantee">You'll leave with a written Automation Opportunity Map, whatever you decide afterwards.</p>
         <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" rel="noopener" class="btn-cta">Book a Free Mapping Session</a>
-        <p id="exclusivity-note" style="color:#888; font-size:0.85rem; margin-top:20px; font-style:italic; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.6;"></p>
+        <p id="exclusivity-note" style="color:#666; font-size:0.85rem; margin-top:20px; font-style:italic; max-width:480px; margin-left:auto; margin-right:auto; line-height:1.6;"></p>
       </section>
 
     </div>
@@ -831,11 +953,11 @@
             if (isYou) tr.classList.add('highlighted-row');
 
             tr.innerHTML =
-              '<td>' + (row.rank || '\u2014') + '</td>' +
-              '<td>' + (isYou ? firmName : 'Business ' + (row.alias || '?')) + '</td>' +
-              '<td>' + formatTime(row.response_mins) + '</td>' +
-              '<td>' + gradeBadge(row.score) + '</td>' +
-              '<td>' + (row.responded ? 'Yes' : 'No') + '</td>';
+              '<td data-label="Rank">' + (row.rank || '\u2014') + '</td>' +
+              '<td data-label="Business">' + (isYou ? firmName : 'Business ' + (row.alias || '?')) + '</td>' +
+              '<td data-label="Time">' + formatTime(row.response_mins) + '</td>' +
+              '<td data-label="Grade">' + gradeBadge(row.score) + '</td>' +
+              '<td data-label="Responded">' + (row.responded ? 'Yes' : 'No') + '</td>';
 
             tbody.appendChild(tr);
           });
@@ -893,36 +1015,39 @@
 
         // CTA body (grade-specific) — narrative only; "next step" pitch lives in Book section below
         var ctaBodyByGrade = {
-          A: '<p>Excellent. You hit the 5-minute window.</p>' +
-             '<p style="margin-top:14px;">That means you already have something working. The question is how robust it is. Does it fire on every channel? Does it work when your best person is on holiday? Does it qualify the lead, book the callback, and update your CRM without anyone lifting a finger?</p>' +
-             '<p style="margin-top:14px;">Speed gets you into the conversation. What happens next determines whether you win the client. Most fast-responding firms are still losing business somewhere between the first reply and the signed retainer, because the system that handles the first touch doesn\u2019t carry through to the second and third.</p>' +
-             '<p style="margin-top:14px;">The firms that consistently win aren\u2019t just fast. They\u2019re joined up end to end.</p>',
+          A: '<p class="cta-lead">Excellent. You hit the 5-minute window.</p>' +
+             '<p>That means you already have something working. The question is how robust it is. Does it fire on every channel? Does it work when your best person is on holiday? Does it qualify the lead, book the callback, and update your CRM without anyone lifting a finger?</p>' +
+             '<p>Speed gets you into the conversation. What happens next determines whether you win the client. Most fast-responding firms are still losing business somewhere between the first reply and the signed retainer, because the system that handles the first touch doesn\u2019t carry through to the second and third.</p>' +
+             '<p class="cta-diagnostic">You replied fast. What happened next?</p>' +
+             '<p class="cta-pullquote">The firms that consistently win aren\u2019t just fast. They\u2019re joined up end to end.</p>',
           B: '<p>The gap between Good and Excellent isn\u2019t just a label. It\u2019s the difference between sometimes winning the race and winning it every time.</p>' +
-             '<p style="margin-top:14px;">You\u2019re clearly doing something right. But is your current setup responding consistently across every channel (website, phone, email, WhatsApp) at every hour of the day? And when a lead does come in, does the system carry it all the way through to a booked call, or does it still depend on someone picking it up at the right moment?</p>' +
-             '<p style="margin-top:14px;">The 5-minute window is within reach. And once response time is handled, there\u2019s usually a bigger opportunity sitting just behind it: in how leads are qualified, followed up, and converted after that first reply. Most firms think that part is working. It usually isn\u2019t.</p>',
-          C: '<p>Average sounds acceptable. In most contexts it is. Here it isn\u2019t.</p>' +
-             '<p style="margin-top:14px;">By the time your reply arrived, the prospect had probably already spoken to whichever firm replied first. That firm got the conversation. It didn\u2019t matter whether they were better than you. They were faster.</p>' +
-             '<p style="margin-top:14px;">You didn\u2019t lose because your service wasn\u2019t good enough. You lost because someone else replied first.</p>' +
-             '<p style="margin-top:14px;">You never see the enquiries that went cold. The pipeline just looks a little quieter than it should.</p>' +
-             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
-             '<p style="margin-top:14px;">We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. Not when someone happens to be at their desk. Every time.</p>' +
-             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
-             '<p style="margin-top:14px;">That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
-          D: '<p>A Poor result means your reply arrived somewhere between 4 and 24 hours after the enquiry.</p>' +
-             '<p style="margin-top:14px;">By that point, the prospect had almost certainly already spoken to someone else. Not because your firm wasn\u2019t capable. Because someone else was there first.</p>' +
-             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
-             '<p style="margin-top:14px;">That\u2019s what the firm who beat you to it looks like.</p>' +
-             '<p style="margin-top:14px;">This isn\u2019t about effort. Most firms miss the window not because they don\u2019t care but because their systems aren\u2019t built to catch enquiries when nobody is watching.</p>' +
-             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
-             '<p style="margin-top:14px;">The fix doesn\u2019t require more staff or longer hours. We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. The moment an enquiry arrives, the system replies, confirms receipt, asks a qualifying question, and books a callback. That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
-          F: '<p>We didn\u2019t receive a reply.</p>' +
-             '<p style="margin-top:14px;">That happens more than you\u2019d think.</p>' +
-             '<p style="margin-top:14px;">Every unanswered enquiry is a potential client who went elsewhere. Not because your firm couldn\u2019t help them. Because nobody answered.</p>' +
-             '<p style="margin-top:14px;">This isn\u2019t unusual. Most firms miss enquiries outside office hours, during busy periods, or when the right person isn\u2019t available. The enquiry arrives. Nobody sees it in time. It goes cold. The prospect moves on.</p>' +
-             '<p style="margin-top:14px;">The good news is that this is entirely fixable. It doesn\u2019t require more staff or longer hours. It requires a system that never switches off.</p>' +
-             '<p style="margin-top:14px;"><strong>Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</strong></p>' +
-             '<p style="margin-top:14px;">We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. No missed calls. No enquiries that slip through. No leads that go cold because nobody was there to answer.</p>' +
-             '<p style="margin-top:14px;">It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>'
+             '<p>You\u2019re clearly doing something right. But is your current setup responding consistently across every channel (website, phone, email, WhatsApp) at every hour of the day? And when a lead does come in, does the system carry it all the way through to a booked call, or does it still depend on someone picking it up at the right moment?</p>' +
+             '<p>The 5-minute window is within reach. And once response time is handled, there\u2019s usually a bigger opportunity sitting just behind it: in how leads are qualified, followed up, and converted after that first reply. Most firms think that part is working. It usually isn\u2019t.</p>' +
+             '<p class="cta-diagnostic">You\u2019re replying fast. But how many of those conversations are turning into clients?</p>',
+          C: '<p class="cta-lead">Average sounds acceptable. In most contexts it is. Here it isn\u2019t.</p>' +
+             '<p>By the time your reply arrived, the prospect had probably already spoken to whichever firm replied first. That firm got the conversation. It didn\u2019t matter whether they were better than you. They were faster.</p>' +
+             '<p>You didn\u2019t lose because your service wasn\u2019t good enough. You lost because someone else replied first.</p>' +
+             '<p>You never see the enquiries that went cold. The pipeline just looks a little quieter than it should.</p>' +
+             '<p class="cta-diagnostic">Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</p>' +
+             '<p>We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. Not when someone happens to be at their desk. Every time.</p>' +
+             '<p>It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
+             '<p class="cta-pullquote">That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
+          D: '<p class="cta-lead">A Poor result means your reply arrived somewhere between 4 and 24 hours after the enquiry.</p>' +
+             '<p>By that point, the prospect had almost certainly already spoken to someone else. Not because your firm wasn\u2019t capable. Because someone else was there first.</p>' +
+             '<p>It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>' +
+             '<p>That\u2019s what the firm who beat you to it looks like.</p>' +
+             '<p>This isn\u2019t about effort. Most firms miss the window not because they don\u2019t care but because their systems aren\u2019t built to catch enquiries when nobody is watching.</p>' +
+             '<p class="cta-diagnostic">Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</p>' +
+             '<p>The fix doesn\u2019t require more staff or longer hours. We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. The moment an enquiry arrives, the system replies, confirms receipt, asks a qualifying question, and books a callback.</p>' +
+             '<p class="cta-pullquote">That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
+          F: '<p class="cta-lead">We didn\u2019t receive a reply.</p>' +
+             '<p>That happens more than you\u2019d think.</p>' +
+             '<p>Every unanswered enquiry is a potential client who went elsewhere. Not because your firm couldn\u2019t help them. Because nobody answered.</p>' +
+             '<p>This isn\u2019t unusual. Most firms miss enquiries outside office hours, during busy periods, or when the right person isn\u2019t available. The enquiry arrives. Nobody sees it in time. It goes cold. The prospect moves on.</p>' +
+             '<p>The good news is that this is entirely fixable. It doesn\u2019t require more staff or longer hours. It requires a system that never switches off.</p>' +
+             '<p class="cta-diagnostic">Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</p>' +
+             '<p>We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. No missed calls. No enquiries that slip through. No leads that go cold because nobody was there to answer.</p>' +
+             '<p>It\u2019s 7pm on a Tuesday. The office is empty. A potential client fills in your enquiry form. Within 60 seconds they have a reply, a question to answer, and a call booked for the next morning. You find out when you open your diary.</p>'
         };
         document.getElementById('cta-body').innerHTML = ctaBodyByGrade[grade] || ctaBodyByGrade.F;
 
