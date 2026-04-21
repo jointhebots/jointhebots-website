@@ -307,6 +307,7 @@
     .grade-Good { background: var(--grade-b); }
     .grade-Average { background: var(--grade-c); color: var(--charcoal); }
     .grade-Poor { background: var(--grade-d); }
+    .grade-VeryPoor { background: #d44; }
     .grade-Fail { background: var(--grade-f); }
 
     /* Grade key */
@@ -603,7 +604,8 @@
                 <tr>
                   <th>Rank</th>
                   <th>Business</th>
-                  <th>Response Time</th>
+                  <th>First Response</th>
+                  <th>Human Response</th>
                   <th>Grade</th>
                   <th>Responded?</th>
                 </tr>
@@ -629,7 +631,8 @@
               <tr>
                 <th>Rank</th>
                 <th>Business</th>
-                <th>Response Time</th>
+                <th>First Response</th>
+                <th>Human Response</th>
                 <th>Grade</th>
                 <th>Responded?</th>
               </tr>
@@ -637,7 +640,7 @@
             <tbody id="leaderboard-body"></tbody>
           </table>
         </div>
-        <p class="grade-key">Excellent = Under 5 minutes &middot; Good = Under 30 minutes &middot; Average = Under 4 hours &middot; Poor = Under 24 hours &middot; Fail = Over 24 hours or no response</p>
+        <p class="grade-key">Excellent = Under 5 minutes &middot; Good = Under 30 minutes &middot; Average = Under 4 hours &middot; Poor = Under 24 hours &middot; Very Poor = Over 24 hours &middot; Fail = No response</p>
       </section>
 
       <!-- First CTA -->
@@ -745,12 +748,13 @@
         return s;
       }
 
-      var gradeLabels = { A: 'Excellent', B: 'Good', C: 'Average', D: 'Poor', F: 'Fail' };
+      var gradeLabels = { A: 'Excellent', B: 'Good', C: 'Average', D: 'Poor', E: 'Very Poor', F: 'Fail' };
 
       function gradeBadge(grade) {
         if (!grade) return '\u2014';
         var label = gradeLabels[grade] || grade;
-        return '<span class="grade-badge grade-' + label + '">' + label + '</span>';
+        var cssClass = 'grade-' + label.replace(/\s+/g, '');
+        return '<span class="grade-badge ' + cssClass + '">' + label + '</span>';
       }
 
       // ---- State management ----
@@ -822,22 +826,22 @@
           var previewBody = document.getElementById('preview-table-body');
           previewBody.innerHTML = '';
           var previewRows = [
-            { rank: '?', name: 'Business A', time: '4 mins', grade: 'Excellent', responded: 'Yes' },
-            { rank: '?', name: 'Business B', time: '12 mins', grade: 'Good', responded: 'Yes' },
-            { rank: '?', name: firmName, time: '???', grade: '???', responded: '???' },
-            { rank: '?', name: 'Business D', time: '28 mins', grade: 'Good', responded: 'Yes' },
-            { rank: '?', name: 'Business E', time: '52 mins', grade: 'Average', responded: 'Yes' },
-            { rank: '?', name: 'Business F', time: '1 hr 45 mins', grade: 'Average', responded: 'Yes' },
-            { rank: '?', name: 'Business G', time: '3 hrs', grade: 'Average', responded: 'Yes' },
-            { rank: '?', name: 'Business H', time: '8 hrs', grade: 'Poor', responded: 'Yes' },
-            { rank: '?', name: 'Business I', time: '1 day', grade: 'Poor', responded: 'Yes' },
-            { rank: '?', name: 'Business J', time: '\u2014', grade: 'Fail', responded: 'No' }
+            { rank: '?', name: 'Business A', first: '4 mins',       human: '4 mins',       grade: 'Excellent', responded: 'Yes' },
+            { rank: '?', name: 'Business B', first: '12 mins',      human: '12 mins',      grade: 'Good',      responded: 'Yes' },
+            { rank: '?', name: firmName,     first: '???',          human: '???',          grade: '???',       responded: '???' },
+            { rank: '?', name: 'Business D', first: '28 mins',      human: '28 mins',      grade: 'Good',      responded: 'Yes' },
+            { rank: '?', name: 'Business E', first: '52 mins',      human: '52 mins',      grade: 'Average',   responded: 'Yes' },
+            { rank: '?', name: 'Business F', first: '1 hr 45 mins', human: '1 hr 45 mins', grade: 'Average',   responded: 'Yes' },
+            { rank: '?', name: 'Business G', first: '3 hrs',        human: '3 hrs',        grade: 'Average',   responded: 'Yes' },
+            { rank: '?', name: 'Business H', first: '8 hrs',        human: '8 hrs',        grade: 'Poor',      responded: 'Yes' },
+            { rank: '?', name: 'Business I', first: '1 day',        human: '1 day',        grade: 'Poor',      responded: 'Yes' },
+            { rank: '?', name: 'Business J', first: '\u2014',        human: '\u2014',        grade: 'Fail',      responded: 'No' }
           ];
           previewRows.forEach(function(row) {
             var tr = document.createElement('tr');
             var isYou = row.name === firmName;
             tr.className = isYou ? 'preview-you' : 'preview-blurred';
-            tr.innerHTML = '<td>' + row.rank + '</td><td>' + row.name + '</td><td>' + row.time + '</td><td>' + row.grade + '</td><td>' + row.responded + '</td>';
+            tr.innerHTML = '<td>' + row.rank + '</td><td>' + row.name + '</td><td>' + row.first + '</td><td>' + row.human + '</td><td>' + row.grade + '</td><td>' + row.responded + '</td>';
             previewBody.appendChild(tr);
           });
 
@@ -955,7 +959,8 @@
             tr.innerHTML =
               '<td data-label="Rank">' + (row.rank || '\u2014') + '</td>' +
               '<td data-label="Business">' + (isYou ? firmName : 'Business ' + (row.alias || '?')) + '</td>' +
-              '<td data-label="Time">' + formatTime(row.response_mins) + '</td>' +
+              '<td data-label="First Response">' + formatTime(row.response_mins) + '</td>' +
+              '<td data-label="Human Response">' + formatTime(row.human_response_mins) + '</td>' +
               '<td data-label="Grade">' + gradeBadge(row.score) + '</td>' +
               '<td data-label="Responded">' + (row.responded ? 'Yes' : 'No') + '</td>';
 
@@ -998,7 +1003,7 @@
 
         // Commentary (grade-specific)
         var commentary = document.getElementById('commentary');
-        var commentaryByGrade = { A: '', B: '', C: '', D: '', F: '' };
+        var commentaryByGrade = { A: '', B: '', C: '', D: '', E: '', F: '' };
         var commentaryHtml = (grade in commentaryByGrade) ? commentaryByGrade[grade] : commentaryByGrade.F;
         commentary.innerHTML = commentaryHtml;
         commentary.style.display = commentaryHtml ? '' : 'none';
@@ -1009,6 +1014,7 @@
           B: 'The Gap Between Good and Excellent Is Smaller Than You Think.',
           C: 'You\u2019re Not Losing Badly. You\u2019re Losing Quietly.',
           D: 'Every Hour You Wait Is An Hour Someone Else Has.',
+          E: 'You Started the Conversation. Then It Went Cold.',
           F: 'Every Missed Enquiry Is a Missed Client. That\u2019s Fixable.'
         };
         document.getElementById('cta-heading').textContent = ctaHeadingByGrade[grade] || ctaHeadingByGrade.F;
@@ -1040,6 +1046,13 @@
              '<p class="cta-diagnostic">Based on your response time, how many clients do you think you\u2019ve lost to a faster competitor this month?</p>' +
              '<p>The fix doesn\u2019t require more staff or longer hours. We build done-for-you systems that respond to every new enquiry in under 60 seconds, around the clock. The moment an enquiry arrives, the system replies, confirms receipt, asks a qualifying question, and books a callback.</p>' +
              '<p class="cta-pullquote">That\u2019s the difference between a business that depends on the right person being available and one that never misses.</p>',
+          E: '<p class="cta-lead">Your first reply arrived quickly. The actual human response arrived much later.</p>' +
+             '<p>An auto-reply in three minutes tells the prospect someone has heard them. That buys you goodwill and a little time. But only a little.</p>' +
+             '<p>By the time your team picked up the thread, the prospect had already spoken to whoever responded in full first. The conversation they started with you carried on with someone else.</p>' +
+             '<p>This is the trickiest failure mode to spot. Your funnel shows the enquiry received a reply. What it doesn\u2019t show is that the reply came too late to win the work.</p>' +
+             '<p class="cta-diagnostic">Your first reply was fast. What happened between that reply and a real conversation?</p>' +
+             '<p>We build done-for-you systems that close the gap between the first touch and the booked call. Not just an acknowledgement, but a qualifying question and a callback booked inside the first 60 seconds.</p>' +
+             '<p class="cta-pullquote">The firms that win aren\u2019t just fast to acknowledge. They\u2019re fast to continue.</p>',
           F: '<p class="cta-lead">We didn\u2019t receive a reply.</p>' +
              '<p>That happens more than you\u2019d think.</p>' +
              '<p>Every unanswered enquiry is a potential client who went elsewhere. Not because your firm couldn\u2019t help them. Because nobody answered.</p>' +
