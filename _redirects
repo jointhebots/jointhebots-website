@@ -4,4 +4,6 @@
 /manufacturing/*        /automation-for/manufacturing/:splat  301!
 /automation-for/legal-services           /automation-for/solicitors/  301!
 /automation-for/legal-services/*         /automation-for/solicitors/:splat  301!
+/book          /free-mapping-call/  301!
+/book/*        /free-mapping-call/:splat  301!
 /*  /results/index.html  200
