@@ -504,6 +504,37 @@
       }
       #leaderboard-table tr.highlighted-row td::before { color: rgba(255,255,255,0.8); }
     }
+
+    /* Lite YouTube embed — click-to-play poster */
+    .lite-yt-play {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 60px;
+      background: #F28C35;
+      border: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      padding: 0;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .lite-yt:hover .lite-yt-play,
+    .lite-yt:focus-visible .lite-yt-play {
+      background: #FF9F4D;
+      transform: translate(-50%, -50%) scale(1.05);
+    }
+    .lite-yt-play-triangle {
+      display: block;
+      width: 0;
+      height: 0;
+      border-left: 22px solid white;
+      border-top: 14px solid transparent;
+      border-bottom: 14px solid transparent;
+      margin-left: 34px;
+    }
   </style>
 </head>
 <body>
@@ -689,7 +720,7 @@
         <p class="book-prose">The next step is a free 30 minute session with us. We'll find your biggest automation opportunity and give you a written plan of exactly what to do about it. Here's what a typical session looks like:</p>
         <div class="lite-yt" data-yt="2dAdxefRTic" data-title="Automation Opportunity Map" style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:10px; margin: 0 auto 16px; max-width:900px; background:#000; cursor:pointer;">
           <img src="https://i.ytimg.com/vi/2dAdxefRTic/maxresdefault.jpg" alt="Automation Opportunity Map preview" loading="lazy" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover;">
-          <button type="button" aria-label="Play video" style="position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); width:68px; height:48px; background:rgba(0,0,0,0.65); border:0; border-radius:8px; cursor:pointer; padding:0; transition:background 0.2s;"><span style="display:block; width:0; height:0; border-left:16px solid white; border-top:10px solid transparent; border-bottom:10px solid transparent; margin-left:18px;"></span></button>
+          <button type="button" aria-label="Play video" class="lite-yt-play"><span class="lite-yt-play-triangle"></span></button>
         </div>
         <p class="amap-guarantee">You'll leave with a written Automation Opportunity Map, whatever you decide afterwards.</p>
         <a href="https://jointhebots.pipedrive.com/scheduler/zXJjdEcq/free-30-min-discovery-call" target="_blank" rel="noopener" class="btn-cta">Book a Free Mapping Session</a>
