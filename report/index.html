@@ -438,6 +438,51 @@
       accent-color: var(--teal);
       flex-shrink: 0;
     }
+    .contact-fields {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .contact-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .contact-field label {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .contact-field label .hint {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-left: 6px;
+      transition: color 0.2s;
+    }
+    .contact-field label .hint.required {
+      color: var(--orange);
+      font-weight: 500;
+    }
+    .contact-field input {
+      padding: 11px 14px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      background: var(--bg);
+      color: var(--charcoal);
+      transition: border-color 0.15s;
+    }
+    .contact-field input:focus {
+      outline: none;
+      border-color: var(--teal);
+    }
+    @media (min-width: 560px) {
+      .contact-fields { grid-template-columns: 1fr 1fr; }
+    }
     .btn-primary {
       width: 100%;
       padding: 16px;
@@ -905,6 +950,17 @@
             <span>Want to find out for real? Tick here and we'll send one anonymous test enquiry to your firm within 7 days, time the response, and show you exactly how you performed and where you rank.</span>
           </label>
 
+          <div class="contact-fields">
+            <div class="contact-field">
+              <label for="contact-name">Your name <span class="hint">(optional)</span></label>
+              <input type="text" id="contact-name" name="submitter_name" placeholder="e.g. Sarah Jones" autocomplete="name">
+            </div>
+            <div class="contact-field">
+              <label for="contact-email">Your email <span class="hint" id="email-hint">(only needed if you want results)</span></label>
+              <input type="email" id="contact-email" name="submitter_email" placeholder="e.g. sarah@yourfirm.co.uk" autocomplete="email">
+            </div>
+          </div>
+
           <button type="submit" class="btn-primary" id="btn-submit">Submit my prediction</button>
           <div class="form-error" id="form-error"></div>
 
@@ -1099,6 +1155,24 @@
         showState('postshop');
       }
 
+      // ─── Email-hint dynamic state: flip to "(required)" when opt-in is checked ───
+      (function () {
+        var optInEl = document.getElementById('opt-in');
+        var hintEl = document.getElementById('email-hint');
+        if (!optInEl || !hintEl) return;
+        function syncHint() {
+          if (optInEl.checked) {
+            hintEl.textContent = '(required)';
+            hintEl.classList.add('required');
+          } else {
+            hintEl.textContent = '(only needed if you want results)';
+            hintEl.classList.remove('required');
+          }
+        }
+        optInEl.addEventListener('change', syncHint);
+        syncHint();
+      })();
+
       // ─── Prediction form submit ───
       document.getElementById('prediction-form').addEventListener('submit', function (e) {
         e.preventDefault();
@@ -1113,6 +1187,24 @@
         }
         var band = bandInput.value;
         var optIn = document.getElementById('opt-in').checked;
+        var submitterName = document.getElementById('contact-name').value.trim();
+        var submitterEmail = document.getElementById('contact-email').value.trim();
+
+        // Email is required only when opt-in is ticked (we need somewhere to send the results).
+        if (optIn && !submitterEmail) {
+          errorEl.textContent = 'Please enter your email — we need it to send you the test results.';
+          errorEl.classList.add('visible');
+          document.getElementById('contact-email').focus();
+          return;
+        }
+        // If an email is supplied (opt-in or not), validate format.
+        if (submitterEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(submitterEmail)) {
+          errorEl.textContent = 'Please enter a valid email address.';
+          errorEl.classList.add('visible');
+          document.getElementById('contact-email').focus();
+          return;
+        }
+
         var predictedMins = BAND_TO_MINS[band];
 
         var btn = document.getElementById('btn-submit');
@@ -1128,6 +1220,8 @@
             predicted_band_label: BAND_LABEL[band],
             predicted_response_mins: predictedMins,
             opt_in_to_test: optIn,
+            submitter_name: submitterName,
+            submitter_email: submitterEmail,
             submitted_at: new Date().toISOString()
           })
         })
