@@ -516,33 +516,66 @@
 
     /* ───────── THANK YOU (interim) ───────── */
     .state-thankyou { text-align: center; padding: 64px 0 40px; }
-    .state-thankyou .state-card { max-width: 640px; }
+    .state-thankyou .state-card { max-width: 640px; text-align: left; }
     .state-thankyou h2 {
       font-size: clamp(1.4rem, 3vw, 1.9rem);
       color: var(--teal);
       margin-bottom: 16px;
+      text-align: center;
     }
-    .state-thankyou .user-pred {
-      background: var(--soft);
-      border-radius: 10px;
-      padding: 16px 20px;
-      margin: 20px 0;
-      font-size: 1rem;
+    .state-thankyou .prediction-line {
+      font-size: 1.05rem;
+      margin-bottom: 16px;
     }
-    .state-thankyou .user-pred .lbl {
-      font-size: 0.78rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--muted);
-      font-weight: 600;
-      display: block;
-      margin-bottom: 4px;
-    }
-    .state-thankyou .user-pred .val {
+    .state-thankyou .prediction-line strong {
+      color: var(--teal);
       font-family: 'Sora', sans-serif;
       font-weight: 700;
-      font-size: 1.2rem;
+    }
+    .state-thankyou .body-copy {
+      font-size: 1rem;
+      color: #555;
+      line-height: 1.65;
+      margin-bottom: 14px;
+    }
+    .state-thankyou .share-section {
+      margin-top: 32px;
+      padding: 24px 24px 28px;
+      background: var(--soft);
+      border-radius: 12px;
+      border-left: 4px solid var(--teal);
+      text-align: center;
+    }
+    .state-thankyou .share-section p {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      color: var(--charcoal);
+      margin-bottom: 16px;
+      font-size: 1rem;
+    }
+    .state-thankyou .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 24px;
+      background: var(--teal);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .state-thankyou .btn-download:hover { background: #004445; }
+    .state-thankyou .btn-download:active { transform: scale(0.99); }
+    .state-thankyou .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 28px;
       color: var(--teal);
+      font-size: 0.95rem;
     }
 
     /* ───────── POSTSHOP (reveal) ───────── */
@@ -976,15 +1009,19 @@
     <div id="state-thankyou" class="state">
       <div class="state-thankyou">
         <div class="state-card">
-          <div class="state-icon" aria-hidden="true">&#9989;</div>
-          <h2>Thanks &mdash; we'll be in touch</h2>
-          <p>Your prediction is logged.</p>
-          <div class="user-pred">
-            <span class="lbl">You predicted</span>
-            <span class="val" id="user-prediction">&mdash;</span>
+          <h2>&#9989; Thanks &mdash; we'll be in touch</h2>
+          <p class="prediction-line">Your prediction is logged: <strong id="user-prediction">&mdash;</strong>.</p>
+          <p id="thankyou-followup" class="body-copy">If you opted in for the test, we'll send one anonymous enquiry to your firm in the next 7 days and email you a direct link to your results when they're in.</p>
+          <p class="body-copy">When the results arrive, you'll see your actual response time, how you compare to the rest of the UK conveyancing market, and what any gap could be costing your firm in lost fees.</p>
+
+          <div class="share-section">
+            <p>Want to share the report with a partner or colleague?</p>
+            <a href="/report/solicitors-response-time-report.pdf" class="btn-download" download>
+              &#128196; Download the PDF
+            </a>
           </div>
-          <p id="thankyou-followup">If you opted in for the test, we'll send one anonymous enquiry to your firm in the next 7 days and email you a direct link to your results when they're in.</p>
-          <p style="margin-top:24px;"><a href="/" style="color:var(--teal);">Back to jointhebots.com</a></p>
+
+          <a href="/" class="back-link">Back to jointhebots.com</a>
         </div>
       </div>
     </div>
@@ -1228,7 +1265,8 @@
         .then(function (res) {
           if (!res.ok) throw new Error('Request failed: ' + res.status);
           // Render thank-you state
-          document.getElementById('user-prediction').textContent = BAND_LABEL[band];
+          // Lowercase the band label so it reads naturally in the sentence: "logged: under 1 day."
+          document.getElementById('user-prediction').textContent = (BAND_LABEL[band] || '').toLowerCase();
           var followup = document.getElementById('thankyou-followup');
           if (!optIn) {
             followup.textContent = 'You chose not to opt in to the test — that’s fine. If you change your mind, just reply to the email we sent you and we’ll add you to the test list.';
