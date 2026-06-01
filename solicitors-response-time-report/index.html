@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How fast do UK solicitors reply to new enquiries? | The 2026 Response Time Report</title>
+  <meta name="description" content="We sent one anonymous test enquiry to 27 UK conveyancing solicitors and timed every reply. 37% never replied. Median wait: 1 h 54 min. See the full data — and get your firm tested for free.">
+  <meta name="robots" content="index,follow">
+
+  <!-- Open Graph for LinkedIn / Twitter sharing -->
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="How fast do UK solicitors reply to new enquiries? | 2026 Response Time Report">
+  <meta property="og:description" content="37% of UK conveyancing solicitors never replied. Median wait: 1 h 54 min. See the full mystery-shop study.">
+  <meta property="og:url" content="https://jointhebots.com/solicitors-response-time-report/">
+  <meta property="og:site_name" content="Join The Bots">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="How fast do UK solicitors reply to new enquiries?">
+  <meta name="twitter:description" content="2026 mystery-shop study of 27 UK conveyancing firms. 37% never replied.">
+
+  <link rel="canonical" href="https://jointhebots.com/solicitors-response-time-report/">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal: #005B5C;
+      --green: #3BAF7A;
+      --orange: #F28C35;
+      --charcoal: #22252A;
+      --muted: #6C727F;
+      --line: #E1E4EA;
+      --bg: #FFFFFF;
+      --offwhite: #F8F8F8;
+      --card: #F5F5F7;
+      --soft: #E6F3F3;
+      --light-grey: #E8E8E8;
+      --bad: #F28C35;
+      --grade-fail: #E04545;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--charcoal);
+      background: var(--offwhite);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; line-height: 1.25; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { height: 40px; width: auto; }
+    .main-nav { display: flex; align-items: center; gap: 28px; font-size: 0.9rem; font-weight: 500; }
+    .main-nav a { color: var(--charcoal); text-decoration: none; transition: color 0.15s; }
+    .main-nav a:hover { color: var(--teal); }
+    @media (max-width: 680px) { .main-nav a { display: none; } }
+
+    /* Footer */
+    .site-footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 48px 0;
+      font-size: 0.85rem;
+      margin-top: 80px;
+    }
+    .site-footer a { color: var(--green); text-decoration: none; }
+    .copyright { font-size: 0.9rem; opacity: 0.7; margin-top: 20px; }
+
+    /* ───────── HERO INTRO (public page, replaces the personalisation banner) ───────── */
+    .hero {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 36px clamp(20px, 4vw, 44px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      margin: 32px 0 24px;
+      border-top: 4px solid var(--teal);
+    }
+    .hero .eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--teal);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      color: var(--charcoal);
+      letter-spacing: -0.3px;
+      margin-bottom: 10px;
+    }
+    .hero .lede {
+      font-size: clamp(1rem, 2vw, 1.12rem);
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 18px;
+      line-height: 1.55;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+    .hero-stat {
+      background: var(--soft);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .hero-stat .val {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--teal);
+      line-height: 1.1;
+    }
+    .hero-stat .lbl {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+    .hero .scroll-cue {
+      margin-top: 20px;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+    .hero .scroll-cue a { color: var(--teal); font-weight: 500; }
+
+    /* ───────── REPORT (verbatim from /report/index.html) ───────── */
+    .report {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 32px clamp(20px, 4vw, 40px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      margin-bottom: 32px;
+    }
+    .report-header {
+      border-bottom: 2px solid var(--charcoal);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .report-header h1, .report-header h2 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      color: var(--teal);
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .report-header .sub {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    .report-header .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px) {
+      .report-header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 20px; }
+      .report-header .titles { grid-column: 1; }
+      .report-header .meta { grid-column: 2; text-align: right; margin-top: 0; }
+    }
+
+    .report .summary {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .report .summary p { margin: 0; font-size: 1rem; line-height: 1.55; }
+
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .kpi { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px; }
+    .kpi .lbl { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); font-weight: 600; line-height: 1.3; }
+    .kpi .val { font-family: 'Sora', sans-serif; font-size: 1.6rem; font-weight: 700; margin-top: 6px; line-height: 1.05; color: var(--charcoal); }
+    .kpi .unit { font-size: 0.95rem; font-weight: 600; }
+    .kpi .note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+    .kpi.bad .val { color: var(--bad); }
+
+    .report h3 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin: 22px 0 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .charts { display: grid; grid-template-columns: 1fr; gap: 14px; margin-bottom: 18px; }
+    @media (min-width: 760px) { .charts { grid-template-columns: 1fr 1.35fr 1.35fr; } }
+    .chart-card { border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; }
+    .chart-card .ctitle { font-family: 'Sora', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; color: var(--charcoal); }
+    .chart-card .cap { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+    .chart-card svg { display: block; width: 100%; height: auto; }
+
+    .town-section { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 18px; }
+    @media (min-width: 760px) { .town-section { grid-template-columns: 1.4fr 1fr; } }
+    .report table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .report th, .report td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); }
+    .report th { background: var(--card); font-weight: 600; font-size: 0.78rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.04em; }
+    .report td.num, .report th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .hull-dot::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--teal); margin-right: 6px; vertical-align: 1px; }
+    .york-dot::before { content: ""; display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); margin-right: 6px; vertical-align: 1px; }
+    .read-note { background: var(--offwhite); border-radius: 8px; padding: 16px 18px; font-size: 0.92rem; line-height: 1.55; }
+    .read-note strong { display: block; margin-bottom: 6px; font-family: 'Sora', sans-serif; font-size: 0.95rem; color: var(--charcoal); }
+
+    .conclusion p { margin: 0 0 10px; font-size: 1rem; line-height: 1.65; }
+    .conclusion p:last-child { margin-bottom: 0; }
+
+    .method, .context-box { padding: 12px 18px; margin: 14px 0; border-radius: 0 8px 8px 0; font-size: 0.92rem; line-height: 1.55; }
+    .method { background: var(--card); border-left: 3px solid var(--line); }
+    .method .lbl, .context-box .lbl { font-family: 'Sora', sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.08em; font-weight: 600; margin-bottom: 4px; }
+    .method .lbl { color: var(--muted); }
+    .context-box { background: var(--soft); border-left: 4px solid var(--teal); }
+    .context-box .lbl { color: var(--teal); }
+    .context-box p { margin: 0 0 8px; }
+    .context-box p:last-child { margin-bottom: 0; }
+
+    /* ───────── SELF-SERVE FORM ───────── */
+    .selfserve-section {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 36px clamp(20px, 4vw, 44px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      margin-bottom: 32px;
+      border-top: 4px solid var(--orange);
+    }
+    .selfserve-section h2 {
+      font-size: clamp(1.4rem, 3vw, 1.8rem);
+      color: var(--teal);
+      margin-bottom: 8px;
+      letter-spacing: -0.2px;
+    }
+    .selfserve-section .intro {
+      color: var(--muted);
+      font-size: 1.02rem;
+      margin-bottom: 24px;
+      max-width: 720px;
+      line-height: 1.55;
+    }
+    .test-offer {
+      background: var(--soft);
+      padding: 16px 18px;
+      border-radius: 10px;
+      border-left: 4px solid var(--teal);
+      margin-bottom: 20px;
+      font-size: 0.98rem;
+      line-height: 1.55;
+    }
+    .test-offer strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: 'Sora', sans-serif;
+      color: var(--teal);
+      font-size: 1.02rem;
+    }
+    .contact-fields {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .contact-field { display: flex; flex-direction: column; gap: 6px; }
+    .contact-field label { font-family: 'Sora', sans-serif; font-size: 0.92rem; font-weight: 600; color: var(--charcoal); }
+    .contact-field label .hint { font-family: 'Inter', sans-serif; font-weight: 400; color: var(--muted); font-size: 0.85rem; margin-left: 6px; }
+    .contact-field input {
+      padding: 11px 14px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      background: var(--bg);
+      color: var(--charcoal);
+      transition: border-color 0.15s;
+    }
+    .contact-field input:focus { outline: none; border-color: var(--teal); }
+    @media (min-width: 560px) { .contact-fields { grid-template-columns: 1fr 1fr 1fr; } }
+    .btn-primary {
+      width: 100%;
+      padding: 16px;
+      background: var(--orange);
+      color: var(--bg);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-primary:hover { background: #e07a1f; }
+    .btn-primary:active { transform: scale(0.99); }
+    .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+    .form-error {
+      color: var(--grade-fail);
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+    .privacy-note {
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: 18px;
+      line-height: 1.5;
+    }
+    .privacy-note a { color: var(--teal); }
+
+    /* Submitting overlay */
+    .submitting-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.94);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+    .submitting-overlay.visible { display: flex; }
+    .submitting-overlay .spinner {
+      width: 48px; height: 48px;
+      border: 4px solid var(--light-grey);
+      border-top-color: var(--teal);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 20px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .submitting-overlay p { font-size: 1.05rem; color: var(--charcoal); font-family: 'Sora', sans-serif; font-weight: 600; }
+
+    @media (max-width: 640px) {
+      .report, .selfserve-section, .hero { padding: 24px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/"><img src="/images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/services/">Services</a>
+        <a href="/articles/">Articles</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!-- Hero / SEO intro -->
+    <section class="hero">
+      <div class="eyebrow">UK Solicitors · Response Time Study · Spring 2026</div>
+      <h1>How fast do UK solicitors actually reply to new enquiries?</h1>
+      <p class="lede">
+        We sent one anonymous test enquiry to 27 UK conveyancing firms across Hull and York, then timed every single reply.
+        The results are below — the silent ones, the fast ones, and where the typical firm sits.
+      </p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="val">37%</div>
+          <div class="lbl">never replied at all</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">1 h 54</div>
+          <div class="lbl">median wait for a reply</div>
+        </div>
+        <div class="hero-stat">
+          <div class="val">2 of 27</div>
+          <div class="lbl">sent any auto-acknowledgement</div>
+        </div>
+      </div>
+      <p class="scroll-cue">
+        Scroll for the full report &middot; <a href="#test-my-firm">or jump to "test my firm"</a>
+      </p>
+    </section>
+
+    <!-- THE REPORT (verbatim — kept in sync with /report/index.html manually) -->
+    <article class="report">
+
+      <header class="report-header">
+        <div class="titles">
+          <h2>How fast do solicitors reply to new enquiries?</h2>
+          <div class="sub">A test of 27 firms in Hull &amp; York &middot; Spring 2026</div>
+        </div>
+        <div class="meta">
+          16 firms in Hull, 11 firms in York<br>
+          Enquiry via website contact form or email<br>
+          Wait times shown in <strong>working hours</strong>
+        </div>
+      </header>
+
+      <div class="summary">
+        <p><strong>More than a third of the 27 firms we tested never replied at all.</strong> Of those that did, the typical reply arrived inside <strong>two working hours</strong>, with Hull and York performing similarly during the working day. A useful benchmark for any firm wondering where it sits.</p>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="lbl">Replied within 1 business hour</div>
+          <div class="val">6 <span class="unit">of 27</span></div>
+          <div class="note">Roughly one in three responders moved fast.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Typical wait for a reply</div>
+          <div class="val">1 h 54 <span class="unit">min</span></div>
+          <div class="note">Median, working hours only.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Average wait for a reply</div>
+          <div class="val">4 h 3 <span class="unit">min</span></div>
+          <div class="note">Mean, working hours only.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Sent an auto-acknowledgement</div>
+          <div class="val">2 <span class="unit">of 27</span></div>
+          <div class="note">The simplest possible reassurance. Almost no firm has it set up.</div>
+        </div>
+        <div class="kpi bad">
+          <div class="lbl">Never replied</div>
+          <div class="val">10 <span class="unit">of 27</span></div>
+          <div class="note">37% of enquiries went unanswered for weeks.</div>
+        </div>
+      </div>
+
+      <div class="charts">
+
+        <div class="chart-card">
+          <div class="ctitle">Did the firm reply at all?</div>
+          <svg viewBox="0 0 180 158" xmlns="http://www.w3.org/2000/svg" aria-label="Donut: replied vs no reply">
+            <g transform="translate(90,72) scale(0.9)">
+              <circle r="48" cx="0" cy="0" fill="none" stroke="#E1E4EA" stroke-width="22"/>
+              <circle r="48" cx="0" cy="0" fill="none" stroke="#3BAF7A" stroke-width="22"
+                      stroke-dasharray="189.88 301.59" transform="rotate(-90)"/>
+              <text text-anchor="middle" y="-1" font-size="22" font-weight="700" fill="#22252A">63%</text>
+              <text text-anchor="middle" y="14" font-size="9" fill="#6C727F">replied</text>
+            </g>
+            <g font-size="9" fill="#22252A">
+              <rect x="10" y="138" width="10" height="10" fill="#3BAF7A"/>
+              <text x="24" y="147">Replied &middot; 17 firms</text>
+              <rect x="100" y="138" width="10" height="10" fill="#E1E4EA"/>
+              <text x="114" y="147">No reply &middot; 10 firms</text>
+            </g>
+          </svg>
+          <div class="cap">One in three firms didn't respond.</div>
+        </div>
+
+        <div class="chart-card">
+          <div class="ctitle">How long did each responder take?</div>
+          <svg viewBox="0 0 320 158" xmlns="http://www.w3.org/2000/svg" aria-label="Sorted wait times for all 17 responding firms">
+            <text x="69" y="9" font-size="8.5" fill="#3BAF7A" font-weight="600">median 1 h 54</text>
+            <text x="100" y="20" font-size="8.5" fill="#F28C35" font-weight="600">mean 4 h 3</text>
+            <g stroke="#EEF1F4">
+              <line x1="40" y1="24" x2="40" y2="124"/>
+              <line x1="54.4" y1="24" x2="54.4" y2="124"/>
+              <line x1="97.8" y1="24" x2="97.8" y2="124"/>
+              <line x1="155.6" y1="24" x2="155.6" y2="124"/>
+              <line x1="271.1" y1="24" x2="271.1" y2="124"/>
+            </g>
+            <g font-size="8.5" fill="#6C727F" text-anchor="middle">
+              <text x="40" y="138">0</text>
+              <text x="54.4" y="138">1 h</text>
+              <text x="97.8" y="138">4 h</text>
+              <text x="155.6" y="138">8 h</text>
+              <text x="271.1" y="138">16 h</text>
+            </g>
+            <g fill="#005B5C">
+              <rect x="40" y="24"  width="0"      height="5"/>
+              <rect x="40" y="30"  width="1.44"   height="5"/>
+              <rect x="40" y="36"  width="2.17"   height="5"/>
+              <rect x="40" y="42"  width="5.06"   height="5"/>
+              <rect x="40" y="48"  width="7.46"   height="5"/>
+              <rect x="40" y="54"  width="12.28"  height="5"/>
+              <rect x="40" y="60"  width="20.70"  height="5"/>
+              <rect x="40" y="66"  width="25.75"  height="5"/>
+              <rect x="40" y="72"  width="27.44"  height="5"/>
+              <rect x="40" y="78"  width="37.55"  height="5"/>
+              <rect x="40" y="84"  width="41.88"  height="5"/>
+              <rect x="40" y="90"  width="77.73"  height="5"/>
+              <rect x="40" y="96"  width="110.00" height="5"/>
+              <rect x="40" y="102" width="115.54" height="5"/>
+              <rect x="40" y="108" width="122.76" height="5"/>
+              <rect x="40" y="114" width="141.77" height="5"/>
+              <rect x="40" y="120" width="246.00" height="5"/>
+            </g>
+            <line x1="67.44" y1="24" x2="67.44" y2="125" stroke="#3BAF7A" stroke-width="1" stroke-dasharray="3,2"/>
+            <line x1="98.5"  y1="24" x2="98.5"  y2="125" stroke="#F28C35" stroke-width="1" stroke-dasharray="3,2"/>
+            <text x="282" y="124" text-anchor="end" font-size="7.5" fill="#ffffff" font-weight="700">17 h</text>
+          </svg>
+          <div class="cap">Each bar is one of the 17 responding firms.</div>
+        </div>
+
+        <div class="chart-card">
+          <div class="ctitle">When did the reply actually arrive?</div>
+          <svg viewBox="0 0 320 158" xmlns="http://www.w3.org/2000/svg" aria-label="Reply distribution by bucket">
+            <g stroke="#D0D4DC">
+              <line x1="32" y1="125" x2="305" y2="125"/>
+              <line x1="32" y1="20" x2="32" y2="125"/>
+            </g>
+            <g font-size="8.5" fill="#6C727F">
+              <g stroke="#EEF1F4">
+                <line x1="32" y1="106" x2="305" y2="106"/>
+                <line x1="32" y1="87" x2="305" y2="87"/>
+                <line x1="32" y1="68" x2="305" y2="68"/>
+                <line x1="32" y1="49" x2="305" y2="49"/>
+                <line x1="32" y1="30" x2="305" y2="30"/>
+              </g>
+              <text x="28" y="127" text-anchor="end">0</text>
+              <text x="28" y="108" text-anchor="end">2</text>
+              <text x="28" y="89" text-anchor="end">4</text>
+              <text x="28" y="70" text-anchor="end">6</text>
+              <text x="28" y="51" text-anchor="end">8</text>
+              <text x="28" y="32" text-anchor="end">10</text>
+              <text x="14" y="70" transform="rotate(-90,14,70)" text-anchor="middle">firms</text>
+            </g>
+            <g fill="#005B5C">
+              <rect x="32" y="68"  width="36" height="57"/>
+              <rect x="87" y="77.5" width="36" height="47.5"/>
+              <rect x="142" y="106" width="36" height="19"/>
+              <rect x="197" y="87" width="36" height="38"/>
+              <rect x="252" y="30" width="36" height="95"/>
+            </g>
+            <g font-size="9" fill="#22252A" text-anchor="middle" font-weight="600">
+              <text x="50" y="64">6</text>
+              <text x="105" y="73">5</text>
+              <text x="160" y="102">2</text>
+              <text x="215" y="83">4</text>
+              <text x="270" y="26">10</text>
+            </g>
+            <g font-size="7.7" fill="#22252A" text-anchor="middle">
+              <text x="50" y="137">Within 1</text><text x="50" y="146">biz hour</text>
+              <text x="105" y="137">Within 4</text><text x="105" y="146">biz hours</text>
+              <text x="160" y="137">Same biz</text><text x="160" y="146">day</text>
+              <text x="215" y="137">Next 1&ndash;2</text><text x="215" y="146">biz days</text>
+              <text x="270" y="137">No</text><text x="270" y="146">reply</text>
+            </g>
+          </svg>
+          <div class="cap">Most responders reply within 4 hours.</div>
+        </div>
+
+      </div>
+
+      <h3>The two towns side by side, in working hours</h3>
+      <div class="town-section">
+        <table>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th class="num"><span class="hull-dot">Hull</span></th>
+              <th class="num"><span class="york-dot">York</span></th>
+              <th class="num">Both</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Enquiries sent</td><td class="num">16</td><td class="num">11</td><td class="num">27</td></tr>
+            <tr><td>Firms that replied</td><td class="num">10</td><td class="num">7</td><td class="num">17</td></tr>
+            <tr><td>Reply rate</td><td class="num">63%</td><td class="num">64%</td><td class="num">63%</td></tr>
+            <tr><td>Typical wait (median)</td><td class="num">4 h 0 min</td><td class="num">1 h 47 min</td><td class="num">1 h 54 min</td></tr>
+            <tr><td>Fastest human reply</td><td class="num">20 min</td><td class="num">21 min</td><td class="num">20 min</td></tr>
+            <tr><td>Slowest reply</td><td class="num">17 h 2 min</td><td class="num">8 h 30 min</td><td class="num">17 h 2 min</td></tr>
+            <tr><td>Firms that never replied</td><td class="num">6</td><td class="num">4</td><td class="num">10</td></tr>
+          </tbody>
+        </table>
+        <div class="read-note">
+          <strong>How to read this.</strong>
+          Hull and York lose roughly the same share of enquiries to silence: about four in ten in each town.
+          On reply speed they're similar too, with most responding firms replying inside the first couple of
+          working hours. Several Hull firms had effectively replied by the time their office opened on Monday
+          morning, which suggests some check email out of hours or get to their desks early. Two firms (one
+          in each town) sent an automated acknowledgement. We've excluded those from the reply-speed figures,
+          since two data points aren't enough to analyse meaningfully.
+        </div>
+      </div>
+
+      <h3>What it means for partners and operations directors at law firms</h3>
+      <div class="conclusion">
+        <p>Of the 27 firms approached, ten never replied at all. For a prospective client, those firms simply didn't exist. Two observations stand out.</p>
+        <p>The first is the scale of that silence. Well over a third of legitimate enquiries hit a wall.</p>
+        <p>The second is speed. Among the firms that did reply, the typical wait was under two working hours and the average around four, often slow enough for a quicker competitor to have already won the work. And because so few firms acknowledge enquiries automatically, even prospects who eventually got a reply spent the entire wait wondering whether their message had landed.</p>
+        <p>The two most useful starting questions for any firm reading this are simple. Would we have been one of the silent ten? And if not, would our reply have arrived quickly enough to matter?</p>
+      </div>
+
+      <div class="method">
+        <div class="lbl">How we measured wait time</div>
+        The Hull cohort was deliberately sent outside working hours on a Friday evening to see how many firms have an automated response system in place, while the York cohort was sent on a Friday at lunchtime. All wait times in this report are measured in <strong>working hours only</strong> (Monday to Friday, 9am to 5pm BST) so the two batches can be compared on a like-for-like basis.
+      </div>
+
+      <div class="context-box">
+        <div class="lbl">For context: the 5-minute rule</div>
+        <p>Harvard Business Review research found that replying within five minutes makes a business <strong>21 times more likely</strong> to qualify a new prospect than waiting ten minutes, and <strong>60 times more likely</strong> than waiting 24 hours.</p>
+        <p>By that standard, no firm in this cohort sent a detailed reply inside the window. The only two replies inside five minutes were the automated acknowledgements above, which makes that gap so striking. In the age of AI, a system can interpret an enquiry and draft a reply instantly, leaving the person only to check it and hit send.</p>
+      </div>
+
+    </article>
+
+    <!-- Self-serve form -->
+    <section class="selfserve-section" id="test-my-firm">
+      <h2>Want this run on your firm? It's free.</h2>
+      <p class="intro">
+        Drop your details below and we'll send one anonymous test enquiry to your firm's public email or contact form within 7 days. We'll time the response and email you a personalised version of this report &mdash; with your firm's actual numbers and where you rank.
+      </p>
+
+      <div class="test-offer">
+        <strong>What you'll get</strong>
+        Your firm's response time, a leaderboard position among UK conveyancing firms tested so far, an estimate of what slow response is costing you, and a clear baseline you can fix from. No spam, no sharing your details &mdash; just the data.
+      </div>
+
+      <form id="selfserve-form" novalidate>
+        <div class="contact-fields">
+          <div class="contact-field">
+            <label for="first-name">First name <span class="hint">(optional)</span></label>
+            <input type="text" id="first-name" name="first_name" placeholder="e.g. Sarah" autocomplete="given-name">
+          </div>
+          <div class="contact-field">
+            <label for="firm">Firm name</label>
+            <input type="text" id="firm" name="firm" placeholder="e.g. Smiths &amp; Co Solicitors" autocomplete="organization" required>
+          </div>
+          <div class="contact-field">
+            <label for="email">Your email</label>
+            <input type="email" id="email" name="email" placeholder="e.g. sarah@yourfirm.co.uk" autocomplete="email" required>
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary" id="btn-submit">Test my firm &mdash; free</button>
+        <div class="form-error" id="form-error"></div>
+
+        <p class="privacy-note">
+          We send one anonymous test enquiry to your firm's public email or contact form within 7 days. We'll email you a personalised report when the results are in. No spam, no sharing your details, and you can opt out anytime by replying.
+        </p>
+      </form>
+    </section>
+
+  </main>
+
+  <!-- Submitting overlay -->
+  <div class="submitting-overlay" id="submitting-overlay">
+    <div class="spinner"></div>
+    <p>Setting up your personalised report&hellip;</p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var N8N_BASE = 'https://primary-production-77e0.up.railway.app/webhook';
+      var SELFSERVE_URL = N8N_BASE + '/rtr/self-serve';
+
+      var form = document.getElementById('selfserve-form');
+      var btn = document.getElementById('btn-submit');
+      var errorEl = document.getElementById('form-error');
+      var overlay = document.getElementById('submitting-overlay');
+
+      form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        errorEl.classList.remove('visible');
+
+        var firstName = document.getElementById('first-name').value.trim();
+        var firm      = document.getElementById('firm').value.trim();
+        var email     = document.getElementById('email').value.trim();
+
+        if (!firm) {
+          errorEl.textContent = 'Please enter your firm name.';
+          errorEl.classList.add('visible');
+          document.getElementById('firm').focus();
+          return;
+        }
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          errorEl.textContent = 'Please enter a valid email address.';
+          errorEl.classList.add('visible');
+          document.getElementById('email').focus();
+          return;
+        }
+
+        btn.disabled = true;
+        btn.textContent = 'Setting up...';
+        overlay.classList.add('visible');
+
+        fetch(SELFSERVE_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            first_name: firstName,
+            firm: firm,
+            email: email,
+            source: 'public-solicitors-response-time-report',
+            submitted_at: new Date().toISOString()
+          })
+        })
+        .then(function (res) {
+          if (!res.ok) throw new Error('Request failed: ' + res.status);
+          return res.json();
+        })
+        .then(function (data) {
+          if (!data || !data.slug) {
+            throw new Error('No slug returned from server');
+          }
+          // Redirect to the personalised report page
+          window.location.href = '/report/' + encodeURIComponent(data.slug);
+        })
+        .catch(function (err) {
+          console.error('Self-serve submit failed:', err);
+          overlay.classList.remove('visible');
+          errorEl.textContent = 'Something went wrong. Please try again, or email john@jointhebots.com.';
+          errorEl.classList.add('visible');
+          btn.disabled = false;
+          btn.textContent = 'Test my firm — free';
+        });
+      });
+    })();
+  </script>
+
+</body>
+</html>
