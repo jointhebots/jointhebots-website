@@ -741,12 +741,6 @@
     <!-- Pre-shop: report + prediction form -->
     <div id="state-preshop" class="state">
 
-      <!-- Personalisation banner -->
-      <div class="prospect-banner">
-        <span class="label">Response Time Report — personalised for</span>
-        <span class="firm" id="firm-name">your firm</span>
-      </div>
-
       <!-- THE REPORT (content verbatim from solicitors RTR; styling adapted for responsive web) -->
       <article class="report">
 
@@ -1168,7 +1162,8 @@
 
       // ─── Pre-shop render ───
       function renderPreshop(data, firmName) {
-        document.getElementById('firm-name').textContent = firmName;
+        // Personalisation banner removed 2026-06-03 — page now opens straight
+        // on the report headline. firmName still used elsewhere (prediction POST, postshop).
         showState('preshop');
       }
 
