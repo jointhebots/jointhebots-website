@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Response Time Report | Join The Bots</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Sora:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --teal: #005B5C;
+      --green: #3BAF7A;
+      --orange: #F28C35;
+      --charcoal: #22252A;
+      --muted: #6C727F;
+      --line: #E1E4EA;
+      --bg: #FFFFFF;
+      --offwhite: #F8F8F8;
+      --card: #F5F5F7;
+      --soft: #E6F3F3;
+      --light-grey: #E8E8E8;
+      --bad: #F28C35;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--charcoal);
+      background: var(--offwhite);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4 { font-family: 'Sora', sans-serif; font-weight: 700; line-height: 1.25; }
+
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+    /* Header */
+    .site-header {
+      background: var(--bg);
+      border-bottom: 1px solid var(--light-grey);
+      padding: 14px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .site-header .container { display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { height: 40px; width: auto; }
+    .main-nav { display: flex; align-items: center; gap: 28px; font-size: 0.9rem; font-weight: 500; }
+    .main-nav a { color: var(--charcoal); text-decoration: none; transition: color 0.15s; }
+    .main-nav a:hover { color: var(--teal); }
+    @media (max-width: 680px) { .main-nav a { display: none; } }
+
+    /* Footer */
+    .site-footer {
+      background: var(--charcoal);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 48px 0;
+      font-size: 0.85rem;
+      margin-top: 80px;
+    }
+    .site-footer a { color: var(--green); text-decoration: none; }
+    .copyright { font-size: 0.9rem; opacity: 0.7; margin-top: 20px; }
+
+    /* ───────── REPORT (adapted from the print PDF → responsive web) ───────── */
+    .report {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 32px clamp(20px, 4vw, 40px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      margin: 32px 0;
+    }
+    .report-header {
+      border-bottom: 2px solid var(--charcoal);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+    }
+    .report-header h1 {
+      font-size: clamp(1.5rem, 3.5vw, 2rem);
+      color: var(--teal);
+      letter-spacing: -0.3px;
+      margin-bottom: 6px;
+    }
+    .report-header .sub { color: var(--muted); font-size: 0.95rem; }
+    .report-header .meta {
+      color: var(--muted);
+      font-size: 0.85rem;
+      line-height: 1.55;
+      margin-top: 10px;
+    }
+    @media (min-width: 720px) {
+      .report-header { display: grid; grid-template-columns: 1fr auto; align-items: end; gap: 20px; }
+      .report-header .titles { grid-column: 1; }
+      .report-header .meta { grid-column: 2; text-align: right; margin-top: 0; }
+    }
+
+    /* Plain-English summary */
+    .report .summary {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      padding: 14px 18px;
+      margin: 18px 0;
+      border-radius: 0 8px 8px 0;
+    }
+    .report .summary p { margin: 0; font-size: 1rem; line-height: 1.55; }
+
+    /* KPI strip */
+    .kpis {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 20px 0;
+    }
+    .kpi {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .kpi .lbl {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      font-weight: 600;
+      line-height: 1.3;
+    }
+    .kpi .val {
+      font-family: 'Sora', sans-serif;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-top: 6px;
+      line-height: 1.05;
+      color: var(--charcoal);
+    }
+    .kpi .unit { font-size: 0.95rem; font-weight: 600; }
+    .kpi .note { font-size: 0.78rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+    .kpi.bad .val { color: var(--bad); }
+
+    /* Section headings */
+    .report h2 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--teal);
+      margin: 22px 0 12px;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 6px;
+      font-weight: 700;
+    }
+
+    /* Charts row */
+    .charts {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 760px) {
+      .charts { grid-template-columns: 1fr 1.7fr; }
+    }
+    .chart-card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px 16px;
+    }
+    .chart-card .ctitle {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--charcoal);
+    }
+    .chart-card .cap { font-size: 0.82rem; color: var(--muted); margin-top: 6px; line-height: 1.4; }
+    .chart-card svg { display: block; width: 100%; height: auto; }
+
+    /* Town comparison */
+    .town-section {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    @media (min-width: 760px) {
+      .town-section { grid-template-columns: 1.4fr 1fr; }
+    }
+    .report table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+    .report th, .report td {
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--line);
+    }
+    .report th {
+      background: var(--card);
+      font-weight: 600;
+      font-size: 0.78rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .report td.num, .report th.num { text-align: right; font-variant-numeric: tabular-nums; }
+    .hull-dot::before {
+      content: ""; display: inline-block;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--teal); margin-right: 6px; vertical-align: 1px;
+    }
+    .york-dot::before {
+      content: ""; display: inline-block;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--orange); margin-right: 6px; vertical-align: 1px;
+    }
+    .read-note {
+      background: var(--offwhite);
+      border-radius: 8px;
+      padding: 16px 18px;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .read-note strong {
+      display: block;
+      margin-bottom: 6px;
+      font-family: 'Sora', sans-serif;
+      font-size: 0.95rem;
+      color: var(--charcoal);
+    }
+    .read-note p { margin: 0 0 8px; }
+    .read-note p:last-child { margin-bottom: 0; }
+
+    /* Conclusion */
+    .conclusion p { margin: 0 0 10px; font-size: 1rem; line-height: 1.65; }
+    .conclusion p:last-child { margin-bottom: 0; }
+
+    /* Methodology + context boxes */
+    .method, .context-box {
+      padding: 12px 18px;
+      margin: 14px 0;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
+    .method { background: var(--card); border-left: 3px solid var(--line); }
+    .method .lbl, .context-box .lbl {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .method .lbl { color: var(--muted); }
+    .context-box { background: var(--soft); border-left: 4px solid var(--teal); }
+    .context-box .lbl { color: var(--teal); }
+    .context-box p { margin: 0 0 8px; }
+    .context-box p:last-child { margin-bottom: 0; }
+
+    .report-source {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+      margin-top: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--line);
+    }
+
+    /* ───────── GUARANTEE / OFFER ───────── */
+    .offer {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 40px clamp(20px, 4vw, 44px);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+      border-top: 6px solid var(--orange);
+      margin-bottom: 28px;
+    }
+    .byline {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin: 0 0 22px;
+    }
+    .byline img {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      object-fit: cover;
+      flex: none;
+      border: 2px solid var(--soft);
+    }
+    .byline p {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1.02rem;
+      line-height: 1.4;
+      color: var(--charcoal);
+      margin: 0;
+    }
+    .offer .eyebrow {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .offer h2 {
+      font-size: clamp(1.5rem, 3.4vw, 2.05rem);
+      color: var(--teal);
+      letter-spacing: -0.3px;
+      margin-bottom: 14px;
+    }
+    .offer .lede {
+      font-size: 1.06rem;
+      line-height: 1.65;
+      max-width: 720px;
+      margin-bottom: 8px;
+    }
+    .offer .lede:last-of-type { margin-bottom: 24px; }
+
+    .guarantee-box {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 10px 10px 0;
+      padding: 20px 22px;
+      margin: 24px 0;
+    }
+    .guarantee-box .g-head {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1.12rem;
+      color: var(--teal);
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .guarantee-box p { margin: 0 0 8px; font-size: 0.97rem; line-height: 1.6; }
+    .guarantee-box p:last-child { margin-bottom: 0; }
+
+    .honesty {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+      border-left: 3px solid var(--line);
+      padding-left: 14px;
+      margin-top: 20px;
+    }
+    .honesty strong { color: var(--charcoal); }
+
+    /* CTA / quiz shell */
+    .cta-section {
+      text-align: center;
+      background: linear-gradient(180deg, #f1faf6 0%, #eaf6f1 100%);
+      border-radius: 16px;
+      padding: 44px 32px;
+      margin: 24px 0;
+    }
+    .cta-section h2 {
+      color: var(--teal);
+      margin-bottom: 12px;
+      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    }
+    .cta-section .standfirst {
+      color: var(--charcoal);
+      max-width: 580px;
+      margin: 0 auto 28px;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+    .btn-cta {
+      display: inline-block;
+      padding: 16px 36px;
+      background: var(--orange);
+      color: var(--bg);
+      border: none;
+      border-radius: 10px;
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1.08rem;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-cta:hover { background: #e07a1f; }
+    .btn-cta:active { transform: scale(0.99); }
+    .btn-cta:disabled { opacity: 0.6; cursor: not-allowed; }
+
+    /* Quiz */
+    .quiz-card {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 28px clamp(18px, 3vw, 32px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: left;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+    .quiz-card fieldset { border: none; margin-bottom: 22px; }
+    .quiz-card fieldset:last-of-type { margin-bottom: 18px; }
+    .quiz-card legend {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .quiz-card legend .qnum {
+      color: var(--teal);
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 3px;
+      font-weight: 700;
+    }
+    .opts { display: grid; grid-template-columns: 1fr; gap: 8px; }
+    @media (min-width: 560px) { .opts { grid-template-columns: 1fr 1fr; } }
+    .opts label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 14px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      font-size: 0.96rem;
+      line-height: 1.35;
+    }
+    .opts label:hover { border-color: var(--teal); background: var(--soft); }
+    .opts input[type="radio"] { accent-color: var(--teal); flex: none; }
+    .opts label:has(input:checked) {
+      border-color: var(--teal);
+      background: var(--soft);
+      font-weight: 500;
+    }
+    .quiz-card .btn-cta { width: 100%; }
+
+    /* Email capture */
+    .email-field {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .email-field label {
+      font-family: 'Sora', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .email-field label .hint {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-left: 6px;
+    }
+    .email-field input {
+      padding: 12px 14px;
+      border: 1.5px solid var(--light-grey);
+      border-radius: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.98rem;
+      background: var(--bg);
+      color: var(--charcoal);
+      transition: border-color 0.15s;
+    }
+    .email-field input:focus { outline: none; border-color: var(--teal); }
+    .email-field input.invalid { border-color: #E04545; }
+    .demo-note {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 14px 16px;
+      margin-top: 16px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: var(--charcoal);
+    }
+    .privacy-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 14px;
+      line-height: 1.5;
+    }
+    .pricing-block {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--card);
+      padding: 18px 20px;
+      margin-top: 22px;
+    }
+    .pricing-block .p-sub {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 600;
+      margin: 14px 0 -4px;
+    }
+    .pricing-block .p-head {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--charcoal);
+      margin-bottom: 10px;
+    }
+    .pricing-block .p-promise {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 12px 14px;
+      font-size: 0.93rem;
+      line-height: 1.5;
+      color: var(--charcoal);
+      font-weight: 500;
+    }
+    .p-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-top: 14px;
+    }
+    @media (min-width: 600px) {
+      .p-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .p-opt {
+      background: var(--bg);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 14px 12px;
+      text-align: center;
+    }
+    .p-opt.pick { border-color: var(--teal); }
+    .p-label {
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 600;
+      margin-bottom: 7px;
+    }
+    .p-amount {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 1.45rem;
+      color: var(--charcoal);
+      line-height: 1.1;
+    }
+    .p-amount span {
+      display: block;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-top: 3px;
+      letter-spacing: 0;
+    }
+    .p-opt.pick .p-amount { color: var(--teal); }
+    .p-detail {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 9px;
+    }
+    .email-status {
+      background: var(--soft);
+      border-left: 4px solid var(--teal);
+      border-radius: 0 8px 8px 0;
+      padding: 13px 16px;
+      margin-top: 20px;
+      font-size: 0.95rem;
+      line-height: 1.55;
+    }
+    .email-status.failed {
+      background: var(--card);
+      border-left-color: var(--muted);
+      color: var(--muted);
+    }
+    .form-error {
+      color: #E04545;
+      font-size: 0.9rem;
+      margin-top: 10px;
+      display: none;
+    }
+    .form-error.visible { display: block; }
+    .secondary-link {
+      font-size: 0.92rem;
+      color: var(--muted);
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    .secondary-link a { color: var(--teal); font-weight: 500; }
+
+    /* Quiz result */
+    .result-card {
+      background: var(--bg);
+      border-radius: 14px;
+      padding: 34px clamp(20px, 3.5vw, 36px);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      text-align: left;
+      max-width: 720px;
+      margin: 0 auto;
+      border-top: 6px solid var(--teal);
+    }
+    .result-card.warm { border-top-color: var(--orange); }
+    .result-card.cool { border-top-color: var(--muted); }
+    .result-card h3 {
+      font-size: clamp(1.25rem, 2.8vw, 1.6rem);
+      color: var(--teal);
+      margin-bottom: 14px;
+      letter-spacing: -0.2px;
+    }
+    .result-card p { font-size: 1.01rem; line-height: 1.65; margin-bottom: 12px; }
+    /* Sibling of the pricing block's "What it costs" — same weight, same voice. */
+    .result-card h4 {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      color: var(--charcoal);
+      margin: 26px 0 10px;
+    }
+    .result-card .result-cta { margin-top: 22px; text-align: center; }
+    .result-card .result-foot {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-top: 16px;
+      margin-bottom: 0;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px) {
+      .report, .offer { padding: 24px 18px; }
+      .cta-section { padding: 32px 16px; }
+      .quiz-card, .result-card { padding: 22px 16px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <a href="/"><img src="/images/JoinTheBotsLogo.jpg" alt="Join The Bots" class="logo"></a>
+      <!-- No Services link. That page sells one-off bespoke builds at £500 and £3,000,
+           which is a different product to the engine this page sells and would read as
+           a contradiction one click from the pricing block. -->
+      <nav class="main-nav">
+        <a href="/">Home</a>
+        <a href="/articles/">Articles</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+
+    <!--
+      NOTE ON PAGE STATES.
+      The solicitors page (/report/<slug>) is a five-state machine because the report content
+      itself was gated on a mystery-shop result. This page has no gate: the report is aggregate
+      and identical for every recipient, so it renders immediately and unconditionally.
+      The slug is used only to log the visit and to personalise the CTA. If the webhook is slow,
+      down, or the slug is missing entirely, the page still reads correctly — the funnel never
+      depends on n8n being up.
+    -->
+
+    <!-- ───────── THE REPORT (copy from bookkeeper-response-time-report_2.pdf) ───────── -->
+    <article class="report">
+
+      <header class="report-header">
+        <div class="titles">
+          <h1>How fast do bookkeepers reply to new enquiries?</h1>
+          <div class="sub">A test of 32 firms in Hull &amp; York &middot; Spring 2026</div>
+        </div>
+        <div class="meta">
+          15 firms in Hull, 17 firms in York<br>
+          Enquiry via website contact form or email<br>
+          Wait times shown as <strong>elapsed time</strong>
+        </div>
+      </header>
+
+      <div class="summary">
+        <p><strong>Nearly two-thirds of the 32 firms we tested never replied at all.</strong> Among those that did, the typical reply landed inside the hour, but a long tail in York stretched from a single day to over a week, dragging the average past eleven hours. The fastest reply of any kind took six minutes; not one firm answered inside the five-minute window.</p>
+      </div>
+
+      <div class="kpis">
+        <div class="kpi">
+          <div class="lbl">Replied within 1 hour</div>
+          <div class="val">6 <span class="unit">of 32</span></div>
+          <div class="note">Under one in five firms managed it.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Typical wait for a reply</div>
+          <div class="val">49 <span class="unit">min</span></div>
+          <div class="note">Median human reply, elapsed time.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Average wait for a reply</div>
+          <div class="val">11 h 50 <span class="unit">min</span></div>
+          <div class="note">Mean, pulled up by York's tail.</div>
+        </div>
+        <div class="kpi">
+          <div class="lbl">Only an automated reply</div>
+          <div class="val">1 <span class="unit">of 32</span></div>
+          <div class="note">Landed roughly eight days later.</div>
+        </div>
+        <div class="kpi bad">
+          <div class="lbl">Never replied</div>
+          <div class="val">20 <span class="unit">of 32</span></div>
+          <div class="note">62% of enquiries went unanswered.</div>
+        </div>
+      </div>
+
+      <div class="charts">
+
+        <!-- Chart 1: reply rate donut. 38% of 301.59 circumference = 114.60 -->
+        <div class="chart-card">
+          <div class="ctitle">Did the firm reply at all?</div>
+          <svg viewBox="0 0 180 158" xmlns="http://www.w3.org/2000/svg" aria-label="Donut chart: 12 of 32 firms replied, 20 did not">
+            <g transform="translate(90,72) scale(0.9)">
+              <circle r="48" cx="0" cy="0" fill="none" stroke="#E1E4EA" stroke-width="22"/>
+              <circle r="48" cx="0" cy="0" fill="none" stroke="#3BAF7A" stroke-width="22"
+                      stroke-dasharray="114.60 301.59" transform="rotate(-90)"/>
+              <text text-anchor="middle" y="-1" font-size="22" font-weight="700" fill="#22252A">38%</text>
+              <text text-anchor="middle" y="14" font-size="9" fill="#6C727F">replied</text>
+            </g>
+            <g font-size="9" fill="#22252A">
+              <rect x="10" y="138" width="10" height="10" fill="#3BAF7A"/>
+              <text x="24" y="147">Replied &middot; 12 firms</text>
+              <rect x="100" y="138" width="10" height="10" fill="#E1E4EA"/>
+              <text x="114" y="147">No reply &middot; 20 firms</text>
+            </g>
+          </svg>
+          <div class="cap">Three firms in five never responded.</div>
+        </div>
+
+        <!-- Chart 2: buckets. Baseline y=125, 5.25px per firm -->
+        <div class="chart-card">
+          <div class="ctitle">When did the reply actually arrive?</div>
+          <svg viewBox="0 0 320 158" xmlns="http://www.w3.org/2000/svg" aria-label="Bar chart of reply timing: within 30 minutes 4 firms, 30 minutes to 2 hours 4 firms, 1 to 7 days 3 firms, more than 7 days 1 firm, no reply 20 firms">
+            <g stroke="#D0D4DC">
+              <line x1="32" y1="125" x2="305" y2="125"/>
+              <line x1="32" y1="18" x2="32" y2="125"/>
+            </g>
+            <g font-size="8.5" fill="#6C727F">
+              <g stroke="#EEF1F4">
+                <line x1="32" y1="98.75" x2="305" y2="98.75"/>
+                <line x1="32" y1="72.5"  x2="305" y2="72.5"/>
+                <line x1="32" y1="46.25" x2="305" y2="46.25"/>
+                <line x1="32" y1="20"    x2="305" y2="20"/>
+              </g>
+              <text x="28" y="127" text-anchor="end">0</text>
+              <text x="28" y="101" text-anchor="end">5</text>
+              <text x="28" y="75"  text-anchor="end">10</text>
+              <text x="28" y="49"  text-anchor="end">15</text>
+              <text x="28" y="23"  text-anchor="end">20</text>
+              <text x="12" y="70" transform="rotate(-90,12,70)" text-anchor="middle">firms</text>
+            </g>
+            <g fill="#005B5C">
+              <rect x="40"  y="104"    width="36" height="21"/>
+              <rect x="91"  y="104"    width="36" height="21"/>
+              <rect x="142" y="109.25" width="36" height="15.75"/>
+              <rect x="193" y="119.75" width="36" height="5.25"/>
+              <rect x="244" y="20"     width="36" height="105"/>
+            </g>
+            <g font-size="9" fill="#22252A" text-anchor="middle" font-weight="600">
+              <text x="58"  y="100">4</text>
+              <text x="109" y="100">4</text>
+              <text x="160" y="105">3</text>
+              <text x="211" y="116">1</text>
+              <text x="262" y="16">20</text>
+            </g>
+            <g font-size="7.7" fill="#22252A" text-anchor="middle">
+              <text x="58"  y="137">Within</text><text x="58"  y="146">30 min</text>
+              <text x="109" y="137">30 min</text><text x="109" y="146">&ndash; 2 h</text>
+              <text x="160" y="137">1 &ndash; 7</text><text x="160" y="146">days</text>
+              <text x="211" y="137">More than</text><text x="211" y="146">7 days</text>
+              <text x="262" y="137">No reply</text><text x="262" y="146">at all</text>
+            </g>
+            <g font-size="7.5" fill="#6C727F" text-anchor="middle">
+              <text x="58"  y="154">12%</text>
+              <text x="109" y="154">12%</text>
+              <text x="160" y="154">9%</text>
+              <text x="211" y="154">3%</text>
+              <text x="262" y="154">62%</text>
+            </g>
+          </svg>
+          <div class="cap">Each bar counts firms, with the percentage of all 32 below. Among the repliers the split was stark: eight answered within two hours, three not for one to three days.</div>
+        </div>
+
+      </div>
+
+      <h2>The two towns side by side</h2>
+      <div class="town-section">
+        <table>
+          <thead>
+            <tr>
+              <th>&nbsp;</th>
+              <th class="num"><span class="hull-dot">Hull</span></th>
+              <th class="num"><span class="york-dot">York</span></th>
+              <th class="num">Both</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Enquiries sent</td><td class="num">15</td><td class="num">17</td><td class="num">32</td></tr>
+            <tr><td>Firms that replied</td><td class="num">3</td><td class="num">9</td><td class="num">12</td></tr>
+            <tr><td>Reply rate</td><td class="num">20%</td><td class="num">53%</td><td class="num">38%</td></tr>
+            <tr><td>Typical wait (median)</td><td class="num">8 min</td><td class="num">1 h 4 min</td><td class="num">49 min</td></tr>
+            <tr><td>Fastest reply</td><td class="num">6 min</td><td class="num">6 min</td><td class="num">6 min</td></tr>
+            <tr><td>Slowest reply</td><td class="num">49 min</td><td class="num">&asymp;3 days</td><td class="num">&asymp;3 days</td></tr>
+            <tr><td>Firms that never replied</td><td class="num">12</td><td class="num">8</td><td class="num">20</td></tr>
+          </tbody>
+        </table>
+        <div class="read-note">
+          <strong>How to read this.</strong>
+          <p>The two towns fail in opposite ways. In Hull, only one firm in five replied at all, but the three that did were genuinely quick, every one inside the hour and a median of just eight minutes.</p>
+          <p>In York, about half replied, yet the responses split into two camps: a fast group answering within roughly an hour, and a slow group taking one to three days. One York firm's only reply was automated, and even that took about eight days.</p>
+          <p>Speed figures use human replies only (automated-only excluded), measured as elapsed wall-clock time from enquiry to first reply.</p>
+        </div>
+      </div>
+
+      <h2>What it means for owners and practice managers</h2>
+      <div class="conclusion">
+        <p>Of the 32 firms approached, twenty never replied at all. For a prospective client, those firms simply didn't exist. Two things stand out.</p>
+        <p>The first is the sheer scale of the silence: more than three in five legitimate enquiries hit a wall, a markedly higher miss rate than you'd expect from businesses whose entire offer is being organised and on top of things.</p>
+        <p>The second is the split among those that did respond. A small fast group replied within minutes, which shows it's clearly achievable, but York's long tail, replies arriving a day or three later, is where deals quietly leak away to whichever competitor answered first. The two questions worth asking: would we have been one of the silent twenty, and if not, would our reply have arrived quickly enough to matter?</p>
+      </div>
+
+      <div class="method">
+        <div class="lbl">How we measured</div>
+        Enquiries were sent midday on an ordinary weekday (Hull 5 May, York 19 May 2026) via each firm's contact form or email, and timed as elapsed wall-clock time to first reply. One York firm sent only an automated reply with no human follow-up; automated-only replies are excluded from the speed figures but still count as "replied" in the headline rate.
+      </div>
+
+      <!--
+        THIRD-PARTY FIGURES: VERIFIED 5 AUG 2026, DO NOT MERGE THEM.
+        These are two different studies with two different comparators, and merging them is
+        how the error started. The JTB website article and the source PDF both credit HBR
+        with the 21x figure. HBR never said it.
+
+        HBR 2011, "The Short Life of Online Sales Leads" (Oldroyd, McElheran & Elkington),
+        1.25m leads across 42 companies. Verified verbatim from the article PDF:
+          "Firms that tried to contact potential customers within an hour of receiving a
+           query were nearly seven times as likely to qualify the lead (which we defined as
+           having a meaningful conversation with a key decision maker) as those that tried
+           to contact the customer even an hour later - and more than 60 times as likely as
+           companies that waited 24 hours or longer."
+        Same article: 23% of the companies never responded at all.
+        So HBR is anchored at ONE HOUR. It says nothing about five minutes, and its outcome
+        is a qualified conversation, not a closed sale.
+
+        Lead Response Management 2007 (Oldroyd, analysing InsideSales platform data while
+        at MIT Sloan). 21x is qualification odds at 5 minutes vs 30 MINUTES, not 10. Vendor
+        data with academic analysis, not an MIT publication, so it is named as its own study.
+
+        Deliberately not used: the "78% buy from the first responder" claim, which traces
+        back only to aggregator blogs with no published methodology.
+      -->
+      <div class="context-box">
+        <div class="lbl">For context: what the research says</div>
+        <p><strong>Harvard Business Review, 2011.</strong> Across 1.25 million leads at 42 companies, firms that made contact within an hour were nearly <strong>seven times</strong> as likely to qualify a lead, which the study defined as having a meaningful conversation with a key decision maker, as those that tried an hour later. Against firms that waited 24 hours or more, the gap was <strong>more than sixty times</strong>.</p>
+        <p><strong>Lead Response Management, 2007.</strong> A separate study by the same lead researcher put the odds of qualifying a lead <strong>21 times higher</strong> at five minutes than at thirty.</p>
+        <p>Two studies, two different windows. What they agree on is the shape: the first hour matters enormously, and inside it the first few minutes matter most.</p>
+        <p>Not one firm in this study replied inside five minutes. The fastest took six, and the typical one forty-nine. The HBR sample had 23% who never responded at all. Ours had 62%.</p>
+        <p>In the age of AI, a system can read an incoming enquiry and draft a reply instantly, leaving the person only to check it and hit send.</p>
+      </div>
+
+      <div class="report-source">
+        Source: <em>bookkeeper-speed-report.xlsx</em> &middot; 32 enquiries, Spring 2026 &middot; wait times measured as elapsed time from enquiry to first reply; automated-only replies excluded from speed figures.
+      </div>
+
+    </article>
+
+    <!-- ───────── THE OFFER + GUARANTEE ───────── -->
+    <section class="offer">
+      <h2>Six minutes was the fastest anyone managed. You could be answering in under two.</h2>
+
+      <!-- Byline. The section is written first person from John, so the face goes at the
+           top of it rather than in a footer — it's the thing that makes the voice land. -->
+      <div class="byline">
+        <img src="/images/John-jtb.jpg" alt="John Cant" width="64" height="64">
+        <p>John here. I ran the test and did the waiting.</p>
+      </div>
+
+      <p class="lede">I don't think a single one of those 20 practices is lazy. I think the enquiry landed at ten to five on a Friday in the middle of a VAT week, and by Monday morning it was 14 emails down the inbox. Nobody decided to ignore it. It just went quiet, and two days later somebody else had the client.</p>
+      <p class="lede">That's a plumbing problem, not a character problem. Which is the only reason it's fixable.</p>
+
+      <p class="lede">Your website form and your enquiry inbox both feed into one place. Whatever arrives gets read, and gets a real reply in your name, answering what they actually asked, carrying a link to your calendar. Day, night or Sunday. Under two minutes, every time.</p>
+      <p class="lede">It never quotes. It never gives advice. It never commits you to anything. It does what you'd do yourself if you happened to be at your desk at nine on a Sunday: confirm you've got it, say when you'll come back, offer a time to talk. And it says plainly that it's an automatic first reply. Anything with an opinion in it still waits for you.</p>
+      <p class="lede">Which is easy to say, and everyone says it. So we don't ask you to believe it.</p>
+
+      <div class="guarantee-box">
+        <div class="g-head">You don't pay until we've proved it.</div>
+        <p>Nothing up front, and nothing at all until the system has answered <strong>10 consecutive new enquiries in under two minutes</strong>. If we can't get there inside 60 days, we switch it off and walk away. No charge, no argument. After that the guarantee keeps running: any month containing a late reply is free.</p>
+        <p>I can offer that because there's nowhere to hide. Either it answers in two minutes or it doesn't, and we'll both know inside a fortnight.</p>
+      </div>
+
+    </section>
+
+    <!-- ───────── QUALIFY QUIZ (primary CTA) ─────────
+      The four questions are the ones _Offer mechanics §7 says get asked on the call,
+      plus the reply-speed question the report sets up. Answers post to BKR04; the
+      result renders locally and immediately, so the POST failing never costs a booking.
+      Because the page is slug-personalised we already know which firm answered — no
+      email field, nothing asked of the reader to get their result.
+    -->
+    <section class="cta-section" id="qualify">
+
+      <div id="quiz-view">
+        <h2 id="cta-heading">See if you're a fit</h2>
+
+        <form class="quiz-card" id="qualify-form" novalidate>
+
+          <fieldset>
+            <legend><span class="qnum">Question 1 of 4</span>Roughly how many new enquiries do you get a month?</legend>
+            <div class="opts">
+              <label><input type="radio" name="volume" value="under-5"> Fewer than 5</label>
+              <label><input type="radio" name="volume" value="5-10"> 5 to 10</label>
+              <label><input type="radio" name="volume" value="11-20"> 11 to 20</label>
+              <label><input type="radio" name="volume" value="over-20"> More than 20</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="qnum">Question 2 of 4</span>How do most of them reach you?</legend>
+            <div class="opts">
+              <label><input type="radio" name="channel" value="form"> Website contact form</label>
+              <label><input type="radio" name="channel" value="email"> Straight to an email inbox</label>
+              <label><input type="radio" name="channel" value="phone"> Mostly by phone</label>
+              <label><input type="radio" name="channel" value="referral"> Referral and word of mouth</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="qnum">Question 3 of 4</span>Who answers them now?</legend>
+            <div class="opts">
+              <label><input type="radio" name="owner" value="me"> Me, personally</label>
+              <label><input type="radio" name="owner" value="team"> Someone in the team</label>
+              <label><input type="radio" name="owner" value="first-seen"> Whoever sees it first</label>
+              <label><input type="radio" name="owner" value="nobody"> Nobody really owns it</label>
+            </div>
+          </fieldset>
+
+          <fieldset>
+            <legend><span class="qnum">Question 4 of 4</span>How long does a first reply usually take?</legend>
+            <div class="opts">
+              <label><input type="radio" name="speed" value="minutes"> Minutes</label>
+              <label><input type="radio" name="speed" value="hour"> Within the hour</label>
+              <label><input type="radio" name="speed" value="same-day"> Same day</label>
+              <label><input type="radio" name="speed" value="longer"> Next day or later</label>
+              <label><input type="radio" name="speed" value="unsure"> Honestly, I'm not sure</label>
+            </div>
+          </fieldset>
+
+          <!-- Required. The slug tells us the firm; this tells us who actually read it —
+               which matters when the report gets forwarded internally. The stated reason
+               has to be the true one: the result renders on this page, not by email. -->
+          <!-- The hint used to read "so we know who's asking", because at that point
+               nothing emailed them and "so we can send you your result" would have been
+               a false reason. BKR04 now sends the result, so the true reason changed. -->
+          <div class="email-field">
+            <label for="quiz-email">Your email <span class="hint">(where the system replies to you)</span></label>
+            <input type="email" id="quiz-email" name="email" placeholder="e.g. sarah@yourfirm.co.uk"
+                   autocomplete="email" inputmode="email" required>
+          </div>
+
+          <button type="submit" class="btn-cta" id="quiz-submit">Show my result</button>
+          <div class="form-error" id="quiz-error"></div>
+
+          <p class="demo-note">Your result comes back by email in under two minutes, sent by the same system this page has been describing. You'll have watched it work before you've spoken to anyone.</p>
+
+          <p class="privacy-note">We use it to follow up on this and nothing else. No list, no spam, and one reply gets your details deleted.</p>
+        </form>
+
+        <p class="secondary-link">Already know you want to talk? <a href="/book-call/" data-booking>Book a call</a>.</p>
+      </div>
+
+      <!-- Result renders here, replacing the quiz -->
+      <div id="result-view" hidden>
+        <div class="result-card" id="result-card">
+          <h3 id="result-heading"></h3>
+          <div id="result-body"></div>
+          <!-- Band-gated. Only appears where we're actually selling this engine —
+               never under a result that has just told them not to buy it. -->
+          <div id="result-pricing"></div>
+          <div class="result-cta" id="result-cta"></div>
+          <!-- Filled once the BKR04 POST resolves. Confirms the email on success and
+               owns the failure honestly if it doesn't send — the page has just promised
+               a two-minute reply, so a silent miss would disprove the offer in front of
+               the prospect. -->
+          <p class="email-status" id="email-status" hidden></p>
+          <p class="result-foot" id="result-foot"></p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      // ─── Config ───
+      // Cloned from /report/index.html (solicitors RTR03). Same read-and-log-in-one-call
+      // pattern: the GET returns the prospect record AND writes the Page_Visits row
+      // server-side, so there is no separate tracking beacon to keep in sync.
+      var N8N_BASE = 'https://primary-production-77e0.up.railway.app/webhook';
+      var READ_URL = N8N_BASE + '/bkr/report';     // ← to be served by BKR03 (not built yet)
+      var QUALIFY_URL = N8N_BASE + '/bkr/qualify'; // ← to be served by BKR04 (not built yet)
+
+      // ─── Extract slug from URL ───
+      // URL shape: /bookkeeper-accountant-report/<slug>. Netlify rewrites it to
+      // /bookkeeper-accountant-report/index.html with status 200, so the public-facing path is
+      // still readable here.
+      var path = window.location.pathname.replace(/\/$/, '');
+      var parts = path.split('/').filter(Boolean);
+      var slug = (parts.length >= 2 && parts[0].toLowerCase() === 'bookkeeper-accountant-report')
+        ? parts[1]
+        : null;
+
+      // ─── Booking links ───
+      // The slug comes from the URL, not from the webhook, so ?ref= can be stamped on
+      // every booking link straight away — it does not wait for (or depend on) BKR03.
+      var BOOKING_HREF = '/book-call/';
+      Array.prototype.forEach.call(document.querySelectorAll('[data-booking]'), function (a) {
+        a.setAttribute('href', BOOKING_HREF);
+      });
+
+      // ─── Qualify quiz ───
+      // Bands, in precedence order. First match wins, so the volume floor is checked
+      // before anything else and the honesty clause can never be overridden by a
+      // flattering answer elsewhere.
+      var QUESTIONS = [
+        { name: 'volume',  label: 'how many new enquiries a month' },
+        { name: 'channel', label: 'how most enquiries reach you' },
+        { name: 'owner',   label: 'who answers them now' },
+        { name: 'speed',   label: 'how long a first reply takes' }
+      ];
+
+      var LABELS = {
+        volume:  { 'under-5': 'Fewer than 5', '5-10': '5 to 10', '11-20': '11 to 20', 'over-20': 'More than 20' },
+        channel: { 'form': 'Website contact form', 'email': 'Straight to an email inbox', 'phone': 'Mostly by phone', 'referral': 'Referral and word of mouth' },
+        owner:   { 'me': 'Me, personally', 'team': 'Someone in the team', 'first-seen': 'Whoever sees it first', 'nobody': 'Nobody really owns it' },
+        speed:   { 'minutes': 'Minutes', 'hour': 'Within the hour', 'same-day': 'Same day', 'longer': 'Next day or later', 'unsure': "Honestly, I'm not sure" }
+      };
+
+      function bandFor(a) {
+        // 1. Volume floor. _Offer mechanics §7: qualify out below ~8 enquiries a month.
+        //    "Fewer than 5" is a clear no. "5 to 10" straddles the floor, and eight is
+        //    a margin rather than a threshold, so that's a conversation, not a rejection.
+        if (a.volume === 'under-5') return 'not-yet';
+        // 2. Channel. The guarantee only covers the web form and the forwarded inbox.
+        //    Phone-dominant means most of their leads sit outside it — say so now.
+        if (a.channel === 'phone') return 'phone-heavy';
+        // 3. Already fast. Don't sell speed to someone who has it.
+        if (a.speed === 'minutes') return 'already-fast';
+        return 'strong-fit';
+      }
+
+      // Standard rates only. The founding terms (£0 upfront, £300/mo locked, first three
+      // clients) are deliberately NOT here — they're the reveal on the call, they'd
+      // anchor everyone at £300, and a static page can't retract them once the three
+      // places fill. Publish the higher number, let the conversation improve on it.
+      var PRICING_HTML =
+        '<div class="pricing-block">' +
+          '<div class="p-head">What it costs</div>' +
+          '<div class="p-sub">Three payment options</div>' +
+          // The promise sits ABOVE the numbers deliberately. Read first, it reframes
+          // every figure underneath as conditional on the thing working.
+          '<p class="p-promise">Nothing is invoiced until it’s proved, setup included. ' +
+          'And any month containing a late reply is free.</p>' +
+          '<div class="p-grid">' +
+            '<div class="p-opt pick">' +
+              '<div class="p-label">12-month term</div>' +
+              '<div class="p-amount">£450<span>per month</span></div>' +
+              '<div class="p-detail">No setup fee</div>' +
+            '</div>' +
+            '<div class="p-opt">' +
+              '<div class="p-label">No commitment</div>' +
+              '<div class="p-amount">£550<span>per month</span></div>' +
+              '<div class="p-detail">£500 setup</div>' +
+            '</div>' +
+            '<div class="p-opt">' +
+              '<div class="p-label">Paid up front</div>' +
+              '<div class="p-amount">£4,500<span>per year</span></div>' +
+              '<div class="p-detail">Saves £900</div>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+      var RESULTS = {
+        'strong-fit': {
+          tone: '',
+          pricing: true,
+          heading: "You're exactly who this is built for.",
+          // '## ' prefix renders as a subheading. "What you'd have" is deliberately a
+          // sibling of the pricing block's "What it costs" — same weight, same voice.
+          body: [
+            'Enough new enquiries for the difference to show up in your sales figures, and they arrive through channels we can cover.',
+            'So here’s what happens next Sunday.',
+            'It’s twenty past nine at night. Someone three streets from your office has just had a letter from HMRC and has spent an hour working out that their current bookkeeper isn’t up to it. They find four of you online. They fill in all four contact forms, because that’s what people do, and then they go to bed.',
+            'Yours replies at twenty past nine. Not Monday. Not Tuesday afternoon. By name, answering the thing they actually asked, with a link to your diary.',
+            'The other three reply on Monday, and by then it’s booked.',
+            '## What you’d have',
+            'Your website form and your enquiry inbox wired into one system. It reads every new enquiry and replies in under two minutes, day or night, carrying your calendar link. Built, tested, handed over. You don’t need to touch it after that.',
+            'The fastest of the 32 firms we tested took six minutes, in the middle of a working Tuesday, with someone sat at their desk. Yours takes under two, on a Sunday, while you’re asleep.'
+          ],
+          cta: 'Book a call',
+          foot: 'No pitch deck. Mostly me asking how enquiries reach you now, so that what we build fits around what you already use.'
+        },
+        'already-fast': {
+          tone: '',
+          // No price list: the engine is not what this firm would buy. The second
+          // engine has no locked terms yet (brain §3, still TBC), so this band offers
+          // a conversation and deliberately never a number.
+          pricing: false,
+          heading: "You're already ahead of every firm in this report.",
+          body: [
+            "Not one of the 32 we tested replied inside five minutes, and the typical wait was 49. If you're genuinely answering in minutes, speed isn't your problem and we're not going to pretend it is.",
+            'So the interesting question is what happens after the first reply. Writing the proposal. Onboarding the client. Chasing the paperwork. The admin that quietly fills a week and never shows up as a missed lead, because nothing was missed, it just took you all Thursday.',
+            'Firms already answering in minutes are usually where that work is worth the most, because there is a real flow of clients hitting it and you already know what automating something is worth. That is the conversation we would most like to have.'
+          ],
+          cta: 'Book a call',
+          foot: "Not about the guarantee on this page, you don't need it. About everything that happens after the reply."
+        },
+        'phone-heavy': {
+          tone: 'warm',
+          pricing: true,
+          heading: 'A partial fit, and here is the part that is not.',
+          body: [
+            'The two-minute guarantee covers enquiries arriving through your website form and your enquiry inbox, because those are the only channels that route into infrastructure we control. Phone is out of scope today.',
+            "So if most of yours come by phone, the guarantee wouldn't cover most of your leads. It would still cover the rest, and in our experience the written channels are bigger than owners expect, but that's worth working out on a call rather than after you've signed something.",
+            'The other half of a phone enquiry is what happens once you put the handset down. The proposal that needs writing, the follow-up that needs sending, the quote that goes quiet because nobody chased it. We can build that, and it works whether the enquiry arrived by phone or not.'
+          ],
+          cta: 'Book a call',
+          foot: "Worth a call either way. We'd rather tell you what the guarantee does and doesn't cover before you sign something, not after."
+        },
+        'not-yet': {
+          tone: 'cool',
+          // Still no price list. The "no" on THIS engine has to stay a real no, or the
+          // button underneath turns the honesty into a bait. The call is offered for a
+          // different thing entirely, and the copy has to say so plainly.
+          pricing: false,
+          heading: "Not yet, and we'd rather say so.",
+          body: [
+            "Below roughly eight new enquiries a month there isn't enough leaking away for this to pay for itself. We'd be selling you something you don't need, and that's the one thing we've decided not to do.",
+            "At that volume the problem is usually getting more enquiries rather than answering them faster. Fix that first. If the number climbs, come back. The offer will still be here.",
+            "That's this engine. It isn't the only thing we build. If the real drag on your week is somewhere else, writing proposals, onboarding a new client, chasing paperwork that should chase itself, that's a different conversation and a genuinely useful one."
+          ],
+          cta: 'Book a call',
+          foot: 'To be clear: we\'ve told you not to buy the thing this page is selling, and that stands. The call is about something else. If you\'d rather just say what\'s eating your week, <a href="mailto:john@jointhebots.com">john@jointhebots.com</a> is quicker.'
+        }
+      };
+
+      var form = document.getElementById('qualify-form');
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var errorEl = document.getElementById('quiz-error');
+          var emailEl = document.getElementById('quiz-email');
+          errorEl.classList.remove('visible');
+          emailEl.classList.remove('invalid');
+
+          // Collect + validate, naming the first unanswered question rather than
+          // just saying "please complete the form".
+          var answers = {};
+          for (var i = 0; i < QUESTIONS.length; i++) {
+            var q = QUESTIONS[i];
+            var picked = form.querySelector('input[name="' + q.name + '"]:checked');
+            if (!picked) {
+              errorEl.textContent = 'One to go, ' + q.label + '.';
+              errorEl.classList.add('visible');
+              return;
+            }
+            answers[q.name] = picked.value;
+          }
+
+          // Email is required — it's the only thing that tells us who actually read
+          // this, as opposed to which firm it was sent to.
+          var email = emailEl.value.trim();
+          if (!email) {
+            errorEl.textContent = 'We need an email address to show your result.';
+            errorEl.classList.add('visible');
+            emailEl.classList.add('invalid');
+            emailEl.focus();
+            return;
+          }
+          if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            errorEl.textContent = 'That email address doesn’t look right. Check it and try again.';
+            errorEl.classList.add('visible');
+            emailEl.classList.add('invalid');
+            emailEl.focus();
+            return;
+          }
+
+          var band = bandFor(answers);
+          renderResult(band);
+
+          // Send afterwards. The result is already on screen, so this never blocks —
+          // but the page has just promised an email inside two minutes, so unlike the
+          // page-visit log we do NOT swallow the outcome. Success confirms the address;
+          // failure says so plainly rather than leaving a broken promise unmentioned.
+          try {
+            fetch(QUALIFY_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({
+                slug: slug,
+                email: email,
+                volume: answers.volume,
+                volume_label: LABELS.volume[answers.volume],
+                channel: answers.channel,
+                channel_label: LABELS.channel[answers.channel],
+                owner: answers.owner,
+                owner_label: LABELS.owner[answers.owner],
+                speed: answers.speed,
+                speed_label: LABELS.speed[answers.speed],
+                result_band: band,
+                submitted_at: new Date().toISOString()
+              })
+            })
+              .then(function (res) {
+                if (!res.ok) throw new Error('BKR04 returned ' + res.status);
+                showEmailStatus(true, email);
+              })
+              .catch(function (err) {
+                console.error('BKR qualify post failed:', err);
+                showEmailStatus(false, email);
+              });
+          } catch (err) {
+            console.error('BKR qualify post failed:', err);
+            showEmailStatus(false, email);
+          }
+        });
+      }
+
+      // BKR04 must respond only AFTER the email has gone, or this confirmation is a
+      // guess. See the vault note — "respond when last node finishes", not immediately.
+      function showEmailStatus(sent, email) {
+        var el = document.getElementById('email-status');
+        if (!el) return;
+        if (sent) {
+          el.className = 'email-status';
+          el.innerHTML = 'A copy is on its way to <strong>' + escapeHtml(email) +
+            '</strong>. Time it. That’s the same system this page has been describing.';
+        } else {
+          el.className = 'email-status failed';
+          el.innerHTML = 'We couldn’t get that email away just now, so your result is here instead. ' +
+            'Worth knowing we’d rather say that than let you sit waiting for something that isn’t coming.';
+        }
+        el.hidden = false;
+      }
+
+      function renderResult(band) {
+        var cfg = RESULTS[band];
+        var card = document.getElementById('result-card');
+        card.className = 'result-card' + (cfg.tone ? ' ' + cfg.tone : '');
+        document.getElementById('email-status').hidden = true;  // until the POST resolves
+
+        document.getElementById('result-heading').innerHTML = cfg.heading;
+
+        document.getElementById('result-body').innerHTML = cfg.body.map(function (p) {
+          return p.indexOf('## ') === 0
+            ? '<h4>' + p.slice(3) + '</h4>'
+            : '<p>' + p + '</p>';
+        }).join('');
+
+        document.getElementById('result-pricing').innerHTML = cfg.pricing ? PRICING_HTML : '';
+
+        document.getElementById('result-cta').innerHTML = cfg.cta
+          ? '<a href="' + BOOKING_HREF + '" class="btn-cta">' + cfg.cta + '</a>'
+          : '';
+
+        document.getElementById('result-foot').innerHTML = cfg.foot;
+
+        document.getElementById('quiz-view').hidden = true;
+        document.getElementById('result-view').hidden = false;
+        document.getElementById('qualify').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // No slug (someone hit /bookkeeper-accountant-report/ directly) — nothing to log, nothing to
+      // personalise. The report, the offer and the quiz all work regardless.
+      if (!slug) return;
+
+      // ─── Log the visit + fetch the firm name ───
+      // Deliberately fire-and-forget. The page has already rendered; if BKR03 is down,
+      // slow, or the slug is unknown, the visitor sees the full report and CTA regardless.
+      fetch(READ_URL + '?slug=' + encodeURIComponent(slug), { method: 'GET' })
+        .then(function (res) { return res.json(); })
+        .then(function (data) {
+          if (!data || !data.found) return;
+          var firmName = data.prospect && data.prospect.business_name;
+          if (firmName) personalise(firmName);
+        })
+        .catch(function (err) {
+          // Visit logging is best-effort. Never surface this to the visitor.
+          console.error('BKR page-visit log failed:', err);
+        });
+
+      // ─── Personalisation ───
+      // Note: no personalisation banner. The solicitors page had one and it was removed
+      // (commit aab1dd6) because opening straight on the report headline read better.
+      // The firm name is used only at the point of conversion, where it does work.
+      function personalise(firmName) {
+        // The offer section is no longer personalised. It's written first person from
+        // John and has no natural firm-name slot — and an inserted name would risk
+        // implying the reader's own firm was one of the 32 we tested, which it may
+        // not have been. The quiz heading carries the personalisation on its own.
+        var heading = document.getElementById('cta-heading');
+        if (heading) {
+          heading.textContent = 'See if ' + firmName + ' is a fit';
+        }
+        // Booking links already carry ?ref= — stamped from the URL slug on load,
+        // so attribution doesn't depend on this webhook answering.
+      }
+
+      function escapeHtml(s) {
+        return String(s)
+          .replace(/&/g, '&amp;')
+          .replace(/</g, '&lt;')
+          .replace(/>/g, '&gt;')
+          .replace(/"/g, '&quot;');
+      }
+    })();
+  </script>
+
+</body>
+</html>

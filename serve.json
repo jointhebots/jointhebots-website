@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/results/**", "destination": "/results/index.html" },
-    { "source": "/report/**", "destination": "/report/index.html" }
+    { "source": "/report/**", "destination": "/report/index.html" },
+    { "source": "/bookkeeper-accountant-report/**", "destination": "/bookkeeper-accountant-report/index.html" }
   ]
 }

@@ -2,5 +2,6 @@ User-agent: *
 Allow: /
 Disallow: /scorecard-result/
 Disallow: /results/
+Disallow: /bookkeeper-accountant-report/
 
 Sitemap: https://jointhebots.com/sitemap.xml
