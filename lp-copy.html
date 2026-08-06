@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Copy Review Decision — Landing Page Pipeline</title>
+    <title>Copy Review Decision: Landing Page Pipeline</title>
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
@@ -155,8 +155,8 @@
                 .then(function() {
                     buttonRow.style.display = 'none';
                     successBox.textContent = decision === 'approve'
-                        ? '\u2713 Approved. Image generation has started — you can close this window.'
-                        : '\u2715 Rejected. The run has been stopped — you can close this window.';
+                        ? '\u2713 Approved. Image generation has started. You can close this window.'
+                        : '\u2715 Rejected. The run has been stopped. You can close this window.';
                     if (decision === 'reject') successBox.classList.add('reject-style');
                     successBox.style.display = 'block';
                 })
