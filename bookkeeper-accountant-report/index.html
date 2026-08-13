@@ -1224,8 +1224,8 @@
       // pattern: the GET returns the prospect record AND writes the Page_Visits row
       // server-side, so there is no separate tracking beacon to keep in sync.
       var N8N_BASE = 'https://primary-production-77e0.up.railway.app/webhook';
-      var READ_URL = N8N_BASE + '/bkr/report';     // ← to be served by BKR03 (not built yet)
-      var QUALIFY_URL = N8N_BASE + '/bkr/qualify'; // ← to be served by BKR04 (not built yet)
+      var READ_URL = N8N_BASE + '/bkr/report';     // BKR03 `cRfYRY6VRQAKp02f`, live since 6 Aug
+      var QUALIFY_URL = N8N_BASE + '/bkr/qualify'; // BKR04 `p72s3CG5PREDnqSW`, live since 6 Aug
 
       // ─── Extract slug from URL ───
       // URL shape: /bookkeeper-accountant-report/<slug>. Netlify rewrites it to
@@ -1759,11 +1759,23 @@
         el.hidden = false;
       }
 
-      function renderResult(band, answers) {
+      // restored = rendered from the URL rather than from a submission, so no email is
+      // being sent and the status strip must not promise one.
+      function renderResult(band, answers, restored) {
         var cfg = RESULTS[band];
         var card = document.getElementById('result-card');
         card.className = 'result-card' + (cfg.tone ? ' ' + cfg.tone : '');
-        document.getElementById('email-status').hidden = true;  // until the POST resolves
+
+        var status = document.getElementById('email-status');
+        if (restored) {
+          // Says why a result is on screen when they have not answered anything. Without
+          // it a returning reader has no idea where these answers came from.
+          status.className = 'email-status';
+          status.innerHTML = 'Picking up where you left off. These are the answers you gave.';
+          status.hidden = false;
+        } else {
+          status.hidden = true;  // until the POST resolves
+        }
 
         document.getElementById('result-heading').innerHTML = cfg.heading;
 
@@ -1814,6 +1826,47 @@
         document.getElementById('quiz-view').hidden = true;
         document.getElementById('result-view').hidden = false;
         document.getElementById('qualify').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+
+      // ───────── RESTORE A RESULT FROM THE URL ─────────
+      //
+      // ?v=<volume>&c=<channel>&o=<owner>&s=<speed>, e.g.
+      //   /bookkeeper-accountant-report/acme-books?v=11-20&c=email&o=me&s=longer
+      //
+      // Lets someone return to their own result and the calculator without redoing the
+      // quiz. Two rules, both load-bearing:
+      //
+      //   1. It NEVER posts to BKR04. A revisit is not a new submission. Re-posting
+      //      would send a second result email and write a duplicate Quiz_Responses row,
+      //      which is exactly what happens today if a curious reader redoes the quiz.
+      //   2. Every value is checked against LABELS. A truncated, mangled or hand-edited
+      //      URL falls through to the normal quiz rather than rendering a result full of
+      //      "undefined" — a forwarded link losing its query string must degrade to the
+      //      ordinary page, not to a broken one.
+      //
+      // Values are the raw option values, identical to what the form posts, so BKR04 can
+      // build this link straight from the row it already stores.
+      var URL_PARAMS = { v: 'volume', c: 'channel', o: 'owner', s: 'speed' };
+
+      function queryParam(name) {
+        var m = new RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+        return m ? decodeURIComponent(m[1].replace(/\+/g, ' ')) : null;
+      }
+
+      function answersFromUrl() {
+        var answers = {};
+        for (var key in URL_PARAMS) {
+          var field = URL_PARAMS[key];
+          var value = queryParam(key);
+          if (!value || !LABELS[field][value]) { return null; }
+          answers[field] = value;
+        }
+        return answers;
+      }
+
+      var restoredAnswers = answersFromUrl();
+      if (restoredAnswers) {
+        renderResult(bandFor(restoredAnswers), restoredAnswers, true);
       }
 
       // No slug (someone hit /bookkeeper-accountant-report/ directly) — nothing to log, nothing to
