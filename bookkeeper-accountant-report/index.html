@@ -492,21 +492,173 @@
       padding: 18px 20px;
       margin-top: 22px;
     }
+    /* ───────── LOST REVENUE CALCULATOR ─────────
+       Self-contained and portable. Every colour falls back to a literal, so the
+       block still renders correctly if it is dropped onto a page that doesn't
+       define these custom properties. Keep it that way.                       */
+    .calc {
+      border: 1px solid var(--line, #E1E4EA);
+      border-radius: 10px;
+      background: var(--card, #F5F5F7);
+      padding: 18px 20px;
+      margin-top: 22px;
+    }
+    .calc .c-head {
+      font-family: 'Sora', sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: var(--charcoal, #22252A);
+      margin-bottom: 4px;
+    }
+    .calc .c-sub {
+      font-size: 0.88rem;
+      color: var(--muted, #6C727F);
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .calc .c-row { margin-bottom: 14px; }
+    .calc .c-label {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--charcoal, #22252A);
+      margin-bottom: 5px;
+    }
+    .calc .c-value {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      color: var(--teal, #005B5C);
+      white-space: nowrap;
+    }
+    .calc input[type="range"] {
+      width: 100%;
+      accent-color: var(--teal, #005B5C);
+      margin: 0;
+    }
+    .calc .c-derived {
+      font-size: 0.83rem;
+      color: var(--muted, #6C727F);
+      margin-top: 5px;
+      font-style: italic;
+    }
+    .calc .c-out {
+      background: var(--bg, #FFFFFF);
+      border: 1px solid var(--line, #E1E4EA);
+      border-left: 4px solid var(--orange, #F28C35);
+      border-radius: 0 8px 8px 0;
+      padding: 16px 18px;
+      margin-top: 18px;
+    }
+    .calc .c-out.good { border-left-color: var(--green, #3BAF7A); }
+    .calc .c-out-label {
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted, #6C727F);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .calc .c-big {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: clamp(1.7rem, 4.5vw, 2.3rem);
+      line-height: 1.05;
+      color: var(--orange, #F28C35);
+    }
+    .calc .c-out.good .c-big { color: var(--green, #3BAF7A); }
+    .calc .c-note {
+      font-size: 0.9rem;
+      color: var(--charcoal, #22252A);
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+    .calc .c-assume {
+      font-size: 0.8rem;
+      color: var(--muted, #6C727F);
+      line-height: 1.5;
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px solid var(--line, #E1E4EA);
+    }
     .pricing-block .p-sub {
       font-size: 0.8rem;
       text-transform: uppercase;
       letter-spacing: 0.06em;
       color: var(--muted);
       font-weight: 600;
-      margin: 14px 0 -4px;
+      /* Sits tight under the heading it belongs to, then a full gap before the
+         promise panel. The old -4px pulled it onto the panel and made the two
+         gaps around it wildly uneven. */
+      margin: 0 0 14px;
     }
     .pricing-block .p-head {
       font-family: 'Sora', sans-serif;
       font-weight: 600;
       font-size: 1rem;
       color: var(--charcoal);
-      margin-bottom: 10px;
+      margin-bottom: 3px;
     }
+
+    /* Exclusivity line. Sits under the columns, quieter than them: it is a
+       qualifier on the offer, not a fourth thing to buy. */
+    .pricing-block .p-area {
+      font-size: 0.92rem;
+      line-height: 1.6;
+      color: var(--muted);
+      margin: 14px 0 0;
+    }
+    /* Founding terms. Deliberately looks like an aside rather than a second price
+       list, so it cannot be mistaken for the standard rate. */
+    .pricing-block .p-founding {
+      margin-top: 14px;
+      padding: 16px 18px;
+      border: 1px dashed var(--teal);
+      border-radius: 10px;
+      background: var(--soft);
+    }
+    .pricing-block .p-founding-head {
+      font-family: 'Sora', sans-serif;
+      font-weight: 700;
+      font-size: 0.98rem;
+      color: var(--teal);
+      margin-bottom: 8px;
+      line-height: 1.4;
+    }
+    .pricing-block .p-founding p {
+      margin: 0 0 8px;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .pricing-block .p-founding p:last-child { margin-bottom: 0; }
+
+    /* Cold-spots table on the already-fast band. Scrolls inside its own box rather
+       than pushing the page sideways on a phone. */
+    #result-body table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 14px 0 18px;
+      font-size: 0.93rem;
+    }
+    #result-body table th,
+    #result-body table td {
+      text-align: left;
+      padding: 9px 12px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    #result-body table th {
+      font-family: 'Sora', sans-serif;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 600;
+      border-bottom-width: 2px;
+    }
+    #result-body table td:last-child { color: var(--teal); font-weight: 600; }
     .pricing-block .p-promise {
       background: var(--soft);
       border-left: 4px solid var(--teal);
@@ -612,13 +764,47 @@
       letter-spacing: -0.2px;
     }
     .result-card p { font-size: 1.01rem; line-height: 1.65; margin-bottom: 12px; }
-    /* Sibling of the pricing block's "What it costs" — same weight, same voice. */
+    /* Sibling of the pricing block's "What it costs" — same weight, same voice.
+       Teal since 13 Aug: these bands run long, and a charcoal subheading is almost
+       invisible against charcoal body text, so nothing breaks up the scroll. Teal
+       matches the h3 above and the pricing/guarantee heads, so it reads as the same
+       system rather than decoration. The rule underneath does the structural work. */
     .result-card h4 {
       font-family: 'Sora', sans-serif;
       font-weight: 600;
       font-size: 1.05rem;
-      color: var(--charcoal);
-      margin: 26px 0 10px;
+      color: var(--teal);
+      margin: 30px 0 12px;
+      padding-bottom: 7px;
+      border-bottom: 2px solid var(--soft);
+    }
+    .result-card h4:first-child { margin-top: 0; }
+
+    /* Bullets. Custom marker so the dash is teal and the text hangs properly, which
+       list-style can't do. Used where the copy is genuinely a list ("no new software,
+       nothing changes, no long meetings") rather than to chop up prose. */
+    .result-card ul.r-list {
+      list-style: none;
+      margin: 0 0 14px;
+      padding: 0;
+    }
+    .result-card ul.r-list li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 9px;
+      font-size: 1.01rem;
+      line-height: 1.6;
+    }
+    .result-card ul.r-list li:last-child { margin-bottom: 0; }
+    .result-card ul.r-list li::before {
+      content: "";
+      position: absolute;
+      left: 4px;
+      top: 0.62em;
+      width: 9px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 1px;
     }
     .result-card .result-cta { margin-top: 22px; text-align: center; }
     .result-card .result-foot {
@@ -873,26 +1059,40 @@
 
     <!-- ───────── THE OFFER + GUARANTEE ───────── -->
     <section class="offer">
-      <h2>Six minutes was the fastest anyone managed. You could be answering in under two.</h2>
+      <h2>Six minutes was the fastest anyone managed.<br>You could be answering in under two.</h2>
 
       <!-- Byline. The section is written first person from John, so the face goes at the
-           top of it rather than in a footer — it's the thing that makes the voice land. -->
+           top of it rather than in a footer. It is the thing that makes the voice land. -->
       <div class="byline">
         <img src="/images/John-jtb.jpg" alt="John Cant" width="64" height="64">
         <p>John here. I ran the test and did the waiting.</p>
       </div>
 
-      <p class="lede">I don't think a single one of those 20 practices is lazy. I think the enquiry landed at ten to five on a Friday in the middle of a VAT week, and by Monday morning it was 14 emails down the inbox. Nobody decided to ignore it. It just went quiet, and two days later somebody else had the client.</p>
-      <p class="lede">That's a plumbing problem, not a character problem. Which is the only reason it's fixable.</p>
+      <p class="lede">I don’t think a single one of those 32 practices is lazy. I think the enquiry landed at ten to five on a Friday in the middle of a VAT week, and by Monday morning it was 14 emails down the inbox. Nobody decided to ignore it. It’s a gap in the process, and that gap is now easy to close.</p>
 
-      <p class="lede">Your website form and your enquiry inbox both feed into one place. Whatever arrives gets read, and gets a real reply in your name, answering what they actually asked, carrying a link to your calendar. Day, night or Sunday. Under two minutes, every time.</p>
-      <p class="lede">It never quotes. It never gives advice. It never commits you to anything. It does what you'd do yourself if you happened to be at your desk at nine on a Sunday: confirm you've got it, say when you'll come back, offer a time to talk. And it says plainly that it's an automatic first reply. Anything with an opinion in it still waits for you.</p>
-      <p class="lede">Which is easy to say, and everyone says it. So we don't ask you to believe it.</p>
+      <p class="lede">A lost enquiry never tells you it was lost. Nobody complains. They just… float off to whoever replied first.</p>
+
+      <p class="lede">That’s what we fix.</p>
+
+      <p class="lede">Your website form and your enquiry inbox both feed into one place. Whatever arrives gets read, and gets a real reply in your name, answering what they actually asked, with a link to your calendar. Day, night or Sunday. Under two minutes, every time.</p>
+
+      <p class="lede">It never quotes, never advises, never commits you to anything. It does what you’d do at your desk at nine on a Sunday: confirm you’ve got it, offer a time to talk, say it’s an automatic first reply. Anything with an opinion waits for you.</p>
+
+      <!-- The bridge. Everything above is a claim; this concedes that before the
+           guarantee answers it, so "You don't pay until we've proved it" lands as
+           a reply rather than as an opening boast. Do not delete without replacing. -->
+      <p class="lede">You&rsquo;ve no reason to take my word for any of that.</p>
 
       <div class="guarantee-box">
         <div class="g-head">You don't pay until we've proved it.</div>
-        <p>Nothing up front, and nothing at all until the system has answered <strong>10 consecutive new enquiries in under two minutes</strong>. If we can't get there inside 60 days, we switch it off and walk away. No charge, no argument. After that the guarantee keeps running: any month containing a late reply is free.</p>
-        <p>I can offer that because there's nowhere to hide. Either it answers in two minutes or it doesn't, and we'll both know inside a fortnight.</p>
+        <p>Nothing up front, and nothing at all until the system has answered <strong>10 new enquiries in a row in under five minutes</strong>. If it can't get there inside 60 days, we switch it off and walk away. No charge, no argument, and you keep the transcripts. After that the guarantee keeps running: any month containing a late reply is free.</p>
+        <!-- This line is load-bearing. Five is the first number on the page that is
+             slower than two, and a reader who spots the gap unaided reads it as a
+             hedge. Stating it plainly turns the margin into confidence. It must stay
+             immediately after the first mention of five. -->
+        <p>It usually replies in under two minutes. My guarantee is five.</p>
+        <p>It covers enquiries arriving through the form and inbox we connect, not phone calls, and not the things that aren't enquiries. We'll agree what counts before anything goes live.</p>
+        <p>I can offer that because there's nowhere to hide. Either it answered inside five minutes or it didn't, it's timestamped either way, and we'll both know inside a fortnight.</p>
       </div>
 
     </section>
@@ -980,16 +1180,29 @@
         <div class="result-card" id="result-card">
           <h3 id="result-heading"></h3>
           <div id="result-body"></div>
+          <!-- Cost of inaction comes BEFORE the price, so the fee is read against
+               their own number rather than against nothing. -->
+          <div id="result-calc"></div>
+          <!-- Copy that only makes sense AFTER the reader has played with the sliders,
+               currently the "somewhere around eight enquiries a month" line on the
+               not-yet band. Empty on every band that has nothing to say here. -->
+          <div id="result-calc-after"></div>
           <!-- Band-gated. Only appears where we're actually selling this engine —
                never under a result that has just told them not to buy it. -->
           <div id="result-pricing"></div>
           <div class="result-cta" id="result-cta"></div>
+          <!-- Sits directly under the button because it is about the CALL, not the email.
+               It also has to come BEFORE #email-status: that strip is hidden until the
+               BKR04 POST resolves ~2s later, so if the foot were below it the green box
+               would insert itself mid-card and shove text the reader is already reading.
+               In this order the strip appends to the bottom and nothing on screen moves. -->
+          <p class="result-foot" id="result-foot"></p>
           <!-- Filled once the BKR04 POST resolves. Confirms the email on success and
                owns the failure honestly if it doesn't send — the page has just promised
                a two-minute reply, so a silent miss would disprove the offer in front of
-               the prospect. -->
+               the prospect. Last thing in the card on purpose: it is the proof, so it
+               is the note to end on. -->
           <p class="email-status" id="email-status" hidden></p>
-          <p class="result-foot" id="result-foot"></p>
         </div>
       </div>
 
@@ -1050,111 +1263,400 @@
         speed:   { 'minutes': 'Minutes', 'hour': 'Within the hour', 'same-day': 'Same day', 'longer': 'Next day or later', 'unsure': "Honestly, I'm not sure" }
       };
 
+      // Three bands, settled 13 Aug 2026. There is deliberately no phone band any
+      // more: a phone-dominant firm still gets a real answer here, and whether the
+      // written channels are big enough to carry the guarantee is worked out on the
+      // call. Asking a form to make that judgement produced a fourth result that
+      // said "maybe" to everyone.
+      //
+      // The channel question is still asked and still stored. It is qualifying
+      // information for the call, it just no longer branches the result.
       function bandFor(a) {
         // 1. Volume floor. _Offer mechanics §7: qualify out below ~8 enquiries a month.
         //    "Fewer than 5" is a clear no. "5 to 10" straddles the floor, and eight is
         //    a margin rather than a threshold, so that's a conversation, not a rejection.
         if (a.volume === 'under-5') return 'not-yet';
-        // 2. Channel. The guarantee only covers the web form and the forwarded inbox.
-        //    Phone-dominant means most of their leads sit outside it — say so now.
-        if (a.channel === 'phone') return 'phone-heavy';
-        // 3. Already fast. Don't sell speed to someone who has it.
+        // 2. Already fast. Don't sell speed to someone who has it. They get the
+        //    second engine instead, which is a bigger sale and an easier one.
         if (a.speed === 'minutes') return 'already-fast';
+        // 3. Enough enquiries, replying slowly. The engine this page describes.
         return 'strong-fit';
       }
 
-      // Standard rates only. The founding terms (£0 upfront, £300/mo locked, first three
-      // clients) are deliberately NOT here — they're the reveal on the call, they'd
-      // anchor everyone at £300, and a static page can't retract them once the three
-      // places fill. Publish the higher number, let the conversation improve on it.
-      var PRICING_HTML =
-        '<div class="pricing-block">' +
+      // ───────── LOST REVENUE CALCULATOR ─────────
+      //
+      // PORTABLE. To reuse elsewhere: copy the .calc CSS block, CALC_HTML, and
+      // initCalculator() below. It works standalone; the prefill argument is
+      // optional and it falls back to the defaults without it.
+      //
+      // ⚠ The loss percentages are OURS, not a published figure. Speed-to-lead
+      // research (HBR 2011, LRM 2007) supports the direction, but both measure
+      // *qualifying* a lead, not winning one, so neither can be quoted as a
+      // win-rate curve. The table is printed under the sliders on purpose:
+      // stated assumptions read as arithmetic, hidden ones read as a sales trick.
+      var CALC_LOSS   = [0.01, 0.02, 0.05, 0.09, 0.15, 0.40];
+      var CALC_SPEEDS = ['Under 2 minutes', 'Within the hour', 'Same day', 'Next day',
+                         'Three days or more', 'Sometimes not at all'];
+
+      // Compared against the ROLLING tier in its first year: 399 x 12 plus 500 setup.
+      // Deliberately the dearest way to buy this, so nobody can accuse the page of
+      // measuring itself against its own cheapest row.
+      var CALC_ANNUAL_COST = 5288;
+
+      var CALC_ENQ_FROM_Q1   = { 'under-5': 4, '5-10': 8, '11-20': 15, 'over-20': 25 };
+      var CALC_SPEED_FROM_Q4 = { 'minutes': 0, 'hour': 1, 'same-day': 2, 'longer': 3, 'unsure': 2 };
+
+      var CALC_HTML =
+        '<div class="calc">' +
+          '<div class="c-head">What it costs to leave it</div>' +
+          '<p class="c-sub">Your numbers, not ours. Drag them until they look like your firm.</p>' +
+
+          '<div class="c-row">' +
+            '<div class="c-label"><span>New enquiries a month</span><span class="c-value" id="calc-enq-v">20</span></div>' +
+            '<input type="range" id="calc-enq" min="3" max="50" step="1" value="20">' +
+          '</div>' +
+
+          '<div class="c-row">' +
+            '<div class="c-label"><span>What you charge a client a year</span><span class="c-value" id="calc-fee-v">&pound;2,500</span></div>' +
+            '<input type="range" id="calc-fee" min="600" max="10000" step="100" value="2500">' +
+          '</div>' +
+
+          '<div class="c-row">' +
+            '<div class="c-label"><span>How long a client stays</span><span class="c-value" id="calc-yrs-v">4 years</span></div>' +
+            '<input type="range" id="calc-yrs" min="1" max="10" step="1" value="4">' +
+            '<p class="c-derived" id="calc-ltv-note">So one client is worth &pound;9,600 to you.</p>' +
+          '</div>' +
+
+          '<div class="c-row">' +
+            '<div class="c-label"><span>Of every 100 enquiries, how many do you win</span><span class="c-value" id="calc-win-v">20%</span></div>' +
+            '<input type="range" id="calc-win" min="5" max="50" step="1" value="20">' +
+          '</div>' +
+
+          '<div class="c-row">' +
+            '<div class="c-label"><span>How fast you reply now</span><span class="c-value" id="calc-spd-v">Next day</span></div>' +
+            '<input type="range" id="calc-spd" min="0" max="5" step="1" value="3">' +
+          '</div>' +
+
+          '<div class="c-out" id="calc-out">' +
+            '<div class="c-out-label">Lost to slow replies, a year</div>' +
+            '<div class="c-big" id="calc-big">&pound;0</div>' +
+            '<p class="c-note" id="calc-note"></p>' +
+          '</div>' +
+
+          '<p class="c-assume" id="calc-assume"></p>' +
+        '</div>';
+
+      var CALC_ASSUME_DEFAULT =
+        'Assumption: the share of winnable enquiries lost because someone replied first. ' +
+        'Under 2 minutes 1%, within the hour 2%, same day 5%, next day 9%, three days or more 15%. ' +
+        '<strong>Those percentages are ours, not a published figure.</strong> ' +
+        'Speed-to-lead research supports the direction, not the exact numbers.';
+
+      // At the bottom of the slider we stop guessing. This position is anchored in
+      // our own study instead of an invented percentage, which is exactly why it
+      // earns its place on the scale.
+      var CALC_ASSUME_NEVER =
+        'This one is not an assumption. <strong>Twenty of the 32 firms we tested never replied at all.</strong> ' +
+        'An enquiry nobody answers is lost in full, so the 40% here is us being cautious about how often ' +
+        '"sometimes" actually is.';
+
+      function initCalculator(answers) {
+        var root = document.getElementById('result-calc');
+        if (!root) return;
+        root.innerHTML = CALC_HTML;
+
+        var enq = document.getElementById('calc-enq');
+        var fee = document.getElementById('calc-fee');
+        var yrs = document.getElementById('calc-yrs');
+        var win = document.getElementById('calc-win');
+        var spd = document.getElementById('calc-spd');
+
+        if (answers) {
+          if (CALC_ENQ_FROM_Q1[answers.volume] != null) enq.value = CALC_ENQ_FROM_Q1[answers.volume];
+          if (CALC_SPEED_FROM_Q4[answers.speed] != null) spd.value = CALC_SPEED_FROM_Q4[answers.speed];
+        }
+
+        function gbp(n) { return '\u00a3' + Math.round(n).toLocaleString('en-GB'); }
+
+        function recalc() {
+          var e = Number(enq.value), f = Number(fee.value), y = Number(yrs.value);
+          var w = Number(win.value) / 100, s = Number(spd.value);
+          var ltv = f * y;
+
+          document.getElementById('calc-enq-v').textContent = e;
+          document.getElementById('calc-fee-v').textContent = gbp(f);
+          document.getElementById('calc-yrs-v').textContent = y + (y === 1 ? ' year' : ' years');
+          document.getElementById('calc-win-v').textContent = win.value + '%';
+          document.getElementById('calc-spd-v').textContent = CALC_SPEEDS[s];
+          document.getElementById('calc-ltv-note').textContent = 'So one client is worth ' + gbp(ltv) + ' to you.';
+          document.getElementById('calc-assume').innerHTML = (s === 5) ? CALC_ASSUME_NEVER : CALC_ASSUME_DEFAULT;
+
+          var clientsLost = e * 12 * w * CALC_LOSS[s];
+          var valueLost = Math.round(clientsLost * ltv / 100) * 100;
+
+          document.getElementById('calc-out').className = (s === 0) ? 'c-out good' : 'c-out';
+          document.getElementById('calc-big').textContent = gbp(valueLost);
+
+          var clientsTxt = clientsLost < 10
+            ? (Math.round(clientsLost * 10) / 10) + ' clients'
+            : Math.round(clientsLost) + ' clients';
+          var msg;
+
+          if (s === 0) {
+            // Floored at 1%, never zero. Even at two minutes the odd one gets away,
+            // and a calculator claiming perfection is the one nobody believes.
+            msg = 'About ' + clientsTxt + ' a year. That is as low as this gets, and it is the number the guarantee is on.';
+          } else {
+            msg = 'About ' + clientsTxt + ' a year, on your numbers. Drag the last slider up to under two minutes and watch it.';
+            if (valueLost < CALC_ANNUAL_COST) {
+              msg += ' Worth saying: that is less than the \u00a35,288 this costs in year one, so on these numbers it would not pay for itself.';
+            } else {
+              var ratio = valueLost / CALC_ANNUAL_COST;
+              msg += ' That is ' + (ratio < 10 ? (Math.round(ratio * 10) / 10) : Math.round(ratio)) +
+                     ' times the \u00a35,288 this costs in year one, and that is the dearest of the three ways to buy it.';
+            }
+          }
+          document.getElementById('calc-note').textContent = msg;
+        }
+
+        [enq, fee, yrs, win, spd].forEach(function (el) { el.addEventListener('input', recalc); });
+        recalc();
+      }
+
+      // Two engines, two price lists, so this is a builder rather than a constant.
+      //
+      // The founding terms ARE on the page as of 13 Aug 2026 (John's call). Earlier
+      // they were held back for the call on the grounds that a static page cannot
+      // retract them once the three places fill. That risk is real and unchanged:
+      // ⚠ when the third founding client signs, the founding block below must come
+      // off the page the same day or it becomes a lie.
+      function pricingBlock(o) {
+        return '<div class="pricing-block">' +
           '<div class="p-head">What it costs</div>' +
           '<div class="p-sub">Three payment options</div>' +
           // The promise sits ABOVE the numbers deliberately. Read first, it reframes
           // every figure underneath as conditional on the thing working.
-          '<p class="p-promise">Nothing is invoiced until it’s proved, setup included. ' +
+          '<p class="p-promise">Nothing is invoiced until it\u2019s proved, setup included. ' +
           'And any month containing a late reply is free.</p>' +
           '<div class="p-grid">' +
             '<div class="p-opt pick">' +
               '<div class="p-label">12-month term</div>' +
-              '<div class="p-amount">£450<span>per month</span></div>' +
+              '<div class="p-amount">' + o.term + '<span>per month</span></div>' +
               '<div class="p-detail">No setup fee</div>' +
             '</div>' +
             '<div class="p-opt">' +
               '<div class="p-label">No commitment</div>' +
-              '<div class="p-amount">£550<span>per month</span></div>' +
-              '<div class="p-detail">£500 setup</div>' +
+              '<div class="p-amount">' + o.rolling + '<span>per month</span></div>' +
+              '<div class="p-detail">' + o.setup + ' setup</div>' +
             '</div>' +
             '<div class="p-opt">' +
               '<div class="p-label">Paid up front</div>' +
-              '<div class="p-amount">£4,500<span>per year</span></div>' +
-              '<div class="p-detail">Saves £900</div>' +
+              '<div class="p-amount">' + o.annual + '<span>per year</span></div>' +
+              '<div class="p-detail">Saves ' + o.saves + '</div>' +
             '</div>' +
           '</div>' +
+          (o.after || '') +
         '</div>';
+      }
 
+      var PRICING_FIRST_REPLY = pricingBlock({
+        term: '\u00a3299', rolling: '\u00a3399', setup: '\u00a3500',
+        annual: '\u00a32,990', saves: '\u00a3598',
+        after:
+          '<p class="p-area">One practice per area. Yours isn\u2019t taken yet.</p>' +
+          '<div class="p-founding">' +
+            '<div class="p-founding-head">The first three practices pay less. Two places left.</div>' +
+            '<p>First month free, then \u00a3149 for months two and three, then full price.</p>' +
+            '<p>That\u2019s not a sale. I need three practices willing to put their name to the ' +
+            'result and let me publish the before and after. That\u2019s what the discount is ' +
+            'buying. If you\u2019d rather stay anonymous, that\u2019s fine, and it\u2019s \u00a3299.</p>' +
+          '</div>'
+      });
+
+      // No founding discount on the second engine, deliberately. _Offer mechanics: you
+      // should not discover a tier's fulfilment costs on a discounted client.
+      var PRICING_NOTHING_FALLS = pricingBlock({
+        term: '\u00a3649', rolling: '\u00a3849', setup: '\u00a3900',
+        annual: '\u00a36,490', saves: '\u00a31,298',
+        after:
+          '<p class="p-area">One practice per area. If the firm down the road has the same ' +
+          'thing answering the same \u201cbookkeeper near me\u201d enquiry at nine on a Sunday, ' +
+          'neither of you is ahead. So I only take one. Yours isn\u2019t taken yet.</p>'
+      });
+
+      // Three bands. Copy is John's, from Notes/quiz-results-copy.md (13 Aug 2026).
+      //
+      // Break-even figures below are computed from the calculator's own defaults so
+      // the sentence and the sliders can never drift apart: a client worth £2,500 a
+      // year held four years is £10,000 of lifetime value.
+      //   First Reply       £299 x 12 = £3,588/yr  ->  £10,000/£3,588 = 33.4 months
+      //   Nothing Falls     £649 x 12 = £7,788/yr  ->  £10,000/£7,788 = 15.4 months
+      // Both are rounded DOWN in the copy (30 months, 15 months). Rounding up would
+      // claim you need fewer saved clients than you really do, which is the one
+      // direction this page cannot afford to round.
       var RESULTS = {
+
+        // ── Band 2: enough enquiries, replying slowly. The engine this page sells. ──
         'strong-fit': {
           tone: '',
-          pricing: true,
+          pricing: PRICING_FIRST_REPLY,
+          calculator: true,
           heading: "You're exactly who this is built for.",
-          // '## ' prefix renders as a subheading. "What you'd have" is deliberately a
-          // sibling of the pricing block's "What it costs" — same weight, same voice.
+          // '## ' prefix renders as a subheading. An entry starting with '<' is passed
+          // through as raw HTML. Everything else becomes a paragraph.
           body: [
-            'Enough new enquiries for the difference to show up in your sales figures, and they arrive through channels we can cover.',
+            'Enough new enquiries for the difference to show up in your figures, and they arrive through channels we can cover.',
+            'The fastest of the 32 practices I tested took six minutes, in the middle of a working Tuesday, with someone sat at their desk. Yours would take under two, on a Sunday, while you’re peacefully relaxing.',
             'So here’s what happens next Sunday.',
             'It’s twenty past nine at night. Someone three streets from your office has just had a letter from HMRC and has spent an hour working out that their current bookkeeper isn’t up to it. They find four of you online. They fill in all four contact forms, because that’s what people do, and then they go to bed.',
             'Yours replies at twenty past nine. Not Monday. Not Tuesday afternoon. By name, answering the thing they actually asked, with a link to your diary.',
             'The other three reply on Monday, and by then it’s booked.',
+
             '## What you’d have',
-            'Your website form and your enquiry inbox wired into one system. It reads every new enquiry and replies in under two minutes, day or night, carrying your calendar link. Built, tested, handed over. You don’t need to touch it after that.',
-            'The fastest of the 32 firms we tested took six minutes, in the middle of a working Tuesday, with someone sat at their desk. Yours takes under two, on a Sunday, while you’re asleep.'
+            'Your website form and your enquiry inbox wired into one system. It reads every new enquiry and replies in under two minutes, day or night, by name, answering what they actually asked, carrying your calendar link.',
+            'It never quotes, never advises, never commits you to anything. And it says plainly that it’s an automatic first reply. Anything with an opinion in it still waits for you.',
+            'Every enquiry logged: what came in, what went back, and when.',
+            'And you stop wondering. There’s nothing sitting unanswered from Friday afternoon, because there can’t be.',
+
+            '## What it takes from you',
+            '- <strong>No new software.</strong>',
+            '- <strong>Nothing changes</strong> about how you or your team work.',
+            '- <strong>No long meetings.</strong> One email with access to your form and your inbox, and a short call, because I’d rather build this having spoken to you.',
+            'Send me access on a Monday and Tuesday’s enquiries get answered. The first you’ll properly notice is an appointment in your diary from someone who filled your form in at eleven the night before.',
+            'After that, it’s handled. On a Sunday, in the middle of January, while you’re away.',
+
+            '## What it’s worth',
+            'At £299 a month, it pays for itself if it saves you one client every two and a half years.',
+            'That’s the whole calculation: your fee, your retention, our price. No projections.'
           ],
           cta: 'Book a call',
-          foot: 'No pitch deck. Mostly me asking how enquiries reach you now, so that what we build fits around what you already use.'
+          // The "a copy is on its way, time it" line is NOT repeated here: #email-status
+          // directly above already says it, with the actual address filled in once the
+          // POST resolves. Saying it twice reads like a mail-merge fault.
+          foot: 'I’ll want to understand how enquiries reach you now, so the build fits how you already work.'
         },
+
+        // ── Band 3: enough enquiries, already fast. A different, larger engine. ──
+        // No calculator: this band's argument is not about speed, so a lost-revenue
+        // slider driven by reply time would undercut the point it just conceded.
         'already-fast': {
           tone: '',
-          // No price list: the engine is not what this firm would buy. The second
-          // engine has no locked terms yet (brain §3, still TBC), so this band offers
-          // a conversation and deliberately never a number.
-          pricing: false,
-          heading: "You're already ahead of every firm in this report.",
+          pricing: PRICING_NOTHING_FALLS,
+          calculator: false,
+          // NOT "the half most practices get right". The report on this same page found
+          // 20 of 32 never replied at all and a median of 49 minutes, so crediting most
+          // practices with the first reply contradicts our own evidence a screen above.
+          heading: "You reply fast. That's better than most firms do.",
           body: [
-            "Not one of the 32 we tested replied inside five minutes, and the typical wait was 49. If you're genuinely answering in minutes, speed isn't your problem and we're not going to pretend it is.",
-            'So the interesting question is what happens after the first reply. Writing the proposal. Onboarding the client. Chasing the paperwork. The admin that quietly fills a week and never shows up as a missed lead, because nothing was missed, it just took you all Thursday.',
-            'Firms already answering in minutes are usually where that work is worth the most, because there is a real flow of clients hitting it and you already know what automating something is worth. That is the conversation we would most like to have.'
+            // Carries the "half" framing the next line pays off, now that the heading
+            // no longer introduces it.
+            'But it’s only half the job. Here’s the half almost nobody does.',
+            'When I ran the test, I ignored the practices that answered me. No reply, no explanation, exactly what a real prospect does when they get busy or get three quotes and put the decision off.',
+            'Then I waited to see who’d chase.',
+            // Denominator is 12, not 32. Twenty of the thirty-two never replied at all,
+            // so they were never in a position to chase. 2 of 12 is both the honest
+            // figure and the stronger one: it is about firms that were already engaged.
+            'Twelve of the thirty-two replied to me at all. Of those twelve, two chased, and one of the two picked up the phone. The other ten answered once and let it go quiet.',
+
+            '## Where an enquiry actually dies',
+            'Not at the first reply. You’ve got that covered. It’s everywhere after.',
+            '<table><thead><tr><th>Where they go cold</th><th>What happens instead</th></tr></thead><tbody>' +
+              // Two, not five. This row describes what the system does, so it carries the
+              // claim. Five is contractual and belongs to the guarantee block lower down,
+              // where the reconciling line sits with it. _Offer mechanics §5.
+              '<tr><td>Enquiry lands out of hours</td><td>Real reply in under two minutes, day or night</td></tr>' +
+              '<tr><td>They read it and don’t book</td><td>Chased on day 2, day 5, day 12, then quarterly</td></tr>' +
+              '<tr><td>They book and forget</td><td>Text the day before and an hour before</td></tr>' +
+              '<tr><td>They don’t turn up</td><td>Another time offered, automatically</td></tr>' +
+              '<tr><td>They say yes, then go quiet</td><td>Letter, AML, bank feeds requested, then chased until they’re back</td></tr>' +
+            '</tbody></table>',
+            // Three parallel facts about the same sequence, so they read as a list.
+            // The table above already broke the page up; prose here put it straight back.
+            '- <strong>Eleven touches</strong> from first enquiry to completed onboarding. None of them need anyone to remember.',
+            // Leads with text, not email. Text is the part that differentiates this from
+            // an email sequence, so burying it behind "email throughout" gives away the
+            // most interesting thing in the sentence.
+            '- <strong>Text at the two points where it matters most</strong>, the nudge when an enquiry goes quiet and the reminders before a call. Email throughout the rest.',
+            '- <strong>Every one of them logged</strong>: what went out, when, and what came back.',
+
+            '## What it takes from you',
+            '- <strong>No new software.</strong>',
+            '- <strong>Nothing changes</strong> about how you or your team work.',
+            '- <strong>No long meetings.</strong> One email with access to your form and your inbox, and a short call, because I’d rather build this having spoken to you.',
+            'Send me access on a Monday and Tuesday’s enquiries get answered. The rest of the sequence follows inside two weeks.',
+            'After that, nobody in your practice has to decide whether it’s too soon to email someone again.',
+
+            '## What it’s worth',
+            'At £649 a month it pays for itself if it saves you one client every 15 months.',
+            'Between the enquiries that go quiet, the calls nobody rebooks, and the clients sitting in limbo waiting to send their AML documents, that’s not a big number.',
+
+            // This band's guarantee is genuinely different from the one in the offer
+            // section above, so it has to be restated rather than assumed.
+            '## You don’t pay until we’ve proved it',
+            // Prose in, terms as bullets, prose out. The terms are the part a reader
+            // scans rather than reads, and six paragraphs of them ran together into a
+            // wall immediately before the price.
+            'Nothing up front. Nothing at all until it has answered 10 new enquiries in a row in under five minutes.',
+            // Must stay directly under the line above: that is where five first appears
+            // as a promise, and an unexplained gap between two and five reads as a hedge.
+            // Kept as its own paragraph so it lands rather than getting lost in a bullet.
+            'It usually replies in under two minutes. My guarantee is five.',
+            '- <strong>60 days to get there.</strong> If it can’t, we switch it off and walk away. No charge, no argument, and you keep the transcripts.',
+            '- <strong>Then it keeps running, and it covers the follow-up too.</strong> Any month where an enquiry drops out of the sequence is free. Someone should have been chased on day 5 and wasn’t? That month costs you nothing.',
+            '- <strong>The form and inbox we connect</strong>, not phone calls, and not the things that aren’t enquiries. We’ll agree what counts before anything goes live.',
+            // Deliberately not bulleted. These are the reasons the guarantee is offerable
+            // at all, and they only work in his voice.
+            'I can offer this because it’s all logged. Either an enquiry got chased on schedule or it didn’t, and you can look any time you like.',
+            'It’s also a promise I don’t think your practice could make about itself. Not because of anyone in it. Because people have other things to do, and this doesn’t.'
           ],
           cta: 'Book a call',
-          foot: "Not about the guarantee on this page, you don't need it. About everything that happens after the reply."
+          // Same rule as strong-fit: #email-status owns everything about the email.
+          foot: 'I’ll want to understand what happens to an enquiry now, so the build fits how you already work.'
         },
-        'phone-heavy': {
-          tone: 'warm',
-          pricing: true,
-          heading: 'A partial fit, and here is the part that is not.',
-          body: [
-            'The two-minute guarantee covers enquiries arriving through your website form and your enquiry inbox, because those are the only channels that route into infrastructure we control. Phone is out of scope today.',
-            "So if most of yours come by phone, the guarantee wouldn't cover most of your leads. It would still cover the rest, and in our experience the written channels are bigger than owners expect, but that's worth working out on a call rather than after you've signed something.",
-            'The other half of a phone enquiry is what happens once you put the handset down. The proposal that needs writing, the follow-up that needs sending, the quote that goes quiet because nobody chased it. We can build that, and it works whether the enquiry arrived by phone or not.'
-          ],
-          cta: 'Book a call',
-          foot: "Worth a call either way. We'd rather tell you what the guarantee does and doesn't cover before you sign something, not after."
-        },
+
+        // ── Band 1: not enough enquiries. A real no. ──
+        // No price list. The "no" has to stay a real no, or the button underneath
+        // turns the honesty into a bait. The calculator IS shown, because four
+        // questions cannot tell a firm what its own inbox does and the sliders can.
         'not-yet': {
           tone: 'cool',
-          // Still no price list. The "no" on THIS engine has to stay a real no, or the
-          // button underneath turns the honesty into a bait. The call is offered for a
-          // different thing entirely, and the copy has to say so plainly.
-          pricing: false,
-          heading: "Not yet, and we'd rather say so.",
+          pricing: null,
+          calculator: true,
+          heading: 'On these numbers, probably not.',
+          // The argument here is PROVABILITY, not arithmetic. Do not revert this to
+          // "it won't pay for itself": at £10,000 of lifetime value the sums clear the
+          // price even at four enquiries a month, so the calculator immediately below
+          // would contradict the sentence in front of the reader. The real reason we
+          // decline is _Offer mechanics §4: below eight a month the day-30 five-clean
+          // floor and the day-60 test start turning on luck rather than on whether the
+          // system works, so we cannot prove it inside the window we promise.
           body: [
-            "Below roughly eight new enquiries a month there isn't enough leaking away for this to pay for itself. We'd be selling you something you don't need, and that's the one thing we've decided not to do.",
-            "At that volume the problem is usually getting more enquiries rather than answering them faster. Fix that first. If the number climbs, come back. The offer will still be here.",
-            "That's this engine. It isn't the only thing we build. If the real drag on your week is somewhere else, writing proposals, onboarding a new client, chasing paperwork that should chase itself, that's a different conversation and a genuinely useful one."
+            'It costs £299 a month, and on the numbers you’ve given me the sums probably do work. That isn’t the problem.',
+            'The problem is proving it. Nothing is invoiced here until the system has answered 10 new enquiries in a row inside the window, and below roughly eight enquiries a month that test stops measuring whether it works and starts measuring whether you had a busy fortnight.',
+            'And a return that rests on one or two saved clients a year is a bet, not a system. One quiet quarter and you’re sat paying for something you can’t see working. I’d rather say that now than watch you cancel in March.',
+
+            '## But those were estimates',
+            'Four questions can only do so much, and most people underestimate what actually lands in the inbox. The ones that come in at half nine on a Sunday tend not to be the ones you remember.',
+            'So here’s the calculation, with your enquiry volume and reply speed already in it. Drag them until they look like your firm.'
+          ],
+          bodyAfterCalc: [
+            'If that number looks big to you, it probably is. It just needs <strong>enough enquiries for it to be reliable rather than lucky</strong>, and eight a month is about where that starts. If you’re closer to that than the quiz suggested, it’s worth fifteen minutes.',
+            // Per the 6 Aug router decision: this band gets a booking button under an
+            // honest "don't buy this", which reads as a bait unless the copy separates
+            // the two. Do not soften or remove. The engine stays declined; the call is
+            // offered for a different problem.
+            'And to be clear, we’ve told you not to buy the thing this page is selling, and that stands. But this engine isn’t the only thing we build. If the real drag on your week is somewhere else, writing proposals, onboarding a new client, chasing paperwork that should chase itself, that’s a different conversation and a genuinely useful one.',
+            'Either way I’ll tell you straight. I’d rather turn one down now than have an unhappy client in March.'
           ],
           cta: 'Book a call',
-          foot: 'To be clear: we\'ve told you not to buy the thing this page is selling, and that stands. The call is about something else. If you\'d rather just say what\'s eating your week, <a href="mailto:john@jointhebots.com">john@jointhebots.com</a> is quicker.'
+          // Deliberately does NOT point at the report. In quiz-results-copy.md this band
+          // was drafted as a standalone page, where linking to the full report made
+          // sense. Here they have just scrolled through it to reach the quiz, so
+          // recommending it reads as though we have lost track of where they are.
+          //
+          // The mailto stays: this is the one band we have told not to buy, so a reply
+          // is a lower bar than a booking and more likely to be the honest next step.
+          foot: 'If you’d rather just say what’s eating your week, <a href="mailto:john@jointhebots.com">john@jointhebots.com</a> is quicker than a call.'
         }
       };
 
@@ -1200,7 +1702,7 @@
           }
 
           var band = bandFor(answers);
-          renderResult(band);
+          renderResult(band, answers);
 
           // Send afterwards. The result is already on screen, so this never blocks —
           // but the page has just promised an email inside two minutes, so unlike the
@@ -1257,7 +1759,7 @@
         el.hidden = false;
       }
 
-      function renderResult(band) {
+      function renderResult(band, answers) {
         var cfg = RESULTS[band];
         var card = document.getElementById('result-card');
         card.className = 'result-card' + (cfg.tone ? ' ' + cfg.tone : '');
@@ -1265,13 +1767,43 @@
 
         document.getElementById('result-heading').innerHTML = cfg.heading;
 
-        document.getElementById('result-body').innerHTML = cfg.body.map(function (p) {
-          return p.indexOf('## ') === 0
-            ? '<h4>' + p.slice(3) + '</h4>'
-            : '<p>' + p + '</p>';
-        }).join('');
+        // Four conventions in a body array:
+        //   '## '  a subheading
+        //   '- '   a bullet. Consecutive bullets are collected into one <ul>, so the
+        //          copy stays a flat array and the markup still nests correctly.
+        //   '<'    raw HTML, passed straight through (the cold-spots table)
+        //   else   a paragraph
+        function renderBody(parts) {
+          var out = [], bullets = [];
+          function flush() {
+            if (!bullets.length) { return; }
+            out.push('<ul class="r-list"><li>' + bullets.join('</li><li>') + '</li></ul>');
+            bullets = [];
+          }
+          (parts || []).forEach(function (p) {
+            if (p.indexOf('- ') === 0) { bullets.push(p.slice(2)); return; }
+            flush();
+            if (p.indexOf('## ') === 0) { out.push('<h4>' + p.slice(3) + '</h4>'); }
+            else if (p.charAt(0) === '<') { out.push(p); }
+            else { out.push('<p>' + p + '</p>'); }
+          });
+          flush();
+          return out.join('');
+        }
 
-        document.getElementById('result-pricing').innerHTML = cfg.pricing ? PRICING_HTML : '';
+        document.getElementById('result-body').innerHTML = renderBody(cfg.body);
+
+        if (cfg.calculator) {
+          initCalculator(answers);
+        } else {
+          document.getElementById('result-calc').innerHTML = '';
+        }
+
+        document.getElementById('result-calc-after').innerHTML = renderBody(cfg.bodyAfterCalc);
+
+        // cfg.pricing is the price-list HTML for this band, or null where we are not
+        // selling. Two engines means two different lists, so this is no longer a flag.
+        document.getElementById('result-pricing').innerHTML = cfg.pricing || '';
 
         document.getElementById('result-cta').innerHTML = cfg.cta
           ? '<a href="' + BOOKING_HREF + '" class="btn-cta">' + cfg.cta + '</a>'
