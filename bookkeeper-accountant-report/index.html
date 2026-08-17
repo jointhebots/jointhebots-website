@@ -1884,7 +1884,12 @@
         .then(function (res) { return res.json(); })
         .then(function (data) {
           if (!data || !data.found) return;
-          var firmName = data.prospect && data.prospect.business_name;
+          // firm_short for preference: "Momentum Taxation And Accountancy" reads like
+          // a person talking, "Momentum Taxation And Accountancy LTD" reads like a mail
+          // merge. Falls back to the full name so an older BKR03 response, or a row with
+          // no firm_short, still personalises rather than silently doing nothing.
+          var p = data.prospect || {};
+          var firmName = p.firm_short || p.business_name;
           if (firmName) personalise(firmName);
         })
         .catch(function (err) {
