@@ -18,8 +18,36 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-robot.png">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
-<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-K60YLD9QRL");</script>
+    <!-- Google tag + Consent Mode v2. Order matters: defaults are set to denied
+         BEFORE gtag.js loads, or measurement happens before the visitor chooses.
+         The banner itself lives in /consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        try {
+            if (localStorage.getItem('jtb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <script defer src="/consent.js"></script>
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{--teal:#005B5C;--teal-hover:#004445;--charcoal:#22252A;--off-white:#F5F5F7;--orange:#F28C35;--orange-hover:#D97A2A;--green:#3BAF7A;--mid-gray:#6C727F;--light-gray:#E1E4EA;--teal-tint:#E6F3F3;--white:#FFFFFF}
@@ -251,7 +279,9 @@ footer a{color:rgba(255,255,255,0.5)}
 <p class="no-obligation">Typically 30–45 minutes.</p>
 </div>
 </div></section>
-<footer><div class="container"><p>© 2026 Join The Bots. All rights reserved. · <a href="/">jointhebots.com</a></p></div></footer>
+<footer><div class="container"></div><p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; Minster House, 23 Flemingate, Beverley, HU17 0LL &nbsp;|&nbsp; +44 7550 018590</p>
+<p class="attribution"><a href="/privacy/">Privacy</a> &nbsp;|&nbsp; <a href="/terms/">Terms</a> &nbsp;|&nbsp; <a href="#" data-cookie-settings>Cookie settings</a></p>
+</footer>
 <script async src="https://tally.so/widgets/embed.js"></script>
 <script>
 function toggleObjection(btn){

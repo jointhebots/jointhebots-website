@@ -11,14 +11,36 @@
     <link rel="stylesheet" href="../../styles.css">
     <link rel="stylesheet" href="../articles.css">
     <link rel="icon" type="image/png" sizes="192x192" href="/images/favicon-robot.png">
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <!-- Google tag + Consent Mode v2. Order matters: defaults are set to denied
+         BEFORE gtag.js loads, or measurement happens before the visitor chooses.
+         The banner itself lives in /consent.js. -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        try {
+            if (localStorage.getItem('jtb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
         gtag('js', new Date());
         gtag('config', 'G-K60YLD9QRL');
     </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
+    <script defer src="/consent.js"></script>
 </head>
 <body>
     <header>
@@ -127,10 +149,12 @@
     <footer>
         <div class="container">
             <p class="footer-cta">The businesses getting ahead aren't the ones with the biggest teams. They're the ones where people, systems, and automation work in perfect harmony.</p>
-            <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; 81 Lairgate, Beverley, HU18 8HN &nbsp;|&nbsp; +44 7550 018590</p>
-            <p class="attribution">Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
+            
+            
         </div>
-    </footer>
+    <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; Minster House, 23 Flemingate, Beverley, HU17 0LL &nbsp;|&nbsp; +44 7550 018590</p>
+<p class="attribution"><a href="/privacy/">Privacy</a> &nbsp;|&nbsp; <a href="/terms/">Terms</a> &nbsp;|&nbsp; <a href="#" data-cookie-settings>Cookie settings</a> &nbsp;|&nbsp; Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
+</footer>
 
     <script async src="https://tally.so/widgets/embed.js"></script>
 </body>
