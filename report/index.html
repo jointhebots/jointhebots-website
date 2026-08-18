@@ -1110,7 +1110,7 @@
         document.querySelectorAll('.state').forEach(function (el) { el.classList.remove('active'); });
         var el = document.getElementById('state-' + id);
         if (el) el.classList.add('active');
-      
+
         // Soft-404 guard: these URLs return HTTP 200 (the page is served by a
         // rewrite), so tell crawlers not to index a not-found result.
         if (id === 'notfound' || id === 'notlive') {
