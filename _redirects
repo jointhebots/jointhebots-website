@@ -10,4 +10,9 @@
 /bookkeeper-accountant-report/*  /bookkeeper-accountant-report/index.html  200
 /free-mapping-call          /book-call/  301!
 /free-mapping-call/*        /book-call/:splat  301!
-/*  /results/index.html  200
+# Bare page codes: jointhebots.com/<page-code> serves the results page,
+# which reads the code from the last path segment. Single segment only -
+# anything deeper is not a page code and must fall through to a real 404.
+/results/*  /results/index.html  200
+/:code      /results/index.html  200
+/*          /404.html            404
