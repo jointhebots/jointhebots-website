@@ -796,6 +796,17 @@
       function showState(id) {
         document.querySelectorAll('.state').forEach(function (el) { el.classList.remove('active'); });
         document.getElementById('state-' + id).classList.add('active');
+
+        // Soft-404 guard: these URLs return HTTP 200 (the page is served by a
+        // rewrite), so tell crawlers not to index a not-found result.
+        if (id === 'notfound' || id === 'notlive') {
+          if (!document.querySelector('meta[name="robots"]')) {
+            var m = document.createElement('meta');
+            m.name = 'robots';
+            m.content = 'noindex, nofollow';
+            document.head.appendChild(m);
+          }
+        }
       }
 
       // ---- Data store ----
