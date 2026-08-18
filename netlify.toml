@@ -1,0 +1,50 @@
+# Configuration for the sitemap plugin, which is installed via the Netlify UI.
+# The plugin has no UI settings: everything below is the only place its
+# behaviour can be changed.
+#
+# It walks the publish directory for *.html and lists every file it finds, so
+# anything added to this repo is advertised to Google by default. The paths
+# below are the files that should not be.
+#
+# `exclude` entries are matched against FILE PATHS relative to the build root
+# (they become negative globby patterns), not against the public URLs. So they
+# end in .html even though the plugin emits pretty URLs like /lp-copy.
+#
+# Each file is listed twice, as a plain relative path and as a **/ glob,
+# because the publish directory is configured in the UI rather than here. If it
+# is ever changed to a subdirectory the relative forms would stop matching, and
+# the globs are the belt-and-braces.
+
+[[plugins]]
+package = "@netlify/plugin-sitemap"
+
+  [plugins.inputs]
+  exclude = [
+    # Error page - not content, and it is noindex anyway.
+    "404.html",
+    "**/404.html",
+
+    # Landing-page pipeline approval screens. Internal tooling.
+    "lp-copy.html",
+    "**/lp-copy.html",
+    "lp-image.html",
+    "**/lp-image.html",
+
+    # Templates and drafts, not finished pages.
+    "articles/_template.html",
+    "**/_template.html",
+    "automation-for/manufacturing/index_with_grant.html",
+    "**/index_with_grant.html",
+
+    # Disallowed in robots.txt - listing them here contradicts that.
+    "results/index.html",
+    "**/results/index.html",
+    "scorecard-result/index.html",
+    "**/scorecard-result/index.html",
+    "bookkeeper-accountant-report/index.html",
+    "**/bookkeeper-accountant-report/index.html",
+
+    # Template shell that renders a not-found state when visited bare.
+    "report/index.html",
+    "**/report/index.html",
+  ]
