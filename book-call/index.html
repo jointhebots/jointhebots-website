@@ -182,6 +182,35 @@
         @media (max-width: 680px) {
         }
     </style>
+    <!-- Google tag + Consent Mode v2. Order matters: defaults are set to denied
+         BEFORE gtag.js loads, or measurement happens before the visitor chooses.
+         The banner itself lives in /consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        try {
+            if (localStorage.getItem('jtb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
     <script defer src="/consent.js"></script>
 </head>
 <body>
@@ -234,6 +263,32 @@
     <p class="copyright">&copy; 2026 Join The Bots. All rights reserved. &nbsp;|&nbsp; Join The Bots is a trading name of John Cant &nbsp;|&nbsp; Minster House, 23 Flemingate, Beverley, HU17 0LL &nbsp;|&nbsp; +44 7550 018590</p>
 <p class="attribution"><a href="/privacy/">Privacy</a> &nbsp;|&nbsp; <a href="/terms/">Terms</a> &nbsp;|&nbsp; <a href="#" data-cookie-settings>Cookie settings</a> &nbsp;|&nbsp; Illustrations by <a href="https://storyset.com" target="_blank" rel="noopener">Storyset</a></p>
 </footer>
+
+    <!-- ── Soft booking conversion ──
+         The calendar above is a cross-origin Google appointment-schedule iframe. It
+         exposes no completion event and offers no redirect, so an actual booking is
+         not observable from this page. This event therefore means "reached the
+         booking page", NOT "booked one". Mark it as a Key Event in GA4 and import it
+         to Google Ads on that understanding: it will over-count, and the ratio of
+         page views to real bookings has to come from the calendar itself.
+
+         The ref and utm values are read off the URL because the report pages stamp
+         them onto every booking link. GA4 collects utm_* into session dimensions on
+         its own; repeating them as event parameters is what makes them readable on
+         this single event without building a separate report. -->
+    <script>
+        (function () {
+            if (typeof window.gtag !== 'function') { return; }
+            var q = new URLSearchParams(window.location.search);
+            window.gtag('event', 'booking_page_view', {
+                ref: q.get('ref') || '(none)',
+                source: q.get('utm_source') || '(direct)',
+                campaign: q.get('utm_campaign') || '(none)',
+                placement: q.get('utm_content') || '(none)',
+                band: q.get('utm_term') || '(none)'
+            });
+        })();
+    </script>
 
 </body>
 </html>

@@ -536,6 +536,35 @@
       margin-left: 34px;
     }
   </style>
+    <!-- Google tag + Consent Mode v2. Order matters: defaults are set to denied
+         BEFORE gtag.js loads, or measurement happens before the visitor chooses.
+         The banner itself lives in /consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        try {
+            if (localStorage.getItem('jtb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
     <script defer src="/consent.js"></script>
 </head>
 <body>
