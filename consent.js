@@ -25,6 +25,11 @@
   var KEY = 'jtb-consent';          // 'granted' | 'denied'
   var SIGNALS = ['ad_storage', 'ad_user_data', 'ad_personalization', 'analytics_storage'];
 
+  // ── Meta pixel ──
+  // The single switch. Empty means nothing is ever requested from Meta, anywhere on
+  // the site. Put the pixel ID here to turn retargeting on.
+  var META_PIXEL_ID = '1386790053557932';
+
   function read() {
     try { return localStorage.getItem(KEY); } catch (e) { return null; }
   }
@@ -39,6 +44,43 @@
     }
     if (typeof window.gtag === 'function') {
       window.gtag('consent', 'update', payload);
+    }
+    if (granted) { loadMeta(); }
+  }
+
+  var metaLoaded = false;
+
+  // Loads on every page, deliberately. Scoping it to the report pages was the first
+  // instinct, but Meta will not deliver to an audience below roughly 100 matched
+  // people and the bookkeepers list is 120 prospects in total — a report-pages-only
+  // pixel would take a very long time to become usable. Collecting from all traffic
+  // fills it faster, and audiences are still built from URL rules on Meta's side, so
+  // "read a report" stays separable from "read an article".
+  //
+  // Called from apply() on a fresh Accept, and from init() when the choice is already
+  // stored. Never on refusal, so nothing is requested from Meta at all in that case.
+  function loadMeta() {
+    if (metaLoaded || !META_PIXEL_ID) { return; }
+    metaLoaded = true;
+
+    /* Meta's standard base snippet, unmodified apart from formatting. */
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+      s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
+    }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
+
+    window.fbq('init', META_PIXEL_ID);
+    window.fbq('track', 'PageView');
+
+    // Named for what it is. Meta's standard `Schedule` event means a booking was
+    // made, and this fires on arrival at the booking page, which is not the same
+    // thing — see the note in /book-call/index.html.
+    if (window.location.pathname.indexOf('/book-call/') === 0) {
+      window.fbq('trackCustom', 'BookingPageView');
     }
   }
 
@@ -110,6 +152,10 @@
     for (var i = 0; i < links.length; i++) {
       links[i].addEventListener('click', function (e) { e.preventDefault(); show(); });
     }
+    // A choice made on an earlier visit does not pass through apply(), so the pixel
+    // has to be loaded here too or it would only ever fire on the visit where the
+    // banner was clicked.
+    if (read() === 'granted') { loadMeta(); }
     if (read() === null) { show(); }
   }
 

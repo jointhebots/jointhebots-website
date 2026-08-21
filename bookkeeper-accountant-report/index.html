@@ -821,6 +821,35 @@
       .quiz-card, .result-card { padding: 22px 16px; }
     }
   </style>
+    <!-- Google tag + Consent Mode v2. Order matters: defaults are set to denied
+         BEFORE gtag.js loads, or measurement happens before the visitor chooses.
+         The banner itself lives in /consent.js. -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('consent', 'default', {
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied',
+            'analytics_storage': 'denied',
+            'functionality_storage': 'granted',
+            'security_storage': 'granted',
+            'wait_for_update': 500
+        });
+        try {
+            if (localStorage.getItem('jtb-consent') === 'granted') {
+                gtag('consent', 'update', {
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted',
+                    'analytics_storage': 'granted'
+                });
+            }
+        } catch (e) {}
+        gtag('js', new Date());
+        gtag('config', 'G-K60YLD9QRL');
+    </script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K60YLD9QRL"></script>
     <script defer src="/consent.js"></script>
 </head>
 <body>
@@ -1173,7 +1202,7 @@
           <p class="privacy-note">We use it to follow up on this and nothing else. No list, no spam, and one reply gets your details deleted.</p>
         </form>
 
-        <p class="secondary-link">Already know you want to talk? <a href="/book-call/" data-booking>Book a call</a>.</p>
+        <p class="secondary-link">Already know you want to talk? <a href="/book-call/" data-booking="secondary-link">Book a call</a>.</p>
       </div>
 
       <!-- Result renders here, replacing the quiz -->
@@ -1241,12 +1270,54 @@
         ? parts[1]
         : null;
 
+      // ─── Measurement ───
+      // gtag lives in <head> under Consent Mode v2, so anything fired here is already
+      // held or dropped according to the visitor's cookie choice — there is nothing
+      // extra to gate. The guard is for gtag.js being blocked outright by an extension
+      // or a network filter, which on a page like this is common enough to expect.
+      function track(name, params) {
+        if (typeof window.gtag !== 'function') { return; }
+        var payload = params || {};
+        payload.slug = slug || '(none)';
+        window.gtag('event', name, payload);
+      }
+
+      // Distinct from the automatic page_view because it carries the slug, which is
+      // what turns "someone read a report" into "this firm read theirs".
+      track('report_view');
+
+      // Delegated, so it covers the quiz-result CTA too — that button does not exist
+      // in the DOM until a result is rendered.
+      document.addEventListener('click', function (e) {
+        var a = e.target && e.target.closest ? e.target.closest('a[href^="/book-call/"]') : null;
+        if (!a) { return; }
+        track('booking_click', { placement: a.getAttribute('data-booking') || 'quiz-result' });
+      });
+
       // ─── Booking links ───
-      // The slug comes from the URL, not from the webhook, so ?ref= can be stamped on
-      // every booking link straight away — it does not wait for (or depend on) BKR03.
-      var BOOKING_HREF = '/book-call/';
+      // Every booking link carries the slug as ?ref=, plus UTMs so GA4 attributes the
+      // /book-call/ session to this report rather than filing it under direct traffic.
+      // The slug comes from the URL, not from the webhook, so this runs on load — it
+      // does not wait for (or depend on) BKR03.
+      //
+      // utm_content separates the two CTAs. The standing "already know you want to
+      // talk" link and the one revealed at the end of the quiz are read by people at
+      // very different points, and pooling them would hide which one actually works.
+      // utm_term carries the quiz band where there is one, so the same comparison can
+      // be made between bands.
+      function bookingHref(placement, band) {
+        var params = [];
+        if (slug) { params.push('ref=' + encodeURIComponent(slug)); }
+        params.push('utm_source=bkr-report');
+        params.push('utm_medium=referral');
+        params.push('utm_campaign=bookkeepers');
+        params.push('utm_content=' + encodeURIComponent(placement));
+        if (band) { params.push('utm_term=' + encodeURIComponent(band)); }
+        return '/book-call/?' + params.join('&');
+      }
+
       Array.prototype.forEach.call(document.querySelectorAll('[data-booking]'), function (a) {
-        a.setAttribute('href', BOOKING_HREF);
+        a.setAttribute('href', bookingHref(a.getAttribute('data-booking') || 'secondary-link'));
       });
 
       // ─── Qualify quiz ───
@@ -1666,6 +1737,15 @@
 
       var form = document.getElementById('qualify-form');
       if (form) {
+        // One-shot, on the first answer given. Without it quiz_complete has no
+        // denominator and a drop-off looks identical to nobody starting.
+        var quizStarted = false;
+        form.addEventListener('change', function () {
+          if (quizStarted) { return; }
+          quizStarted = true;
+          track('quiz_start');
+        });
+
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           var errorEl = document.getElementById('quiz-error');
@@ -1707,6 +1787,7 @@
 
           var band = bandFor(answers);
           renderResult(band, answers);
+          track('quiz_complete', { band: band, volume: answers.volume, speed: answers.speed });
 
           // Send afterwards. The result is already on screen, so this never blocks —
           // but the page has just promised an email inside two minutes, so unlike the
@@ -1822,7 +1903,7 @@
         document.getElementById('result-pricing').innerHTML = cfg.pricing || '';
 
         document.getElementById('result-cta').innerHTML = cfg.cta
-          ? '<a href="' + BOOKING_HREF + '" class="btn-cta">' + cfg.cta + '</a>'
+          ? '<a href="' + bookingHref('quiz-result', band) + '" class="btn-cta">' + cfg.cta + '</a>'
           : '';
 
         document.getElementById('result-foot').innerHTML = cfg.foot;
@@ -1910,8 +1991,8 @@
         if (heading) {
           heading.textContent = 'See if ' + firmName + ' is a fit';
         }
-        // Booking links already carry ?ref= — stamped from the URL slug on load,
-        // so attribution doesn't depend on this webhook answering.
+        // Booking links already carry ?ref= and their UTMs — stamped from the URL
+        // slug on load, so attribution doesn't depend on this webhook answering.
       }
 
       function escapeHtml(s) {
