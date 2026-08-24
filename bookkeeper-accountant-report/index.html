@@ -1088,7 +1088,7 @@
     </article>
 
     <!-- ───────── THE OFFER + GUARANTEE ───────── -->
-    <section class="offer">
+    <section class="offer" id="offer">
       <h2>Six minutes was the fastest anyone managed.<br>You could be answering in under two.</h2>
 
       <!-- Byline. The section is written first person from John, so the face goes at the
@@ -1330,6 +1330,106 @@
         { name: 'owner',   label: 'who answers them now' },
         { name: 'speed',   label: 'how long a first reply takes' }
       ];
+
+      // ───────── FUNNEL INSTRUMENTATION ─────────
+      //
+      // Extends the measurement block above. That one answers "did this firm open their
+      // report" and "did anyone click through to book". These answer what happened in
+      // between, which is the part that was invisible: a visit with no submission could
+      // equally mean they bounced off the message or started the quiz and gave up, and
+      // those need opposite fixes.
+      //
+      // Uses the existing track(), which already stamps `slug` on every event. Do not
+      // add a second one.
+      //
+      // ⚠ Scroll depth here is CUSTOM. GA4's built-in Enhanced Measurement `scroll`
+      // event fires once, at 90%, and gives no 25/50/75. The quarter marks need either
+      // GTM's scroll trigger or this, and there is no GTM on this site, only gtag.js.
+      //
+      // ⚠ Consent shapes what you get back. analytics_storage defaults to denied, so a
+      // visitor who ignores or rejects the banner still produces consent-signalled
+      // cookieless pings: event COUNTS are real, but GA4 cannot stitch them into one
+      // person's journey. Read this as counts per step, not as individuals.
+      (function instrument() {
+        // - Scroll depth, plus reaching the pitch -
+        //
+        // Both hang off one scroll handler rather than an IntersectionObserver. IO was
+        // the first instinct and it is the wrong tool here: its failure mode is that no
+        // event ever arrives and nothing tells you, which is exactly the blindness this
+        // instrumentation exists to remove. A scroll comparison can be reasoned about
+        // and tested. Note also that IO thresholds are a fraction of the ELEMENT, so on
+        // a section taller than the viewport anything above 0 can never fire at all.
+        //
+        // "Reached the offer" needs its own event because scroll percentage cannot
+        // answer it. The report is most of the page, so 50% depth and "got to the
+        // pitch" are different questions.
+        var marks = [25, 50, 75, 100], hit = {}, offerSeen = false;
+        var offer = document.getElementById('offer');
+
+        function onScroll() {
+          var doc = document.documentElement;
+          var max = doc.scrollHeight - window.innerHeight;
+          if (max > 0) {
+            var pct = Math.round((window.scrollY / max) * 100);
+            for (var i = 0; i < marks.length; i++) {
+              var m = marks[i];
+              if (pct >= m && !hit[m]) {
+                hit[m] = true;
+                track('scroll_depth', { percent_scrolled: m });
+              }
+            }
+          }
+          if (!offerSeen && offer && offer.getBoundingClientRect().top < window.innerHeight) {
+            offerSeen = true;
+            track('offer_view');
+          }
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        // Run once on load: on a short page or a tall window the offer can already be
+        // in view without a scroll event ever firing.
+        onScroll();
+
+        // ── Quiz engagement ──
+        var form = document.getElementById('qualify-form');
+        if (!form) { return; }
+        var answered = {};
+
+        var quizStarted = false;
+        form.addEventListener('change', function (e) {
+          var n = e.target && e.target.name;
+          if (!n) { return; }
+          // quiz_start lives here rather than in its own listener. Two change handlers
+          // on the same form fire in registration order, which put quiz_progress before
+          // quiz_start and made the funnel read backwards.
+          if (!quizStarted) {
+            quizStarted = true;
+            track('quiz_start');
+          }
+          // Only count each question once, so changing an answer does not inflate it.
+          if (!answered[n]) {
+            answered[n] = true;
+            var order = 0;
+            for (var i = 0; i < QUESTIONS.length; i++) {
+              if (QUESTIONS[i].name === n) { order = i + 1; }
+            }
+            track('quiz_progress', {
+              question_name: n,
+              question_number: order,
+              questions_answered: Object.keys(answered).length
+            });
+          }
+        });
+
+        // The email field is the last thing between a finished quiz and a result, so
+        // it gets its own step rather than hiding inside quiz_progress.
+        var email = document.getElementById('quiz-email');
+        if (email) {
+          email.addEventListener('focus', function once() {
+            track('quiz_email_focus');
+            email.removeEventListener('focus', once);
+          });
+        }
+      })();
 
       var LABELS = {
         volume:  { 'under-5': 'Fewer than 5', '5-10': '5 to 10', '11-20': '11 to 20', 'over-20': 'More than 20' },
@@ -1737,15 +1837,6 @@
 
       var form = document.getElementById('qualify-form');
       if (form) {
-        // One-shot, on the first answer given. Without it quiz_complete has no
-        // denominator and a drop-off looks identical to nobody starting.
-        var quizStarted = false;
-        form.addEventListener('change', function () {
-          if (quizStarted) { return; }
-          quizStarted = true;
-          track('quiz_start');
-        });
-
         form.addEventListener('submit', function (e) {
           e.preventDefault();
           var errorEl = document.getElementById('quiz-error');
