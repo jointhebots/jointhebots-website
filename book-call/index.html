@@ -272,20 +272,36 @@
          to Google Ads on that understanding: it will over-count, and the ratio of
          page views to real bookings has to come from the calendar itself.
 
-         The ref and utm values are read off the URL because the report pages stamp
-         them onto every booking link. GA4 collects utm_* into session dimensions on
-         its own; repeating them as event parameters is what makes them readable on
-         this single event without building a separate report. -->
+         The ref and campaign values are read off the URL because the report pages
+         stamp them onto every booking link. GA4 collects utm_* into session dimensions
+         on its own; repeating them as event parameters is what makes them readable on
+         this single event without building a separate report.
+
+         ⚠ Two sets of names are read, on purpose, and both are needed.
+
+         INTERNAL links (the report pages) send from / place / band. They deliberately
+         do NOT use utm_, because /book-call/ is on the same domain and GA4 restarts
+         the session whenever it sees a campaign change. Tagging an internal link with
+         utm_ split one visit into two sessions and broke any funnel joining the report
+         page to this one.
+
+         EXTERNAL links (Google Ads, anything off-site) send utm_ and should: that is
+         what UTMs are for, and a new session is correct there.
+
+         So each value takes the internal name first, then the UTM, then a default. -->
     <script>
         (function () {
             if (typeof window.gtag !== 'function') { return; }
             var q = new URLSearchParams(window.location.search);
+            function pick(internal, utm, fallback) {
+                return q.get(internal) || q.get(utm) || fallback;
+            }
             window.gtag('event', 'booking_page_view', {
                 ref: q.get('ref') || '(none)',
-                source: q.get('utm_source') || '(direct)',
+                source: pick('from', 'utm_source', '(direct)'),
                 campaign: q.get('utm_campaign') || '(none)',
-                placement: q.get('utm_content') || '(none)',
-                band: q.get('utm_term') || '(none)'
+                placement: pick('place', 'utm_content', '(none)'),
+                band: pick('band', 'utm_term', '(none)')
             });
         })();
     </script>

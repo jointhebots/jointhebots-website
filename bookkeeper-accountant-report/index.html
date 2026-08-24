@@ -1295,24 +1295,35 @@
       });
 
       // ─── Booking links ───
-      // Every booking link carries the slug as ?ref=, plus UTMs so GA4 attributes the
-      // /book-call/ session to this report rather than filing it under direct traffic.
+      // Every booking link carries the slug as ?ref=, plus where the click came from.
       // The slug comes from the URL, not from the webhook, so this runs on load — it
       // does not wait for (or depend on) BKR03.
       //
-      // utm_content separates the two CTAs. The standing "already know you want to
-      // talk" link and the one revealed at the end of the quiz are read by people at
-      // very different points, and pooling them would hide which one actually works.
-      // utm_term carries the quiz band where there is one, so the same comparison can
+      // `place` separates the two CTAs. The standing "already know you want to talk"
+      // link and the one revealed at the end of the quiz are read by people at very
+      // different points, and pooling them would hide which one actually works.
+      // `band` carries the quiz result where there is one, so the same comparison can
       // be made between bands.
+      //
+      // ⚠ These were utm_source / utm_medium / utm_campaign / utm_content / utm_term
+      // until 21 Aug, and they must not go back.
+      //
+      // /book-call/ is on this same domain, and GA4 treats a campaign change as a
+      // session-restarting event. Tagging an internal link with utm_ therefore split
+      // one visit into two sessions: the report page in one, the booking page in
+      // another, filed as a fresh campaign arrival. Session counts inflated, and any
+      // session-scoped funnel ("read the report AND booked") could never join up.
+      //
+      // Nothing is lost by dropping them, because /book-call/ reads these parameters
+      // into its booking_page_view event directly. UTMs remain correct and expected on
+      // EXTERNAL links, such as Google Ads, and that page still reads them for exactly
+      // that traffic.
       function bookingHref(placement, band) {
         var params = [];
         if (slug) { params.push('ref=' + encodeURIComponent(slug)); }
-        params.push('utm_source=bkr-report');
-        params.push('utm_medium=referral');
-        params.push('utm_campaign=bookkeepers');
-        params.push('utm_content=' + encodeURIComponent(placement));
-        if (band) { params.push('utm_term=' + encodeURIComponent(band)); }
+        params.push('from=bkr-report');
+        params.push('place=' + encodeURIComponent(placement));
+        if (band) { params.push('band=' + encodeURIComponent(band)); }
         return '/book-call/?' + params.join('&');
       }
 
