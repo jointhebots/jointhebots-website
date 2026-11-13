@@ -159,6 +159,33 @@
     if (read() === null) { show(); }
   }
 
+  // ── Booking click tracking ──
+  // Every "book a call" button on the site, counted as one GA4 event so each page
+  // gets a click-through rate. It lives here because this file is the only script
+  // every page already loads. Bookings themselves happen inside a Google Calendar
+  // appointment page, which GA4 cannot see, so a click is the furthest point we can
+  // measure. It means "went to book", not "booked".
+  //
+  // Sent through gtag, so Consent Mode decides what is stored: before a choice, or
+  // after Reject, Google receives a cookieless ping and nothing is written.
+  var BOOKING_LINK = /\/book-call(\/|$|\?|#)|calendar\.google\.com\/calendar\/appointments/;
+
+  function trackBookingClicks() {
+    document.addEventListener('click', function (e) {
+      var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
+      if (!a || !BOOKING_LINK.test(a.href)) { return; }
+      if (typeof window.gtag !== 'function') { return; }
+      var section = a.closest('section, header, nav, footer, .niche-bar');
+      window.gtag('event', 'book_call_click', {
+        link_text: (a.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 100),
+        link_url: a.href,
+        link_location: section ? (section.id || section.className.split(' ')[0] || section.tagName.toLowerCase()) : 'page',
+        transport_type: 'beacon'
+      });
+    }, true);
+  }
+  trackBookingClicks();
+
   window.JTBConsent = { show: show, current: read };
 
   if (document.readyState === 'loading') {
